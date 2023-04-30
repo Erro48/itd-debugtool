@@ -13,7 +13,7 @@ function App() {
 			<div className='container'>
 				<div className='row'>
 					<TdContainer />
-					<div class='col-12 col-sm-3'>
+					<div className='col-12 col-sm-3'>
 						<PropContainer />
 						<ActionContainer />
 					</div>
