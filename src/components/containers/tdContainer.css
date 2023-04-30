@@ -1,18 +1,18 @@
 /* #region Header */
-header > h2 {
+section header > h2 {
 	color: var(--primary-text-color);
 	font-family: var(--secondary-font);
 	font-size: 30px;
 	font-weight: bold;
 }
 
-header > hr {
+section header > hr {
 	border-top: 2px solid var(--tertiary-color);
 }
 /* #endregion Header */
 
 /* #region List */
-ul {
+section ul {
 	list-style: none;
 	padding: 0;
 	display: flex;
@@ -21,26 +21,23 @@ ul {
 	gap: 15px;
 }
 
-ul li {
+section ul li {
 	width: 100%;
 }
 /* #endregion List */
 
 /* #region Card */
-
-.td-card h3.title {
+section h3.title {
 	font-weight: 500;
 	font-size: 22px;
 	line-height: 16px;
 	text-transform: capitalize;
 }
-
-.td-card span.version {
+section span.version {
 	text-align: right;
 	color: var(--secondary-text-color);
 }
-
-.td-card h4.subtitle {
+section h4.subtitle {
 	color: var(--tertiary-text-color);
 	font-weight: 400;
 	font-size: 15px;

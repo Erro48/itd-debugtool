@@ -12,6 +12,11 @@
 	--primary-font: 'Roboto';
 	--secondary-font: 'Open Sans';
 
+	--regular-font-weight: 400;
+	--medium-font-weight: 500;
+	--medium-bold-font-weight: 600;
+	--bold-font-weight: 700;
+
 	--small-border-radius: 5px;
 	--medium-border-radius: 10px;
 }
@@ -24,4 +29,14 @@
 @font-face {
 	font-family: 'Open Sans';
 	src: url('./assets/fonts/OpenSans-VariableFont_wdth,wght.ttf');
+}
+
+* {
+	font-family: var(--primary-font);
+	color: var(--primary-text-color);
+}
+
+*:focus {
+	outline: 2px solid var(--accent-color);
+	border-radius: var(--small-border-radius);
 }
