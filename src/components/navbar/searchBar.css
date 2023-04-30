@@ -1,16 +1,27 @@
 #search-bar {
-	background-color: white;
+	background-color: var(--secondary-color);
 }
 
 #search-bar form {
-	width: 85%;
+	width: 90%;
+}
+
+#search-bar input {
+	background-color: inherit;
+
+	font-weight: var(--medium-font-weight);
+}
+
+#search-bar input:focus {
+	box-shadow: 0 0 0 0 transparent;
 }
 
 #search-bar ul {
-	list-style: none;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 10%;
 	padding: 0;
-	width: 15%;
-	justify-content: space-around;
+	list-style: none;
 }
 
 #search-bar button {

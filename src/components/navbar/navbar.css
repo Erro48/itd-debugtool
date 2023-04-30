@@ -1,3 +1,11 @@
 .navbar {
 	background-color: var(--primary-color);
 }
+
+.navbar h1 {
+	margin: 0;
+	font-size: 30px;
+	font-weight: var(--bold-font-weight);
+	letter-spacing: -1px;
+	font-family: var(--secondary-font);
+}

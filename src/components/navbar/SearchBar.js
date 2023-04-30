@@ -8,18 +8,30 @@ function SearchBar(props) {
 		>
 			<form>
 				<input
-					className='form-control me-2 border-0'
+					className='form-control px-3 py-2 me-2 border-0'
 					type='search'
 					placeholder='Search for a repository'
 					aria-label='Search for a repository'
 				/>
 			</form>
-			<ul className='d-flex m-0'>
-				<li className='icon d-flex'>
-					<button>L</button>
+			<ul className='d-flex flex-row m-0'>
+				<li>
+					<button>
+						<img
+							src='../icons/tick-outline.svg'
+							alt='Choose repository'
+							className='icon repository-icon'
+						/>
+					</button>
 				</li>
-				<li className='icon d-flex'>
-					<button>D</button>
+				<li>
+					<button>
+						<img
+							src='../icons/baseline-folder-open.svg'
+							alt='Choose repository'
+							className='icon repository-icon'
+						/>
+					</button>
 				</li>
 			</ul>
 		</div>
