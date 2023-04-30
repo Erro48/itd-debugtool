@@ -1,0 +1,4 @@
+hr.card-separator {
+	border-top: 1px solid var(--tertiary-color);
+	width: 100%;
+}
