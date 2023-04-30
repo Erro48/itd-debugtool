@@ -19,7 +19,7 @@ const Card = ({ title, description, address, version }) => {
 							<h3 className='title col-8'>{title}</h3>
 							{getVersion()}
 						</div>
-						<h4 className='subtitle d-none d-sm-block'>{address}</h4>
+						<p className='subtitle d-none d-sm-block'>{address}</p>
 					</header>
 					<div className='description pt-2 pt-sm-1'>{description}</div>
 				</div>

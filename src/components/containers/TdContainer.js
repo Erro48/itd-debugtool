@@ -1,4 +1,4 @@
-import CardList from '../CardList'
+import CardList from '../utils/CardList'
 import './tdContainer.css'
 
 const cards = [

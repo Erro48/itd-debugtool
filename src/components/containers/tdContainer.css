@@ -37,7 +37,7 @@ section span.version {
 	text-align: right;
 	color: var(--secondary-text-color);
 }
-section h4.subtitle {
+section p.subtitle {
 	color: var(--tertiary-text-color);
 	font-weight: 400;
 	font-size: 15px;

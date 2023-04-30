@@ -1,4 +1,4 @@
-import CardList from '../CardList'
+import CardList from '../utils/CardList'
 import './propContainer.css'
 
 const cards = [
