@@ -1,0 +1,19 @@
+#search-bar {
+	background-color: white;
+}
+
+#search-bar form {
+	width: 85%;
+}
+
+#search-bar ul {
+	list-style: none;
+	padding: 0;
+	width: 15%;
+	justify-content: space-around;
+}
+
+#search-bar button {
+	background-color: transparent;
+	border: none;
+}

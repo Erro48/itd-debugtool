@@ -1,6 +1,6 @@
 function PropContainer() {
 	return (
-		<section className='prop-container col col-sm-4'>
+		<section className='prop-container col-12'>
 			<div>props</div>
 		</section>
 	)

@@ -1,9 +1,9 @@
-import './App.css'
-import Navbar from './components/navbar'
-import TdContainer from './components/td-container'
-import PropContainer from './components/prop-container'
-import PropDescription from './components/prop-description'
-import Terminal from './components/terminal'
+import './style/App.css'
+import Navbar from './components/navbar/Navbar'
+import TdContainer from './components/TdContainer'
+import PropContainer from './components/PropContainer'
+import PropDescription from './components/PropDescription'
+import Terminal from './components/Terminal'
 
 function App() {
 	return (
@@ -12,9 +12,14 @@ function App() {
 			<div className='container'>
 				<div className='row'>
 					<TdContainer />
-					<div className='col col-sm-9'>
+					<div className='col-12 col-sm-3 d-none d-sm-block'>
 						<div className='row'>
 							<PropContainer />
+							<PropContainer />
+						</div>
+					</div>
+					<div className='col col-sm-6 d-none d-sm-block'>
+						<div className='row'>
 							<PropDescription />
 							<Terminal />
 						</div>

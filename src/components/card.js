@@ -3,10 +3,21 @@ import { Component } from 'react'
 class Card extends Component {
 	render() {
 		return (
-			<div className='card'>
-				<h3 class='title'>{this.props.title}</h3>
-				<div class='description'>{this.props.description}</div>
-			</div>
+			<a href='/' className='card td-card py-3 px-4'>
+				<div className='row'>
+					<div className='col-10'>
+						<h3 className='title'>{this.props.title}</h3>
+						<div className='description'>{this.props.description}</div>
+					</div>
+					<div className='col-2 d-flex'>
+						<img
+							src='../icons/left-arrow-dark.svg'
+							alt={'Select ' + this.props.title}
+							className='icon right-arrow'
+						/>
+					</div>
+				</div>
+			</a>
 		)
 	}
 }
