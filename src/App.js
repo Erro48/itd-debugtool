@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from './components/navbar/Navbar'
-import TdContainer from './components/TdContainer'
-import PropContainer from './components/PropContainer'
+import TdContainer from './components/containers/TdContainer'
+import PropContainer from './components/containers/PropContainer'
 import PropDescription from './components/PropDescription'
 import Terminal from './components/Terminal'
 
