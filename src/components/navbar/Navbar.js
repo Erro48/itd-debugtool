@@ -8,7 +8,7 @@ function Navbar() {
 				<h1>
 					<span>WoT</span> Dashboard
 				</h1>
-				<button
+				{/* <button
 					className='navbar-toggler'
 					type='button'
 					data-bs-toggle='collapse'
@@ -18,8 +18,11 @@ function Navbar() {
 					aria-label='Toggle navigation'
 				>
 					<span className='navbar-toggler-icon'></span>
-				</button>
-				<div className='collapse navbar-collapse' id='navbarSupportedContent'>
+				</button> */}
+				<div
+					className='collapse navbar-collapse d-none'
+					id='navbarSupportedContent'
+				>
 					<SearchBar />
 				</div>
 			</div>

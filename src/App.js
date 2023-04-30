@@ -5,6 +5,7 @@ import PropContainer from './components/containers/PropContainer'
 import ActionContainer from './components/containers/ActionContainer'
 import PropDescription from './components/PropDescription'
 import Terminal from './components/Terminal'
+import SearchBar from './components/navbar/SearchBar'
 
 function App() {
 	return (
@@ -12,6 +13,9 @@ function App() {
 			<Navbar />
 			<div className='container'>
 				<div className='row'>
+					<div className='col-12 d-sm-none'>
+						<SearchBar />
+					</div>
 					<TdContainer />
 					<div className='col-12 col-sm-3'>
 						<PropContainer />
