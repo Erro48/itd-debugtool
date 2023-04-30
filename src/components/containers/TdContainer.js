@@ -31,15 +31,6 @@ function TdContainer() {
 				<hr />
 			</header>
 			<CardList cards={cards} />
-			{/* <ul className='px-2'>
-				{cards.map((card, index) => {
-					return (
-						<li key={index}>
-							<Card title={card.title} description={card.description} />
-						</li>
-					)
-				})}
-			</ul> */}
 		</section>
 	)
 }

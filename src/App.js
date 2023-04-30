@@ -12,12 +12,8 @@ function App() {
 			<div className='container'>
 				<div className='row'>
 					<TdContainer />
-					<div className='col-12 col-sm-3 d-none d-sm-block'>
-						<div className='row'>
-							<PropContainer />
-							<PropContainer />
-						</div>
-					</div>
+					<PropContainer />
+
 					<div className='col col-sm-6 d-none d-sm-block'>
 						<div className='row'>
 							<PropDescription />
