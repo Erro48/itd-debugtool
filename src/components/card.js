@@ -11,7 +11,7 @@ const Card = ({ title, description, address, version }) => {
 	}
 
 	return (
-		<a href='/' className='card td-card py-3 px-4 p-sm-2'>
+		<button href='/' className='card td-card py-3 px-4 p-sm-2 w-100'>
 			<div className='row'>
 				<div className='col-10 col-sm-12'>
 					<header>
@@ -31,7 +31,7 @@ const Card = ({ title, description, address, version }) => {
 					/>
 				</div>
 			</div>
-		</a>
+		</button>
 	)
 }
 
