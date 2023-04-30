@@ -1,4 +1,3 @@
-import Card from '../Card'
 import CardList from '../CardList'
 import './tdContainer.css'
 

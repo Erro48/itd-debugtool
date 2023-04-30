@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from './Icon'
 
 import './card.css'
 
@@ -10,7 +11,7 @@ const Card = ({ title, description, address, version }) => {
 	}
 
 	return (
-		<a href='/' className='card td-card py-3 px-4 py-sm-2'>
+		<a href='/' className='card td-card py-3 px-4 p-sm-2'>
 			<div className='row'>
 				<div className='col-10 col-sm-12'>
 					<header>
@@ -23,10 +24,10 @@ const Card = ({ title, description, address, version }) => {
 					<div className='description pt-2 pt-sm-1'>{description}</div>
 				</div>
 				<div className='col-2 d-flex d-sm-none'>
-					<img
+					<Icon
 						src='../icons/left-arrow-dark.svg'
 						alt={'Select ' + title}
-						className='icon right-arrow'
+						classname='right-arrow'
 					/>
 				</div>
 			</div>

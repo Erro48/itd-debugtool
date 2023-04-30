@@ -1,3 +1,4 @@
+import Icon from '../Icon'
 import './searchBar.css'
 
 function SearchBar(props) {
@@ -17,19 +18,14 @@ function SearchBar(props) {
 			<ul className='d-flex flex-row m-0'>
 				<li>
 					<button>
-						<img
-							src='../icons/tick-outline.svg'
-							alt='Choose repository'
-							className='icon repository-icon'
-						/>
+						<Icon src='../icons/tick-outline.svg' alt='Repository loaded' />
 					</button>
 				</li>
 				<li>
 					<button>
-						<img
+						<Icon
 							src='../icons/baseline-folder-open.svg'
 							alt='Choose repository'
-							className='icon repository-icon'
 						/>
 					</button>
 				</li>
