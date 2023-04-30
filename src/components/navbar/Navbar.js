@@ -1,8 +1,9 @@
 import SearchBar from './SearchBar'
+import './navbar.css'
 
 function Navbar() {
 	return (
-		<nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+		<nav className='navbar navbar-expand-lg'>
 			<div className='container'>
 				<a className='navbar-brand' href='/'>
 					<span>WoT</span> Dashboard

@@ -1,3 +1,5 @@
+import './searchBar.css'
+
 function SearchBar(props) {
 	return (
 		<div
