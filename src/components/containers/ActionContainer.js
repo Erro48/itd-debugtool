@@ -1,29 +1,29 @@
+import React from 'react'
 import CardList from '../CardList'
-import './propContainer.css'
 
 const cards = [
 	{
-		title: 'angle',
-		description: 'A specified angle',
+		title: 'setAngle',
+		description: 'Set a specified angle',
 		address: 'address/thing/wheat/angle',
 	},
 	{
-		title: 'color',
-		description: 'LED matrix color',
+		title: 'changeColor',
+		description: 'Set LED matrix color',
 		address: 'address/thing/wheat/color',
 	},
 	{
-		title: 'coords',
-		description: 'Coordinates of the robotic arm',
+		title: 'goToCoords',
+		description: 'Go to the specified coordinates',
 		address: 'address/thing/wheat/coords',
 	},
 ]
 
-function PropContainer() {
+const ActionContainer = () => {
 	return (
 		<section className='prop-container col-12'>
 			<header className='pt-3 px-2'>
-				<h2>Properties</h2>
+				<h2>Actions</h2>
 				<hr />
 			</header>
 			<CardList cards={cards} />
@@ -31,4 +31,4 @@ function PropContainer() {
 	)
 }
 
-export default PropContainer
+export default ActionContainer
