@@ -1,4 +1,4 @@
-import './style/App.css'
+import './App.css'
 import Navbar from './components/navbar/Navbar'
 import TdContainer from './components/TdContainer'
 import PropContainer from './components/PropContainer'
