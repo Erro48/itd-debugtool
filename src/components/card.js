@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import './card.css'
 
 class Card extends Component {
 	render() {
@@ -9,7 +10,7 @@ class Card extends Component {
 						<h3 className='title'>{this.props.title}</h3>
 						<div className='description'>{this.props.description}</div>
 					</div>
-					<div className='col-2 d-flex'>
+					<div className='col-2 d-flex d-sm-none'>
 						<img
 							src='../icons/left-arrow-dark.svg'
 							alt={'Select ' + this.props.title}
