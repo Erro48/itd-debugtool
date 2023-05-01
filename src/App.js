@@ -15,6 +15,8 @@ const chosenInteraction = {
 			name: 'id',
 			description: 'The id of the angle to move',
 			type: 'number',
+			minimum: 0,
+			maximum: 100,
 			values: [1, 2, 3, 4, 5, 6],
 		},
 		{
@@ -24,10 +26,26 @@ const chosenInteraction = {
 			values: [1, 2, 3, 4, 5, 6],
 		},
 		{
-			name: 'id',
-			description: 'The id of the angle to move',
-			type: 'number',
-			values: [1, 2, 3, 4, 5, 6],
+			name: 'color',
+			description: 'The color of the matrix led',
+			type: 'object',
+			properties: {
+				r: {
+					type: 'number',
+					minimum: 0,
+					maximum: 100,
+				},
+				g: {
+					type: 'number',
+					minimum: 0,
+					maximum: 100,
+				},
+				b: {
+					type: 'number',
+					minimum: 0,
+					maximum: 100,
+				},
+			},
 		},
 	],
 }

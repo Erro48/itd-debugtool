@@ -41,3 +41,17 @@
 /* .attribute-input:has(input[aria-expanded='true']) {
 	border-radius: 5px 5px 0 0;
 } */
+
+.attribute-object-expand {
+	border: none;
+	background: var(--primary-color);
+	color: var(--light-color);
+	padding: 5px 15px;
+	border-radius: var(--small-border-radius);
+	letter-spacing: 1px;
+	box-shadow: 2px 2px 5px var(--primary-color);
+}
+
+.attribute-object-expand:active {
+	filter: brightness(75%);
+}
