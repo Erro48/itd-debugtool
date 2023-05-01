@@ -1,7 +1,7 @@
 import React from 'react'
 
-const StringAttribute = () => {
+const StringInput = () => {
 	return <input type='text' name='' id='' />
 }
 
-export default StringAttribute
+export default StringInput

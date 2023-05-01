@@ -1,11 +1,11 @@
 import React from 'react'
-import NumericAttribute from './NumericAttribute'
-import StringAttribute from './StringAttribute'
+import SetInput from './SetInput'
+import StringInput from './StringInput'
 
 const AttributeInput = ({ type, values }) => {
 	const input = (type) => {
-		if (type === 'number') return <NumericAttribute values={values} />
-		if (type == 'string') return <StringAttribute />
+		if (type === 'number') return <SetInput values={values} />
+		if (type == 'string') return <StringInput />
 	}
 
 	return <>{input(type)}</>

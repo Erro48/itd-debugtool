@@ -1,21 +1,16 @@
 import React from 'react'
-import AttributeInput from './AttributeInput'
+import BasicAttribute from './BasicAttribute'
+import ObjectAttribute from './ObjectAttribute'
+import ArrayAttribute from './ArrayAttribute'
 import './attribute.css'
 
-const Attribute = ({ name, description, type, values }) => {
-	return (
-		<React.Fragment>
-			<div className='row attribute w-100 my-3'>
-				<div className='col-3 attribute-name d-flex align-items-center'>
-					{name}
-				</div>
-				<div className='col-9 attribute-input p-0'>
-					<AttributeInput type={type} values={values} />
-				</div>
-				<div className='col-12'>{description}</div>
-			</div>
-		</React.Fragment>
-	)
+const Attribute = (props) => {
+	const selectAttributeType = (type) => {
+		if (type == 'object') return <ObjectAttribute {...props} />
+		if (type == 'array') return <ArrayAttribute {...props} />
+		return <BasicAttribute {...props} />
+	}
+	return <React.Fragment>{selectAttributeType(props.type)}</React.Fragment>
 }
 
 export default Attribute

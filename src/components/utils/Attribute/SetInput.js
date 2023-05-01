@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NumericAttribute = ({ values }) => {
+const SetInput = ({ values }) => {
 	return (
 		<div class='dropdown'>
 			<input
@@ -19,4 +19,4 @@ const NumericAttribute = ({ values }) => {
 	)
 }
 
-export default NumericAttribute
+export default SetInput
