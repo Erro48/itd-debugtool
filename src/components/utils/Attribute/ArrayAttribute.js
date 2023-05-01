@@ -16,7 +16,7 @@ const arrayItems = [
 const ArrayAttribute = ({ name, description, type, values }) => {
 	return (
 		<>
-			<p className='attribute-name'>{name}</p>
+			<h3 className='attribute-name'>{name}</h3>
 			<p>{description}</p>
 			<ul className='attribute-array-list ms-3 ps-3'>
 				{arrayItems.map((item) => (
