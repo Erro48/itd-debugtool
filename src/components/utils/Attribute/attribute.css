@@ -1,6 +1,8 @@
 .attribute-name {
 	text-transform: capitalize;
 	font-weight: var(--medium-font-weight);
+	display: flex;
+	align-items: center;
 }
 
 .attribute-input {
@@ -54,4 +56,8 @@
 
 .attribute-object-expand:active {
 	filter: brightness(75%);
+}
+
+.attribute-array-list {
+	border-left: 2px solid var(--tertiary-color);
 }

@@ -20,10 +20,9 @@ const chosenInteraction = {
 			values: [1, 2, 3, 4, 5, 6],
 		},
 		{
-			name: 'id',
-			description: 'The id of the angle to move',
-			type: 'string',
-			values: [1, 2, 3, 4, 5, 6],
+			name: 'Shopping list',
+			description: 'The shopping list',
+			type: 'array',
 		},
 		{
 			name: 'color',
