@@ -20,7 +20,7 @@ const chosenInteraction = {
 		{
 			name: 'id',
 			description: 'The id of the angle to move',
-			type: 'number',
+			type: 'string',
 			values: [1, 2, 3, 4, 5, 6],
 		},
 		{
@@ -42,7 +42,7 @@ function App() {
 						<SearchBar />
 					</div>
 					<TdContainer />
-					<div className='col-12 col-sm-3'>
+					<div className='col-12 col-sm-3 px-2'>
 						<PropContainer />
 						<ActionContainer />
 					</div>

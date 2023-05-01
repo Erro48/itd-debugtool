@@ -22,7 +22,7 @@ const cards = [
 function PropContainer() {
 	return (
 		<section className='prop-container col-12'>
-			<header className='pt-3 px-2'>
+			<header className='pt-3'>
 				<h2>Properties</h2>
 				<hr />
 			</header>

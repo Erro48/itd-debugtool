@@ -1,0 +1,43 @@
+.attribute-name {
+	text-transform: capitalize;
+	font-weight: var(--medium-font-weight);
+}
+
+.attribute-input {
+	border: 2px solid var(--tertiary-text-color);
+	/* text-align: left; */
+	background: transparent;
+	/* padding: 5px 15px; */
+	border-radius: var(--small-border-radius);
+	color: var(--tertiary-color);
+}
+
+.attribute-input input {
+	width: 100%;
+	background: transparent;
+	border: none;
+	padding: 5px 15px;
+	text-align: left;
+}
+
+.attribute-input ul {
+	padding: 5px;
+	border: 1px solid var(--tertiary-color);
+
+	width: 100%;
+	border-radius: var(--small-border-radius);
+	background: var(--light-color);
+}
+
+.attribute-input li {
+	border-radius: var(--small-border-radius);
+	padding: 3px 10px;
+}
+
+.attribute-input li:hover {
+	background-color: var(--secondary-color);
+}
+
+/* .attribute-input:has(input[aria-expanded='true']) {
+	border-radius: 5px 5px 0 0;
+} */

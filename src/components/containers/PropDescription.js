@@ -3,10 +3,10 @@ import JsonDisplay from './JsonDisplay'
 
 function PropDescription({ interaction, address, attributes }) {
 	return (
-		<section className='col col-sm-12 prop-description'>
-			<header>
-				<h2>{interaction}</h2>
-				<p>{address}</p>
+		<section className='col col-sm-12 px-2 prop-description'>
+			<header className='pt-3'>
+				<h2 className='title'>{interaction}</h2>
+				<p className='subtitle'>{address}</p>
 				<hr />
 			</header>
 			{/* Attributes */}
