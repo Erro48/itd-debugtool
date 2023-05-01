@@ -1,4 +1,4 @@
-import Attribute from '../utils/Attribute'
+import Attribute from '../utils/Attribute/Attribute'
 import JsonDisplay from './JsonDisplay'
 
 function PropDescription({ interaction, address, attributes }) {
