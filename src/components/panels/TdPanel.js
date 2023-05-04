@@ -1,5 +1,5 @@
 import CardList from '../utils/CardList'
-import './tdContainer.css'
+import './tdPanel.css'
 
 const cards = [
 	{
@@ -22,7 +22,7 @@ const cards = [
 	},
 ]
 
-function TdContainer() {
+function TdPanel() {
 	return (
 		<section className='td-container col-12 col-sm-3'>
 			<header className='pt-3 px-2'>
@@ -34,4 +34,4 @@ function TdContainer() {
 	)
 }
 
-export default TdContainer
+export default TdPanel

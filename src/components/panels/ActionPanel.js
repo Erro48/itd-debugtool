@@ -19,7 +19,7 @@ const cards = [
 	},
 ]
 
-const ActionContainer = () => {
+const ActionPanel = () => {
 	return (
 		<section className='prop-container col-12'>
 			<header className='pt-3'>
@@ -31,4 +31,4 @@ const ActionContainer = () => {
 	)
 }
 
-export default ActionContainer
+export default ActionPanel

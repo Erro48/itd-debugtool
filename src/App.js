@@ -1,10 +1,10 @@
 import './App.css'
 import Navbar from './components/navbar/Navbar'
-import TdContainer from './components/panels/TdPanel'
-import PropContainer from './components/panels/PropertyPanel'
-import ActionContainer from './components/panels/ActionPanel'
+import TdPanel from './components/panels/TdPanel'
+import PropertyPanel from './components/panels/PropertyPanel'
+import ActionPanel from './components/panels/ActionPanel'
 import PropDescription from './components/panels/DescriptionPanel'
-import Terminal from './components/panels/OutputPanel'
+import OutputPanel from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
 
 const chosenInteraction = {
@@ -58,16 +58,16 @@ function App() {
 					<div className='col-12 d-sm-none'>
 						<SearchBar />
 					</div>
-					<TdContainer />
+					<TdPanel />
 					<div className='col-12 col-sm-3 px-2'>
-						<PropContainer />
-						<ActionContainer />
+						<PropertyPanel />
+						<ActionPanel />
 					</div>
 
 					<div className='col col-sm-6 d-none d-sm-block'>
 						<div className='row'>
 							<PropDescription {...chosenInteraction} />
-							<Terminal />
+							<OutputPanel />
 						</div>
 					</div>
 				</div>

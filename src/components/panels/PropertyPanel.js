@@ -1,5 +1,5 @@
 import CardList from '../utils/CardList'
-import './propContainer.css'
+import './propertyPanel.css'
 
 const cards = [
 	{
@@ -19,7 +19,7 @@ const cards = [
 	},
 ]
 
-function PropContainer() {
+function PropertyPanel() {
 	return (
 		<section className='prop-container col-12'>
 			<header className='pt-3'>
@@ -31,4 +31,4 @@ function PropContainer() {
 	)
 }
 
-export default PropContainer
+export default PropertyPanel
