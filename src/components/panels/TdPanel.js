@@ -24,8 +24,8 @@ const cards = [
 
 function TdPanel() {
 	return (
-		<section className='td-container col-12 col-sm-3'>
-			<header className='pt-3 px-2'>
+		<section className='td-container col-12 col-sm-3 px-0'>
+			<header className='pt-3'>
 				<h2>Thing Descriptions</h2>
 				<hr />
 			</header>

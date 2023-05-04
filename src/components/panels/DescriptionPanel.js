@@ -3,15 +3,15 @@ import JsonDisplay from './JsonDisplay'
 
 function PropDescription({ interaction, address, attributes }) {
 	return (
-		<section className='col col-sm-12 px-2 prop-description'>
+		<section className='col col-sm-12 px-0 prop-description'>
 			<header className='pt-3'>
 				<h2 className='title'>{interaction}</h2>
 				<p className='subtitle'>{address}</p>
 				<hr />
 			</header>
 			{/* Attributes */}
-			<div class='row'>
-				<div class='col-7'>
+			<div class='row px-2'>
+				<div class='col-12 col-sm-7'>
 					<ul>
 						{attributes.map((attribute) => {
 							return (
@@ -22,7 +22,7 @@ function PropDescription({ interaction, address, attributes }) {
 						})}
 					</ul>
 				</div>
-				<div class='col-5'>
+				<div class='col-12 col-sm-5'>
 					<JsonDisplay />
 				</div>
 			</div>

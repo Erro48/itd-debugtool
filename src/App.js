@@ -54,18 +54,20 @@ function App() {
 		<div className='App'>
 			<Navbar />
 			<div className='container'>
-				<div className='row'>
+				<div className='row w-100 m-auto'>
 					<div className='col-12 d-sm-none'>
 						<SearchBar />
 					</div>
 					<TdPanel />
-					<div className='col-12 col-sm-3 px-2'>
-						<PropertyPanel />
-						<ActionPanel />
+					<div className='col-12 col-sm-3'>
+						<div className='row'>
+							<PropertyPanel />
+							<ActionPanel />
+						</div>
 					</div>
 
-					<div className='col col-sm-6 d-none d-sm-block'>
-						<div className='row'>
+					<div className='col-12 col-sm-6 d-sm-block'>
+						<div className='row m-auto'>
 							<PropDescription {...chosenInteraction} />
 							<OutputPanel />
 						</div>
