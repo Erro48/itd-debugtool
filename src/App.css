@@ -40,3 +40,7 @@
 	outline: 2px solid var(--accent-color);
 	border-radius: var(--small-border-radius);
 }
+
+hr {
+	border-radius: 10px;
+}

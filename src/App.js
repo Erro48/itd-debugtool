@@ -1,10 +1,10 @@
 import './App.css'
 import Navbar from './components/navbar/Navbar'
-import TdContainer from './components/containers/TdContainer'
-import PropContainer from './components/containers/PropContainer'
-import ActionContainer from './components/containers/ActionContainer'
-import PropDescription from './components/containers/PropDescription'
-import Terminal from './components/containers/Terminal'
+import TdContainer from './components/panels/TdPanel'
+import PropContainer from './components/panels/PropertyPanel'
+import ActionContainer from './components/panels/ActionPanel'
+import PropDescription from './components/panels/DescriptionPanel'
+import Terminal from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
 
 const chosenInteraction = {

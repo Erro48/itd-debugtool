@@ -26,6 +26,10 @@ function PropDescription({ interaction, address, attributes }) {
 					<JsonDisplay />
 				</div>
 			</div>
+			<footer>
+				<hr />
+				<button>Send request</button>
+			</footer>
 		</section>
 	)
 }
