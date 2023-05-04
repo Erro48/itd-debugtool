@@ -31,6 +31,11 @@
 	src: url('./assets/fonts/OpenSans-VariableFont_wdth,wght.ttf');
 }
 
+@font-face {
+	font-family: 'Fira Code';
+	src: url(./assets/fonts/FiraCode-VariableFont_wght.ttf);
+}
+
 * {
 	font-family: var(--primary-font);
 	color: var(--primary-text-color);
