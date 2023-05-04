@@ -1,0 +1,8 @@
+aside code {
+	font-family: var(--code-font);
+}
+
+.accordion-button:not(.collapsed) {
+	color: var(--primary-color);
+	background-color: var(--light-color);
+}

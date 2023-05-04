@@ -22,7 +22,7 @@ function PropDescription({ interaction, address, attributes }) {
 						})}
 					</ul>
 				</div>
-				<div class='col-12 col-sm-5'>
+				<div class='col-12 col-sm-5 p-0'>
 					<JsonDisplay />
 				</div>
 			</div>
