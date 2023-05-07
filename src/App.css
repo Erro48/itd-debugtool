@@ -50,3 +50,27 @@
 hr {
 	border-radius: 10px;
 }
+
+.button {
+	padding: 5px 15px;
+	border-radius: var(--small-border-radius);
+	letter-spacing: 1px;
+}
+
+.primary-btn {
+	background-color: var(--primary-color);
+	border: 2px solid var(--primary-color);
+	color: var(--light-color);
+}
+
+.secondary-btn {
+	background-color: var(--light-color);
+	border: 2px solid var(--primary-color);
+	color: var(--primary-color);
+}
+
+.light-btn {
+	border: 1px solid var(--tertiary-color);
+	color: var(--primary-text-color);
+	background-color: var(--light-color);
+}

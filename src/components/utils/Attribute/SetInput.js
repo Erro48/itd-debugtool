@@ -2,9 +2,9 @@ import React from 'react'
 
 const SetInput = ({ values }) => {
 	return (
-		<div class='dropdown'>
+		<div class='dropdown h-100'>
 			<input
-				className='w-100 dropdown-toggle'
+				className='w-100 h-100 dropdown-toggle'
 				type='button'
 				data-bs-toggle='dropdown'
 				aria-expanded='false'

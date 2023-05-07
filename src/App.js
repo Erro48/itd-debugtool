@@ -69,7 +69,7 @@ function App() {
 					<div className='col-12 col-sm-6 d-sm-block'>
 						<div className='row m-auto'>
 							<PropDescription {...chosenInteraction} />
-							<OutputPanel />
+							{/* <OutputPanel /> */}
 						</div>
 					</div>
 				</div>
