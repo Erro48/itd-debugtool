@@ -2,6 +2,7 @@ import Attribute from '../utils/Attribute/Attribute'
 import JsonDisplay from './JsonDisplay'
 import Icon from '../utils/Icon'
 import Breadcrumbs from '../utils/Breadcrumbs'
+import './descriptionPanel.css'
 
 function PropDescription({ interaction, address, attributes }) {
 	return (
@@ -11,10 +12,10 @@ function PropDescription({ interaction, address, attributes }) {
 				<p className='subtitle'>{address}</p>
 				<hr />
 			</header>
+			<Breadcrumbs />
 			<div class='row px-2'>
 				<div class='col-12 col-sm-7'>
-					<Breadcrumbs />
-					<ul className='m-0'>
+					<ul className='m-0 attributes-list overflow-auto'>
 						{attributes.map((attribute) => {
 							return (
 								<li key={attribute.name}>
