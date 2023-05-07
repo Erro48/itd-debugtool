@@ -1,5 +1,7 @@
 import Attribute from '../utils/Attribute/Attribute'
 import JsonDisplay from './JsonDisplay'
+import Icon from '../utils/Icon'
+import Breadcrumbs from '../utils/Breadcrumbs'
 
 function PropDescription({ interaction, address, attributes }) {
 	return (
@@ -9,9 +11,9 @@ function PropDescription({ interaction, address, attributes }) {
 				<p className='subtitle'>{address}</p>
 				<hr />
 			</header>
-			{/* Attributes */}
 			<div class='row px-2'>
 				<div class='col-12 col-sm-7'>
+					<Breadcrumbs />
 					<ul>
 						{attributes.map((attribute) => {
 							return (
@@ -28,7 +30,20 @@ function PropDescription({ interaction, address, attributes }) {
 			</div>
 			<footer>
 				<hr />
-				<button>Send request</button>
+				<div class='row'>
+					<div class='col-2 text-center d-flex'>
+						<button class='button light-btn'>
+							<Icon
+								src='../icons/left-arrow-dark.svg'
+								alt={'Previous section'}
+							/>
+						</button>
+					</div>
+					<div class='col-6'></div>
+					<div class='col-4 d-flex justify-content-end'>
+						<button className='button primary-btn'>Send request</button>
+					</div>
+				</div>
 			</footer>
 		</section>
 	)
