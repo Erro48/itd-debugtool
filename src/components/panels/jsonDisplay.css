@@ -1,3 +1,16 @@
+aside {
+	background-color: var(--secondary-color);
+	border: 1px solid var(--tertiary-color);
+	user-select: none;
+	position: relative;
+}
+
+aside button {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
 aside code {
 	font-family: var(--code-font);
 }

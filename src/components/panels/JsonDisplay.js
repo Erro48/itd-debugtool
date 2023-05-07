@@ -1,5 +1,6 @@
 import React from 'react'
 import './jsonDisplay.css'
+import Icon from '../utils/Icon'
 
 const placeholder = `{
     "id": 3,
@@ -20,11 +21,11 @@ const placeholder = `{
 const JsonDisplay = () => {
 	return (
 		<>
-			<aside class='accordion d-sm-none' id='json-accordion'>
-				<div class=''>
-					<header class='accordion-header' id='headingOne'>
+			<aside className='accordion d-sm-none' id='json-accordion'>
+				<div>
+					<header className='accordion-header' id='headingOne'>
 						<button
-							class='accordion-button'
+							className='accordion-button'
 							type='button'
 							data-bs-toggle='collapse'
 							data-bs-target='#collapseOne'
@@ -36,7 +37,7 @@ const JsonDisplay = () => {
 					</header>
 					<div
 						id='collapseOne'
-						class='accordion-collapse collapse show'
+						className='accordion-collapse collapse show'
 						aria-labelledby='headingOne'
 						data-bs-parent='#json-accordion'
 					>
@@ -46,7 +47,11 @@ const JsonDisplay = () => {
 					</div>
 				</div>
 			</aside>
-			<aside className='d-none d-sm-block'>
+
+			<aside className='h-100 p-1 d-none d-sm-block'>
+				<button class='button light-btn icon-btn'>
+					<Icon src='../icons/copy.svg' alt={'Paste JSON object'} />
+				</button>
 				<pre>
 					<code>{placeholder}</code>
 				</pre>

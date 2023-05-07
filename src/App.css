@@ -74,3 +74,7 @@ hr {
 	color: var(--primary-text-color);
 	background-color: var(--light-color);
 }
+
+.icon-btn {
+	padding: 5px 10px !important;
+}
