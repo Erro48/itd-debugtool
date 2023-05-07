@@ -26,7 +26,7 @@ function PropertyPanel() {
 				<h2>Properties</h2>
 				<hr />
 			</header>
-			<CardList cards={cards} />
+			<CardList cards={cards} className={'prop-card-list'} />
 		</section>
 	)
 }

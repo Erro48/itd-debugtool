@@ -29,7 +29,7 @@ function TdPanel() {
 				<h2>Thing Descriptions</h2>
 				<hr />
 			</header>
-			<CardList cards={cards} />
+			<CardList cards={cards} className={'td-card-list'} />
 		</section>
 	)
 }

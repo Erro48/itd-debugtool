@@ -107,3 +107,11 @@ hr {
 }
 
 /* #endregion Buttons */
+
+.td-card-list {
+	max-height: 80vh;
+}
+
+.prop-card-list {
+	max-height: 34vh;
+}

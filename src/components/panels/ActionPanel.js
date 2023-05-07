@@ -26,7 +26,7 @@ const ActionPanel = () => {
 				<h2>Actions</h2>
 				<hr />
 			</header>
-			<CardList cards={cards} />
+			<CardList cards={cards} className={'prop-card-list'} />
 		</section>
 	)
 }
