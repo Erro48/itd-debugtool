@@ -17,12 +17,12 @@ function SearchBar(props) {
 			</form>
 			<ul className='d-flex flex-row m-0 col-2'>
 				<li>
-					<button>
+					<button className='button transparent-btn'>
 						<Icon src='../icons/tick-outline.svg' alt='Repository loaded' />
 					</button>
 				</li>
 				<li>
-					<button>
+					<button className='button transparent-btn'>
 						<Icon
 							src='../icons/baseline-folder-open.svg'
 							alt='Choose repository'
