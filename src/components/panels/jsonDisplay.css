@@ -5,12 +5,6 @@ aside {
 	position: relative;
 }
 
-aside button {
-	position: absolute;
-	right: 5px;
-	top: 5px;
-}
-
 aside code {
 	font-family: var(--code-font);
 }

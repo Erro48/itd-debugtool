@@ -49,7 +49,7 @@ const JsonDisplay = () => {
 			</aside>
 
 			<aside className='h-100 p-1 d-none d-sm-block'>
-				<button class='button light-btn icon-btn'>
+				<button class='button light-btn icon-btn top-right-btn'>
 					<Icon src='../icons/copy.svg' alt={'Copy JSON object'} />
 				</button>
 				<pre>

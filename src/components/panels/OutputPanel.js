@@ -1,7 +1,17 @@
+import Icon from '../utils/Icon'
+import './outputPanel.css'
+
 function OutputPanel() {
 	return (
 		<>
-			<button
+			<section class='output mt-3 p-2'>
+				<h2>Output</h2>
+				<button class='button light-btn icon-btn top-right-btn'>
+					<Icon src='../icons/copy.svg' alt={'Copy'} />
+				</button>
+				<p>No output</p>
+			</section>
+			{/* <button
 				type='button'
 				class='btn btn-primary'
 				data-bs-toggle='modal'
@@ -45,7 +55,7 @@ function OutputPanel() {
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</>
 	)
 }
