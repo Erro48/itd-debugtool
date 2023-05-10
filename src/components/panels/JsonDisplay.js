@@ -50,7 +50,7 @@ const JsonDisplay = () => {
 
 			<aside className='h-100 p-1 d-none d-sm-block'>
 				<button class='button light-btn icon-btn'>
-					<Icon src='../icons/copy.svg' alt={'Paste JSON object'} />
+					<Icon src='../icons/copy.svg' alt={'Copy JSON object'} />
 				</button>
 				<pre>
 					<code>{placeholder}</code>
