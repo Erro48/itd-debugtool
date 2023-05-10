@@ -23,7 +23,7 @@ const JsonDisplay = () => {
 		<>
 			<aside className='accordion d-sm-none' id='json-accordion'>
 				<div>
-					<header className='accordion-header' id='headingOne'>
+					<header className='accordion-header card' id='headingOne'>
 						<button
 							className='accordion-button'
 							type='button'
@@ -37,11 +37,14 @@ const JsonDisplay = () => {
 					</header>
 					<div
 						id='collapseOne'
-						className='accordion-collapse collapse show'
+						className='accordion-collapse collapse show p-1 position-relative'
 						aria-labelledby='headingOne'
 						data-bs-parent='#json-accordion'
 					>
-						<pre>
+						<button class='button light-btn icon-btn top-right-btn'>
+							<Icon src='../icons/copy.svg' alt={'Copy JSON object'} />
+						</button>
+						<pre className='mb-0'>
 							<code>{placeholder}</code>
 						</pre>
 					</div>

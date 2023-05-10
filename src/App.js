@@ -53,7 +53,7 @@ function App() {
 	return (
 		<div className='App'>
 			<Navbar />
-			<div className='container'>
+			<div className='container mb-3'>
 				<div className='row w-100 m-auto'>
 					<div className='col-12 d-lg-none'>
 						<SearchBar />

@@ -14,7 +14,7 @@ function PropDescription({ interaction, address, attributes }) {
 			</header>
 			<Breadcrumbs />
 			<div class='row px-2'>
-				<div class='col-12 col-sm-7'>
+				<div class='col-12 col-sm-7 mb-3 mb-sm-0'>
 					<ul className='m-0 attributes-list overflow-auto'>
 						{attributes.map((attribute) => {
 							return (
@@ -25,14 +25,14 @@ function PropDescription({ interaction, address, attributes }) {
 						})}
 					</ul>
 				</div>
-				<div class='col-12 col-sm-5 p-0'>
+				<div className='col-12 col-sm-5 p-0'>
 					<JsonDisplay />
 				</div>
 			</div>
 			<footer>
 				<hr />
-				<div class='row'>
-					<div class='col-2 text-center d-flex'>
+				<div className='row'>
+					<div className='col-2 text-center d-flex'>
 						<button class='button light-btn icon-btn'>
 							<Icon
 								src='../icons/left-arrow-dark.svg'
@@ -40,10 +40,15 @@ function PropDescription({ interaction, address, attributes }) {
 							/>
 						</button>
 					</div>
-					<div class='col-6'></div>
-					<div class='col-4 d-flex justify-content-end'>
-						<button className='button primary-btn'>Send request</button>
+
+					<div class='d-none d-sm-block col-sm-6'></div>
+					<div className='col-8 col-sm-4 d-flex justify-content-end'>
+						<button className='button primary-btn w-100 w-sm-auto'>
+							Send request
+						</button>
 					</div>
+
+					<div className='col-2 d-sm-none'></div>
 				</div>
 			</footer>
 		</section>

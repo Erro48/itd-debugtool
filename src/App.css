@@ -70,7 +70,9 @@ hr {
 	color: var(--light-color);
 }
 
-.primary-btn:hover {
+.primary-btn:hover,
+.primary-btn:focus {
+	outline: none;
 	background-color: var(--accent-color);
 	border-color: var(--accent-color);
 }
@@ -81,7 +83,9 @@ hr {
 	color: var(--primary-color);
 }
 
-.secondary-btn:hover {
+.secondary-btn:hover,
+.secondary-btn:focus {
+	outline: none;
 	border-color: var(--accent-color);
 	color: var(--accent-color);
 	filter: brightness(95%);

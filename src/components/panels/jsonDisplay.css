@@ -1,6 +1,5 @@
 aside {
 	background-color: var(--secondary-color);
-	border: 1px solid var(--tertiary-color);
 	user-select: none;
 	position: relative;
 }
