@@ -5,7 +5,7 @@ function SearchBar(props) {
 	return (
 		<div
 			id='search-bar'
-			className='row pt-sm-0 mt-3 mt-sm-0 mx-auto rounded-pill overflow-hidden'
+			className='row pt-lg-0 mt-3 mt-lg-0 mx-auto rounded-pill overflow-hidden'
 		>
 			<form className='col-10'>
 				<input

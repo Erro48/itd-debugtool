@@ -21,7 +21,7 @@ const cards = [
 
 const ActionPanel = () => {
 	return (
-		<section className='prop-container col-12'>
+		<section className='prop-container col-12 col-sm-6 col-lg-12'>
 			<header className='pt-3'>
 				<h2>Actions</h2>
 				<hr />

@@ -55,18 +55,18 @@ function App() {
 			<Navbar />
 			<div className='container'>
 				<div className='row w-100 m-auto'>
-					<div className='col-12 d-sm-none'>
+					<div className='col-12 d-lg-none'>
 						<SearchBar />
 					</div>
 					<TdPanel />
-					<div className='col-12 col-sm-3'>
+					<div className='col-12 col-lg-3'>
 						<div className='row'>
 							<PropertyPanel />
 							<ActionPanel />
 						</div>
 					</div>
 
-					<div className='col-12 col-sm-6 d-sm-block'>
+					<div className='col-12 col-lg-6 d-sm-block'>
 						<div className='row m-auto'>
 							<PropDescription {...chosenInteraction} />
 							{/* <OutputPanel /> */}
