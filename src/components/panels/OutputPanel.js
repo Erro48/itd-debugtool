@@ -6,10 +6,21 @@ function OutputPanel() {
 		<>
 			<section class='output mt-3 p-2'>
 				<h2>Output</h2>
+				<hr />
 				<button class='button light-btn icon-btn top-right-btn'>
 					<Icon src='../icons/copy.svg' alt={'Copy'} />
 				</button>
-				<p>No output</p>
+				<pre>
+					<code>
+						{`{
+	“brightness”: 5,
+	"rgb": [ 0, 255, 156 ],
+	“auth”: {
+		“key”: “auth-key”
+	}
+}`}
+					</code>
+				</pre>
 			</section>
 			{/* <button
 				type='button'

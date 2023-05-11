@@ -8,6 +8,6 @@
 	font-size: 20px;
 }
 
-.output p::before {
+.output pre::before {
 	content: '> ';
 }
