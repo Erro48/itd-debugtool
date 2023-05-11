@@ -13,8 +13,8 @@ function PropDescription({ interaction, address, attributes }) {
 				<hr />
 			</header>
 			<Breadcrumbs />
-			<div class='row px-2'>
-				<div class='col-12 col-sm-7 mb-3 mb-sm-0'>
+			<div className='row px-2'>
+				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
 					<ul className='m-0 attributes-list overflow-auto'>
 						{attributes.map((attribute) => {
 							return (
@@ -41,7 +41,7 @@ function PropDescription({ interaction, address, attributes }) {
 						</button>
 					</div>
 
-					<div class='d-none d-sm-block col-sm-6'></div>
+					<div className='d-none d-sm-block col-sm-6'></div>
 					<div className='col-8 col-sm-4 d-flex justify-content-end'>
 						<button className='button primary-btn w-100 w-sm-auto'>
 							Send request

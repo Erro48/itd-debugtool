@@ -57,7 +57,7 @@ hr {
 
 /* #region Buttons */
 .button {
-	padding: 5px 15px;
+	padding: 5px;
 	border-radius: var(--small-border-radius);
 	letter-spacing: 1px;
 	transition: var(--normal-transition-speed);
