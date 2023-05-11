@@ -1,7 +1,23 @@
 import Icon from '../utils/Icon'
 import './searchBar.css'
 
-function SearchBar(props) {
+function SearchBar({ onRepoLoad }) {
+	const handleForChange = (event) => {
+		const files = event.target.files
+		const fileList = Object.values(files)
+
+		fileList.forEach((file) => {
+			const reader = new FileReader()
+			reader.onload = (e) => {
+				const fileContent = e.target.result
+				const thingDescription = JSON.parse(fileContent)
+				onRepoLoad(thingDescription)
+			}
+
+			reader.readAsText(file)
+		})
+	}
+
 	return (
 		<div
 			id='search-bar'
@@ -23,9 +39,16 @@ function SearchBar(props) {
 				</li>
 				<li>
 					<button className='button transparent-btn'>
-						<Icon
+						{/* <Icon
 							src='../icons/baseline-folder-open.svg'
 							alt='Choose repository'
+						/> */}
+						<input
+							type='file'
+							webkitdirectory=''
+							directory=''
+							multiple=''
+							onChange={handleForChange}
 						/>
 					</button>
 				</li>

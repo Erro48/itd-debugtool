@@ -1,7 +1,7 @@
 import SearchBar from './SearchBar'
 import './navbar.css'
 
-function Navbar() {
+function Navbar({ onRepoLoad }) {
 	return (
 		<nav className='navbar navbar-expand-lg'>
 			<div className='container'>
@@ -23,7 +23,7 @@ function Navbar() {
 					className='collapse navbar-collapse d-none'
 					id='navbarSupportedContent'
 				>
-					<SearchBar />
+					<SearchBar onRepoLoad={onRepoLoad} />
 				</div>
 			</div>
 		</nav>

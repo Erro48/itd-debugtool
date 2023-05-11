@@ -6,6 +6,9 @@ import ActionPanel from './components/panels/ActionPanel'
 import PropDescription from './components/panels/DescriptionPanel'
 import OutputPanel from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
+import { useState } from 'react'
+
+// const REPOSITORY_DIR = 'C:/Users/errot/Documents/University/3-annoTesi/td-repo/'
 
 const chosenInteraction = {
 	interaction: 'angle',
@@ -50,15 +53,24 @@ const chosenInteraction = {
 }
 
 function App() {
+	const [thingDescriptions, setThingDescriptions] = useState([])
+
+	const handleRepoLoad = (thingDescription) =>
+		setThingDescriptions((arr) => {
+			if (arr.filter((td) => td.title === thingDescription.title).length === 0)
+				return [...arr, thingDescription]
+			return arr
+		})
+
 	return (
 		<div className='App'>
-			<Navbar />
+			<Navbar onRepoLoad={handleRepoLoad} />
 			<div className='container mb-3'>
 				<div className='row w-100 m-auto'>
 					<div className='col-12 d-lg-none'>
-						<SearchBar />
+						<SearchBar onRepoLoad={handleRepoLoad} />
 					</div>
-					<TdPanel />
+					<TdPanel thingDescriptions={thingDescriptions} />
 					<div className='col-12 col-lg-3'>
 						<div className='row'>
 							<PropertyPanel />
