@@ -17,10 +17,6 @@
 }
 
 #search-bar ul {
-	justify-content: space-evenly;
-	align-items: center;
-	/* width: 10%; */
-	padding: 0;
 	list-style: none;
 }
 

@@ -63,6 +63,11 @@ hr {
 	transition: var(--normal-transition-speed);
 }
 
+.button,
+.button * {
+	cursor: pointer;
+}
+
 .primary-btn {
 	background-color: var(--primary-color);
 	border: 2px solid;
