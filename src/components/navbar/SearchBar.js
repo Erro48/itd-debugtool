@@ -39,17 +39,22 @@ function SearchBar({ onRepoLoad }) {
 				</li>
 				<li>
 					<button className='button transparent-btn'>
-						{/* <Icon
-							src='../icons/baseline-folder-open.svg'
-							alt='Choose repository'
-						/> */}
-						<input
-							type='file'
-							webkitdirectory=''
-							directory=''
-							multiple=''
-							onChange={handleForChange}
-						/>
+						<label for='open-repo'>
+							<Icon
+								src='../icons/baseline-folder-open.svg'
+								alt='Choose repository'
+							/>
+
+							<input
+								className='d-none'
+								id='open-repo'
+								type='file'
+								webkitdirectory=''
+								directory=''
+								multiple=''
+								onChange={handleForChange}
+							/>
+						</label>
 					</button>
 				</li>
 			</ul>
