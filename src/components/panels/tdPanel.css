@@ -25,33 +25,3 @@ section ul li {
 	width: 100%;
 }
 /* #endregion List */
-
-/* #region Card */
-section h3.title {
-	font-weight: 500;
-	font-size: 22px;
-	line-height: 16px;
-	text-transform: capitalize;
-}
-section span.version {
-	text-align: right;
-	color: var(--secondary-text-color);
-}
-section p.subtitle {
-	color: var(--tertiary-text-color);
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 12px;
-}
-
-.td-card .description {
-	color: var(--secondary-text-color);
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 20px;
-}
-
-.td-card img.right-arrow {
-	rotate: 180deg;
-}
-/* #endregion Card */

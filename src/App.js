@@ -8,8 +8,6 @@ import OutputPanel from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
 import { useState } from 'react'
 
-// const REPOSITORY_DIR = 'C:/Users/errot/Documents/University/3-annoTesi/td-repo/'
-
 const chosenInteraction = {
 	interaction: 'angle',
 	address: 'address/thing/wheat/angle',
@@ -54,13 +52,58 @@ const chosenInteraction = {
 
 function App() {
 	const [thingDescriptions, setThingDescriptions] = useState([])
+	const [properties, setProperties] = useState([])
+	const [actions, setActions] = useState([])
+
+	const loadProperties = (thingDescription) => {
+		setProperties(
+			Object.entries(thingDescription.properties).map((k, v) => {
+				const [key, value] = k
+				return { ...value, title: key }
+			})
+		)
+	}
+
+	const loadActions = (thingDescription) => {
+		setActions(
+			Object.entries(thingDescription.actions).map((k, v) => {
+				const [key, value] = k
+				return { ...value, title: key }
+			})
+		)
+	}
 
 	const handleRepoLoad = (thingDescription) =>
 		setThingDescriptions((arr) => {
+			thingDescription = { ...thingDescription, key: thingDescription.title }
+			if (arr.length === 0) {
+				thingDescription = { ...thingDescription, active: true }
+
+				loadProperties(thingDescription)
+				loadActions(thingDescription)
+			}
+
 			if (arr.filter((td) => td.title === thingDescription.title).length === 0)
 				return [...arr, thingDescription]
 			return arr
 		})
+
+	const handleTdClick = (title) => {
+		const nextActive = thingDescriptions.map((state, t) => {
+			if (t === title) {
+				state.active = true
+				loadProperties(state)
+				loadActions(state)
+			} else {
+				if (state.active) {
+					state.active = false
+				}
+			}
+			return state
+		})
+
+		setThingDescriptions(nextActive)
+	}
 
 	return (
 		<div className='App'>
@@ -70,11 +113,14 @@ function App() {
 					<div className='col-12 d-lg-none'>
 						<SearchBar onRepoLoad={handleRepoLoad} />
 					</div>
-					<TdPanel thingDescriptions={thingDescriptions} />
+					<TdPanel
+						thingDescriptions={thingDescriptions}
+						onTdClick={handleTdClick}
+					/>
 					<div className='col-12 col-lg-3'>
 						<div className='row'>
-							<PropertyPanel />
-							<ActionPanel />
+							<PropertyPanel properties={properties} />
+							<ActionPanel actions={actions} />
 						</div>
 					</div>
 

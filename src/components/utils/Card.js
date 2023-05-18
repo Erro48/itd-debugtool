@@ -1,17 +1,41 @@
 import React from 'react'
 import Icon from './Icon'
+import classNames from 'classnames'
 
 import './card.css'
 
-const Card = ({ title, description, address, version }) => {
+const Card = ({
+	title,
+	description,
+	address,
+	version,
+	active,
+	onCardClick,
+}) => {
 	const getVersion = () => {
 		if (version !== undefined) {
 			return <span className='version col-4 d-none d-sm-block'>{version}</span>
 		}
 	}
 
+	const handleClick = () => {
+		onCardClick(title)
+	}
+
 	return (
-		<button href='/' className='card td-card py-3 px-4 p-sm-2 w-100'>
+		<button
+			href='/'
+			className={classNames(
+				'card',
+				'td-card',
+				'py-3',
+				'px-4',
+				'p-sm-2',
+				'w-100'
+			)}
+			onClick={handleClick}
+			data-active={active ? active : false}
+		>
 			<div className='row'>
 				<div className='col-10 col-sm-12'>
 					<header>
