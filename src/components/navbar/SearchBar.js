@@ -7,6 +7,8 @@ function SearchBar({ onRepoLoad }) {
 	const [loadingError, setLoadingError] = useState(false)
 	const [repoLoaded, setRepoLoaded] = useState(false)
 
+	const [repository, setRepository] = useState('')
+
 	const handleForChange = (event) => {
 		const files = event.target.files
 		const fileList = Object.values(files)
@@ -33,6 +35,11 @@ function SearchBar({ onRepoLoad }) {
 		})
 	}
 
+	const handleChange = (event) => {
+		const content = event.target.value
+		setRepository(content)
+	}
+
 	const getLoadingIcon = () => {
 		const iconName = loadingError ? 'close' : 'tick-outline'
 		const iconAlt = loadingError ? 'Repository not loaded' : 'Repository loaded'
@@ -56,6 +63,8 @@ function SearchBar({ onRepoLoad }) {
 					type='search'
 					placeholder='Search for a repository'
 					aria-label='Search for a repository'
+					onChange={handleChange}
+					// value={repository}
 				/>
 			</form>
 			<div className='col-3'>
@@ -65,7 +74,7 @@ function SearchBar({ onRepoLoad }) {
 					</li>
 					<li className='col-6 d-flex align-items-center justify-content-center'>
 						<button className='button transparent-btn'>
-							<label for='open-repo'>
+							<label htmlFor='open-repo'>
 								<Icon
 									src='../icons/baseline-folder-open.svg'
 									alt='Choose repository'
