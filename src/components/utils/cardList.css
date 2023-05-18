@@ -1,4 +1,13 @@
-hr.card-separator {
+/* hr.card-separator {
 	border-top: 1px solid var(--tertiary-color);
 	width: 100%;
+} */
+
+li:not(:last-child) > .card:after {
+	content: '';
+	border-bottom: 1px solid var(--tertiary-color);
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: -10%;
 }
