@@ -7,6 +7,7 @@ import PropDescription from './components/panels/DescriptionPanel'
 import OutputPanel from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 const chosenInteraction = {
 	interaction: 'angle',
@@ -75,7 +76,8 @@ function App() {
 
 	const handleRepoLoad = (thingDescription) =>
 		setThingDescriptions((arr) => {
-			thingDescription = { ...thingDescription, key: thingDescription.title }
+			thingDescription = { ...thingDescription, key: uuidv4() }
+
 			if (arr.length === 0) {
 				thingDescription = { ...thingDescription, active: true }
 
@@ -90,7 +92,7 @@ function App() {
 
 	const handleTdClick = (title) => {
 		const nextActive = thingDescriptions.map((state, t) => {
-			if (t === title) {
+			if (state.title === title) {
 				state.active = true
 				loadProperties(state)
 				loadActions(state)

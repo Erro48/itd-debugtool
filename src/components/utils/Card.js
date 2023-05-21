@@ -18,10 +18,6 @@ const Card = ({
 		}
 	}
 
-	const handleClick = () => {
-		onCardClick(title)
-	}
-
 	return (
 		<button
 			href='/'
@@ -33,7 +29,7 @@ const Card = ({
 				'p-sm-2',
 				'w-100'
 			)}
-			onClick={handleClick}
+			onClick={() => onCardClick(title)}
 			data-active={active ? active : false}
 		>
 			<div className='row'>
