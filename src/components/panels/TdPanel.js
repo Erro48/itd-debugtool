@@ -2,8 +2,29 @@ import { useState } from 'react'
 import CardList from '../utils/CardList'
 import './tdPanel.css'
 
-function TdPanel({ thingDescriptions, onTdClick }) {
-	// const [activeTd, setActiveTd] = useState(thingDescriptions[0])
+function TdPanel({ thingDescriptions, onChange }) {
+	// const [tds, setTds] = useState(thingDescriptions)
+	// console.log(tds, thingDescriptions)
+
+	const handleCardClick = (id) => {
+		const nextActive = thingDescriptions.map((thingDescription) => {
+			if (thingDescription.active) {
+				thingDescription.active = false
+			}
+
+			if (thingDescription.title === id) {
+				thingDescription.active = true
+				// loadProperties(thingDescription)
+				// loadActions(thingDescription)
+			}
+			return thingDescription
+		})
+
+		// setTds(nextActive)
+
+		onChange(thingDescriptions.filter((td) => td.active)[0])
+	}
+
 	return (
 		<section className='td-container col-12 col-lg-3 px-0'>
 			<header className='pt-3'>
@@ -13,7 +34,7 @@ function TdPanel({ thingDescriptions, onTdClick }) {
 			<CardList
 				cards={thingDescriptions}
 				className={'td-card-list'}
-				onCardClick={onTdClick}
+				onCardClick={handleCardClick}
 			/>
 		</section>
 	)
