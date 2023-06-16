@@ -1,0 +1,28 @@
+@import 'palette.css';
+
+:root {
+	/* ----- Main ----- */
+	--brand-color: var(--primary-500);
+	--primary: var(--neutral-100);
+	--secondary: var(--neutral-500);
+	--tertiary: var(
+		--neutral-200
+	); /* per ora usato solo nella barra di ricerca */
+
+	/* ----- Details ----- */
+	--brand-color-shadow: var(--primary-300);
+	--neutral-shadow: var(--neutral-300);
+	--error-element: var(--danger-200);
+
+	/* ----- Texts ----- */
+	--primary-text-color: var(--neutral-900);
+	--secondary-text-color: var(--neutral-700);
+	--title-text-color: var(--primary-900);
+	--error-text-color: var(--danger-800);
+
+	/* ----- Code section ----- */
+	--code-input-color: var(--success-100);
+	--code-input-stroke: var(--neutral-900); /* Same as text color */
+	--code-output-color: var(--primary-100);
+	--code-output-stroke: var(--primary-900); /* Same as text color */
+}
