@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import CardList from '../utils/CardList'
-import './tdPanel.css'
+import './panel.css'
 
 function TdPanel({ thingDescriptions, onChange }) {
 	const handleCardClick = (id) => {
@@ -33,7 +33,6 @@ function TdPanel({ thingDescriptions, onChange }) {
 		<section className='td-container col-12 col-lg-3 px-0'>
 			<header className='pt-3'>
 				<h2>Thing Descriptions</h2>
-				<hr />
 			</header>
 			<CardList
 				cards={thingDescriptions}

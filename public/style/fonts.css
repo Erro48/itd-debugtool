@@ -1,0 +1,10 @@
+:root {
+	--primary-font: 'Roboto', sans-serif;
+	--title-font: 'Open Sans', sans-serif;
+	--code-font: 'Fira Code', monospace;
+
+	--regular-font-weight: 400;
+	--medium-font-weight: 500;
+	--medium-bold-font-weight: 600;
+	--bold-font-weight: 700;
+}

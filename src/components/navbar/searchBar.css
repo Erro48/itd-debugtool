@@ -1,9 +1,5 @@
 #search-bar {
-	background-color: var(--secondary-color);
-}
-
-#search-bar form {
-	/* width: 90%; */
+	background-color: var(--tertiary);
 }
 
 #search-bar input {

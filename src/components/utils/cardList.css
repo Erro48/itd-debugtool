@@ -1,13 +1,16 @@
-/* hr.card-separator {
-	border-top: 1px solid var(--tertiary-color);
-	width: 100%;
-} */
-
 li:not(:last-child) > .card:after {
 	content: '';
-	border-bottom: 1px solid var(--tertiary-color);
+	border-bottom: 2px solid var(--secondary);
 	position: absolute;
 	width: 100%;
 	left: 0;
 	bottom: -10%;
+}
+
+.td-card-list {
+	max-height: 80vh;
+}
+
+.prop-card-list {
+	max-height: 34vh;
 }

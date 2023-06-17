@@ -1,0 +1,8 @@
+:root {
+	--small-border-radius: 5px;
+	--medium-border-radius: 10px;
+
+	--slow-transition-speed: 500ms;
+	--normal-transition-speed: 300ms;
+	--fast-transition-speed: 100ms;
+}
