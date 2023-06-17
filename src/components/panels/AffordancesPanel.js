@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import CardList from '../utils/CardList'
 
-const AffordancesPanel = ({ activeThingDescription }) => {
+const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	const updateAffordance = (type) => {
 		if (activeThingDescription === undefined) return []
 
-		const affordance =
+		const affordances =
 			type === 'properties'
 				? activeThingDescription.properties
 				: activeThingDescription.actions
 
-		return Object.entries(affordance).map((entry) => {
-			const [key, value] = entry
-			return { ...value, title: key }
+		return affordances.map((affordance) => {
+			return {
+				...affordance.value,
+				title: affordance.name,
+				active: affordance.active == true,
+			}
 		})
 	}
 
 	const [properties, setProperties] = useState(updateAffordance('properties'))
 	const [actions, setActions] = useState(updateAffordance('actions'))
+
+	// console.log('Prop', properties)
 
 	useEffect(() => {
 		setProperties(updateAffordance('properties'))
@@ -60,6 +65,8 @@ const AffordancesPanel = ({ activeThingDescription }) => {
 					...currentState.slice(n + 1),
 				]
 			})
+
+		onChange(nextActive)
 	}
 
 	return (

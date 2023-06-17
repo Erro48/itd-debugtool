@@ -21,6 +21,26 @@ function SearchBar({ onRepoLoad }) {
 				const fileContent = e.target.result
 				try {
 					const thingDescription = JSON.parse(fileContent)
+					const properties = []
+					const actions = []
+
+					Object.entries(thingDescription.properties).forEach((entry) => {
+						properties.push({
+							name: entry[0],
+							value: entry[1],
+						})
+					})
+
+					Object.entries(thingDescription.actions).forEach((entry) => {
+						actions.push({
+							name: entry[0],
+							value: entry[1],
+						})
+					})
+
+					thingDescription.properties = properties
+					thingDescription.actions = actions
+
 					onRepoLoad(thingDescription)
 				} catch (err) {
 					setLoadingError(true)

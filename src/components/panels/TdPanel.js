@@ -3,26 +3,30 @@ import CardList from '../utils/CardList'
 import './tdPanel.css'
 
 function TdPanel({ thingDescriptions, onChange }) {
-	// const [tds, setTds] = useState(thingDescriptions)
-	// console.log(tds, thingDescriptions)
-
 	const handleCardClick = (id) => {
-		const nextActive = thingDescriptions.map((thingDescription) => {
-			if (thingDescription.active) {
-				thingDescription.active = false
-			}
+		const nextActive = thingDescriptions
+			.map((thingDescription) => {
+				if (thingDescription.active) {
+					thingDescription.active = false
+				}
 
-			if (thingDescription.title === id) {
-				thingDescription.active = true
-				// loadProperties(thingDescription)
-				// loadActions(thingDescription)
-			}
-			return thingDescription
-		})
+				if (thingDescription.title === id) {
+					thingDescription.active = true
+					thingDescription.properties.map((property) => {
+						if (property.active) {
+							property.active = false
+						}
 
-		// setTds(nextActive)
+						if (thingDescription.properties.indexOf(property) == 0) {
+							property.active = true
+						}
+					})
+				}
+				return thingDescription
+			})
+			.filter((td) => td.active)[0]
 
-		onChange(thingDescriptions.filter((td) => td.active)[0])
+		onChange(nextActive)
 	}
 
 	return (

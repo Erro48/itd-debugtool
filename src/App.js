@@ -1,8 +1,6 @@
 import './App.css'
 import Navbar from './components/navbar/Navbar'
 import TdPanel from './components/panels/TdPanel'
-import PropertyPanel from './components/panels/PropertyPanel'
-import ActionPanel from './components/panels/ActionPanel'
 import PropDescription from './components/panels/DescriptionPanel'
 import OutputPanel from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
@@ -56,13 +54,27 @@ function App() {
 	const [thingDescriptions, setThingDescriptions] = useState([])
 
 	const [activeThingDescription, setActiveThingDescription] = useState()
+	const [activeAffordance, setActiveAffordance] = useState()
 
 	const handleRepoLoad = (thingDescription) => {
 		setThingDescriptions((arr) => {
 			thingDescription = { ...thingDescription, key: uuidv4() }
 
 			if (arr.length === 0) {
+				if (thingDescription.properties.length !== 0) {
+					thingDescription.properties[0] = {
+						...thingDescription.properties[0],
+						active: true,
+					}
+				} else {
+					thingDescription.actions[0] = {
+						...thingDescription.actions[0],
+						active: true,
+					}
+				}
+
 				thingDescription = { ...thingDescription, active: true }
+				console.log(thingDescription)
 			}
 
 			if (arr.filter((td) => td.title === thingDescription.title).length === 0)
@@ -72,7 +84,16 @@ function App() {
 	}
 
 	useEffect(() => {
-		setActiveThingDescription(thingDescriptions[0])
+		const activeTd = thingDescriptions[0]
+		setActiveThingDescription(activeTd)
+
+		if (activeTd === undefined) return
+
+		const activeAff = [...activeTd.properties, ...activeTd.actions].filter(
+			(affordance) => affordance.active
+		)[0]
+
+		setActiveAffordance(activeAff)
 	}, [thingDescriptions])
 
 	return (
@@ -90,12 +111,18 @@ function App() {
 						}
 					/>
 
-					<AffordancesPanel activeThingDescription={activeThingDescription} />
+					<AffordancesPanel
+						activeThingDescription={activeThingDescription}
+						onChange={(newAffordance) => setActiveAffordance(newAffordance)}
+					/>
 
 					<div className='col-12 col-lg-6 d-sm-block'>
 						<div className='row m-auto'>
-							<PropDescription {...chosenInteraction} />
-							<OutputPanel />
+							{/* <PropDescription
+								activeAffordance={activeAffordance}
+								{...chosenInteraction}
+							/>
+							<OutputPanel /> */}
 						</div>
 					</div>
 				</div>
