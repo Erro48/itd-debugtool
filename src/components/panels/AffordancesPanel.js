@@ -3,17 +3,23 @@ import CardList from '../utils/CardList'
 
 const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	const updateAffordance = (type) => {
+		let affordances
 		if (activeThingDescription === undefined) return []
 
-		const affordances =
-			type === 'properties'
-				? activeThingDescription.properties
-				: activeThingDescription.actions
+		switch (type) {
+			case 'properties':
+				affordances = activeThingDescription.properties
+				break
+
+			case 'actions':
+				affordances = activeThingDescription.actions
+				break
+		}
 
 		return affordances.map((affordance) => {
 			return {
 				...affordance.value,
-				title: affordance.name,
+				title: affordance.title,
 				active: affordance.active == true,
 			}
 		})
@@ -22,51 +28,46 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	const [properties, setProperties] = useState(updateAffordance('properties'))
 	const [actions, setActions] = useState(updateAffordance('actions'))
 
-	// console.log('Prop', properties)
-
 	useEffect(() => {
 		setProperties(updateAffordance('properties'))
 		setActions(updateAffordance('actions'))
 	}, [activeThingDescription])
 
-	const handleCardClick = (id) => {
+	const handleCardClick = (cardId) => {
+		// Merge properties and actions to work with all affordances all at once
 		const affordances = [...properties, ...actions]
 
-		const nextActive = affordances
-			.map((affordance) => {
-				if (affordance.title === id) {
-					affordance.active = true
-					return affordance
-				}
+		// Set as active all the affordance with title === cardId
+		affordances.map((affordance) => (affordance.active = false))
+		affordances
+			.filter((affordance) => affordance.title === cardId)
+			.map((affordance) => (affordance.active = true))
 
-				if (affordance.active) {
-					affordance.active = false
-				}
-				return affordance
-			})
-			.filter((affordance) => affordance.active)[0]
+		const activeAffordance = affordances.filter(
+			(affordance) => affordance.active
+		)[0]
 
-		if (properties.includes(nextActive))
-			setProperties((currentState) => {
-				const n = currentState.indexOf(nextActive)
-				return [
-					...currentState.slice(0, n),
-					nextActive,
-					...currentState.slice(n + 1),
-				]
-			})
+		// Define the handler used to update an affordance
+		const setStateHandler = (state) => {
+			const nextActiveIndex = state.indexOf(activeAffordance)
 
-		if (actions.includes(nextActive))
-			setActions((currentState) => {
-				const n = currentState.indexOf(nextActive)
-				return [
-					...currentState.slice(0, n),
-					nextActive,
-					...currentState.slice(n + 1),
-				]
-			})
+			return [
+				...state.slice(0, nextActiveIndex),
+				activeAffordance,
+				...state.slice(nextActiveIndex + 1),
+			]
+		}
 
-		onChange(nextActive)
+		// Update an affordance if the active affordance is of that type
+		if (properties.includes(activeAffordance)) {
+			setProperties((currentState) => setStateHandler(currentState))
+		}
+
+		if (actions.includes(activeAffordance)) {
+			setActions((currentState) => setStateHandler(currentState))
+		}
+
+		onChange(activeAffordance)
 	}
 
 	return (

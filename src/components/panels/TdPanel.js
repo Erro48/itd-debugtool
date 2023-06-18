@@ -1,32 +1,24 @@
-import { useState } from 'react'
 import CardList from '../utils/CardList'
 import './panel.css'
 
 function TdPanel({ thingDescriptions, onChange }) {
-	const handleCardClick = (id) => {
-		const nextActive = thingDescriptions
-			.map((thingDescription) => {
-				if (thingDescription.active) {
-					thingDescription.active = false
-				}
+	const handleCardClick = (cardId) => {
+		thingDescriptions.map((td) => (td.active = false))
+		thingDescriptions
+			.filter((td) => td.title === cardId)
+			.map((td) => {
+				td.active = true
 
-				if (thingDescription.title === id) {
-					thingDescription.active = true
-					thingDescription.properties.map((property) => {
-						if (property.active) {
-							property.active = false
-						}
-
-						if (thingDescription.properties.indexOf(property) == 0) {
-							property.active = true
-						}
-					})
-				}
-				return thingDescription
+				td.properties.map((property) => (property.active = false))
+				td.properties[0].active = true
 			})
-			.filter((td) => td.active)[0]
 
-		onChange(nextActive)
+		const activeThingDescription = thingDescriptions.filter(
+			(td) => td.active
+		)[0]
+
+		// Send to parent the new active thing description
+		onChange(activeThingDescription)
 	}
 
 	return (

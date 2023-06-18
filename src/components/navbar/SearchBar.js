@@ -15,6 +15,15 @@ function SearchBar({ onRepoLoad }) {
 		setLoadingError(false)
 		setRepoLoaded(false)
 
+		const affordanceUpdater = (input, output) => {
+			Object.entries(input).forEach((entry) => {
+				output.push({
+					title: entry[0],
+					value: entry[1],
+				})
+			})
+		}
+
 		fileList.forEach((file) => {
 			const reader = new FileReader()
 			reader.onload = (e) => {
@@ -24,19 +33,8 @@ function SearchBar({ onRepoLoad }) {
 					const properties = []
 					const actions = []
 
-					Object.entries(thingDescription.properties).forEach((entry) => {
-						properties.push({
-							name: entry[0],
-							value: entry[1],
-						})
-					})
-
-					Object.entries(thingDescription.actions).forEach((entry) => {
-						actions.push({
-							name: entry[0],
-							value: entry[1],
-						})
-					})
+					affordanceUpdater(thingDescription.properties, properties)
+					affordanceUpdater(thingDescription.actions, actions)
 
 					thingDescription.properties = properties
 					thingDescription.actions = actions
@@ -53,11 +51,6 @@ function SearchBar({ onRepoLoad }) {
 
 			setRepoLoaded(true)
 		})
-	}
-
-	const handleChange = (event) => {
-		const content = event.target.value
-		setRepository(content)
 	}
 
 	const getLoadingIcon = () => {
@@ -83,7 +76,7 @@ function SearchBar({ onRepoLoad }) {
 					type='search'
 					placeholder='Search for a repository'
 					aria-label='Search for a repository'
-					onChange={handleChange}
+					onChange={(event) => setRepository(event.target.value)}
 					// value={repository}
 				/>
 			</form>

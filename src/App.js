@@ -1,54 +1,52 @@
-import './App.css'
 import Navbar from './components/navbar/Navbar'
 import TdPanel from './components/panels/TdPanel'
 import PropDescription from './components/panels/DescriptionPanel'
 import OutputPanel from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
 import { useEffect, useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import AffordancesPanel from './components/panels/AffordancesPanel'
 
-const chosenInteraction = {
-	interaction: 'angle',
-	address: 'address/thing/wheat/angle',
-	attributes: [
-		{
-			name: 'id',
-			description: 'The id of the angle to move',
-			type: 'number',
-			minimum: 0,
-			maximum: 100,
-			values: [1, 2, 3, 4, 5, 6],
-		},
-		{
-			name: 'Shopping list',
-			description: 'The shopping list',
-			type: 'array',
-		},
-		{
-			name: 'color',
-			description: 'The color of the matrix led',
-			type: 'object',
-			properties: {
-				r: {
-					type: 'number',
-					minimum: 0,
-					maximum: 100,
-				},
-				g: {
-					type: 'number',
-					minimum: 0,
-					maximum: 100,
-				},
-				b: {
-					type: 'number',
-					minimum: 0,
-					maximum: 100,
-				},
-			},
-		},
-	],
-}
+// const chosenInteraction = {
+// 	interaction: 'angle',
+// 	address: 'address/thing/wheat/angle',
+// 	attributes: [
+// 		{
+// 			name: 'id',
+// 			description: 'The id of the angle to move',
+// 			type: 'number',
+// 			minimum: 0,
+// 			maximum: 100,
+// 			values: [1, 2, 3, 4, 5, 6],
+// 		},
+// 		{
+// 			name: 'Shopping list',
+// 			description: 'The shopping list',
+// 			type: 'array',
+// 		},
+// 		{
+// 			name: 'color',
+// 			description: 'The color of the matrix led',
+// 			type: 'object',
+// 			properties: {
+// 				r: {
+// 					type: 'number',
+// 					minimum: 0,
+// 					maximum: 100,
+// 				},
+// 				g: {
+// 					type: 'number',
+// 					minimum: 0,
+// 					maximum: 100,
+// 				},
+// 				b: {
+// 					type: 'number',
+// 					minimum: 0,
+// 					maximum: 100,
+// 				},
+// 			},
+// 		},
+// 	],
+// }
 
 function App() {
 	const [thingDescriptions, setThingDescriptions] = useState([])
@@ -56,30 +54,39 @@ function App() {
 	const [activeThingDescription, setActiveThingDescription] = useState()
 	const [activeAffordance, setActiveAffordance] = useState()
 
+	/**
+	 * Add the thing description passed in the current list of thing descriptions
+	 * @param {*} thingDescription to be added to the list
+	 */
 	const handleRepoLoad = (thingDescription) => {
-		setThingDescriptions((arr) => {
-			thingDescription = { ...thingDescription, key: uuidv4() }
-
-			if (arr.length === 0) {
+		setThingDescriptions((state) => {
+			// If it is the first thing description
+			if (state.length === 0) {
+				// Set the first affordance as active
 				if (thingDescription.properties.length !== 0) {
 					thingDescription.properties[0] = {
 						...thingDescription.properties[0],
 						active: true,
 					}
-				} else {
+				} else if (thingDescription.actions.length !== 0) {
 					thingDescription.actions[0] = {
 						...thingDescription.actions[0],
 						active: true,
 					}
 				}
 
+				// Set td as active
 				thingDescription = { ...thingDescription, active: true }
-				console.log(thingDescription)
 			}
 
-			if (arr.filter((td) => td.title === thingDescription.title).length === 0)
-				return [...arr, thingDescription]
-			return arr
+			// If not already in, add to the list
+			if (
+				state.filter((td) => td.title === thingDescription.title).length === 0
+			) {
+				return [...state, thingDescription]
+			}
+
+			return state
 		})
 	}
 
@@ -95,6 +102,17 @@ function App() {
 
 		setActiveAffordance(activeAff)
 	}, [thingDescriptions])
+
+	useEffect(() => {
+		if (activeThingDescription === undefined) return
+
+		const activeAff = [
+			...activeThingDescription.properties,
+			...activeThingDescription.actions,
+		].filter((affordance) => affordance.active)[0]
+
+		setActiveAffordance(activeAff)
+	}, [activeThingDescription])
 
 	return (
 		<div className='App'>
@@ -118,6 +136,9 @@ function App() {
 
 					<div className='col-12 col-lg-6 d-sm-block'>
 						<div className='row m-auto'>
+							{activeAffordance === undefined
+								? 'No active affordances'
+								: activeAffordance.title}
 							{/* <PropDescription
 								activeAffordance={activeAffordance}
 								{...chosenInteraction}
