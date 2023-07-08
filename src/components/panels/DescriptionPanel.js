@@ -4,19 +4,18 @@ import Icon from '../utils/Icon'
 import Breadcrumbs from '../utils/Breadcrumbs'
 import './descriptionPanel.css'
 
-function PropDescription({ interaction, address, attributes }) {
+function PropDescription({ activeAffordance }) {
 	return (
 		<section className='col col-sm-12 px-0 prop-description'>
 			<header className='pt-3'>
-				<h2 className='title'>{interaction}</h2>
-				<p className='subtitle'>{address}</p>
-				<hr />
+				<h2 className='title'>{activeAffordance.interaction}</h2>
+				<p className='subtitle'>{activeAffordance.address}</p>
 			</header>
 			<Breadcrumbs />
 			<div className='row px-2'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
 					<ul className='m-0 attributes-list overflow-auto'>
-						{attributes.map((attribute) => {
+						{activeAffordance.attributes.map((attribute) => {
 							return (
 								<li key={attribute.name}>
 									<Attribute {...attribute} />
