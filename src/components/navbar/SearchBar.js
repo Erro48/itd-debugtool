@@ -9,6 +9,13 @@ function SearchBar({ onRepoLoad }) {
 
 	const [repository, setRepository] = useState('')
 
+	const performSearch = (e) => {
+		e.preventDefault()
+		fetch(repository)
+			.then((response) => response.json())
+			.then((json) => console.log(json))
+	}
+
 	const handleForChange = (event) => {
 		const files = event.target.files
 		const fileList = Object.values(files)
@@ -70,18 +77,26 @@ function SearchBar({ onRepoLoad }) {
 			id='search-bar'
 			className='row pt-lg-0 mt-3 mt-lg-0 mx-auto rounded-pill overflow-hidden'
 		>
-			<form className='col-9'>
-				<input
-					className='form-control px-3 py-2 me-2 border-0'
-					type='search'
-					placeholder='Search for a repository'
-					aria-label='Search for a repository'
-					onChange={(event) => setRepository(event.target.value)}
-					// value={repository}
-				/>
+			<form className='col-10'>
+				<div className='row'>
+					<input
+						className='px-3 py-2 border-0 col-10'
+						type='search'
+						placeholder='Search for a repository'
+						aria-label='Search for a repository'
+						onChange={(event) => setRepository(event.target.value)}
+						// value={repository}
+					/>
+					<button
+						className='button transparent-btn col-2 pe-3'
+						onClick={performSearch}
+					>
+						<Icon src='./icons/search.svg' alt='Search repository' />
+					</button>
+				</div>
 			</form>
-			<div className='col-3'>
-				<ul className='row m-0 w-100 h-100'>
+			<div className='col-2 p-0'>
+				<ul className='row m-0 w-100 h-100 p-0'>
 					<li className='col-6 d-flex align-items-center justify-content-center'>
 						{getLoadingIcon()}
 					</li>

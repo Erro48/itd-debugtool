@@ -5,6 +5,7 @@ import OutputPanel from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
 import { useEffect, useState } from 'react'
 import AffordancesPanel from './components/panels/AffordancesPanel'
+import AttributesPanel from './components/panels/AttributesPanel'
 
 // const chosenInteraction = {
 // 	interaction: 'angle',
@@ -133,12 +134,9 @@ function App() {
 						activeThingDescription={activeThingDescription}
 						onChange={(newAffordance) => setActiveAffordance(newAffordance)}
 					/>
-
 					<div className='col-12 col-lg-6 d-sm-block'>
 						<div className='row m-auto'>
-							{activeAffordance === undefined
-								? 'No active affordances'
-								: activeAffordance.title}
+							<AttributesPanel affordance={activeAffordance} />
 							{/* <PropDescription
 								activeAffordance={activeAffordance}
 								{...chosenInteraction}
