@@ -1,5 +1,6 @@
 import React from 'react'
 import Breadcrumbs from '../utils/Breadcrumbs'
+import Attribute from '../utils/Attribute/Attribute'
 
 const AttributesPanel = ({ affordance }) => {
 	if (affordance === undefined) return <></>
@@ -8,6 +9,26 @@ const AttributesPanel = ({ affordance }) => {
 		...affordance,
 		address: `192.168.47.134/aff-type/${affordance.title}`,
 	}
+
+	const getAttributes = () => {
+		if (!affordance.input) return []
+
+		const attributes = []
+
+		if (affordance.input.properties) {
+			if (affordance.input.required) {
+				const required = affordance.input.required
+				affordance.input.properties[required].required = true
+			}
+
+			attributes.push(...Object.values(affordance.input.properties))
+		} else {
+			attributes.push(affordance.input)
+		}
+
+		return attributes
+	}
+
 	return (
 		<section className='col col-sm-12 px-0'>
 			<header>
@@ -17,12 +38,20 @@ const AttributesPanel = ({ affordance }) => {
 			<Breadcrumbs />
 			<section className='row px-2'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
-					<ul class='m-0 attributes-list overflow-auto'>
-                        {}
-                    </ul>
+					<ul className='m-0 attributes-list overflow-auto'>
+						{getAttributes().map((attribute) => (
+							<li>
+								<Attribute attribute={attribute} />
+							</li>
+						))}
+					</ul>
 				</div>
 			</section>
-			<footer></footer>
+			<footer>
+				<button type='button' className='button primary-btn'>
+					Submit
+				</button>
+			</footer>
 		</section>
 	)
 }

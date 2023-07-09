@@ -1,16 +1,33 @@
 import React from 'react'
-import BasicAttribute from './BasicAttribute'
-import ObjectAttribute from './ObjectAttribute'
-import ArrayAttribute from './ArrayAttribute'
+import NumberAttribute from './NumberAttribute'
+import StringAttribute from './StringAttribute'
 import './attribute.css'
 
-const Attribute = (props) => {
-	const selectAttributeType = (type) => {
-		if (type == 'object') return <ObjectAttribute {...props} />
-		if (type == 'array') return <ArrayAttribute {...props} />
-		return <BasicAttribute {...props} />
+const Attribute = ({ attribute }) => {
+	const { title, type, description } = attribute
+	const selectAttribute = (type) => {
+		switch (type) {
+			case 'number':
+			case 'integer': {
+				return <NumberAttribute {...attribute} list={attribute.enum} />
+			}
+
+			case 'string': {
+				return <StringAttribute {...attribute} list={attribute.enum} />
+			}
+
+			default:
+				return <p>{type}</p>
+		}
 	}
-	return <React.Fragment>{selectAttributeType(props.type)}</React.Fragment>
+
+	return (
+		<React.Fragment>
+			<h3>{title}</h3>
+			<p>{description}</p>
+			{selectAttribute(type)}
+		</React.Fragment>
+	)
 }
 
 export default Attribute
