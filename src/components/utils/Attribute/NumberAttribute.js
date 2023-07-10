@@ -17,8 +17,8 @@ const NumberAttribute = ({
 	const max = exclusiveMaximum !== undefined ? exclusiveMaximum - 1 : maximum
 
 	const properties = new Map()
-	properties.set('min', min)
-	properties.set('max', max)
+	properties.set('minimum', min)
+	properties.set('maximum', max)
 
 	if (list) {
 		return <Dropdown name={title} elements={list} onChange={onChange} />
