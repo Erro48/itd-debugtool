@@ -71,7 +71,7 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	}
 
 	return (
-		<div className='col-12 col-lg-3'>
+		<div className='col-12 col-lg-3' data-panel='affordances-panel'>
 			<div className='row'>
 				<section className='prop-container col-12 col-sm-6 col-lg-12'>
 					<header className='pt-3'>

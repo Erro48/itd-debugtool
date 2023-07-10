@@ -1,0 +1,8 @@
+.attributes-list {
+	max-height: 70dvh;
+}
+
+[data-panel='attributes-panel'] footer {
+	border-top: 2px solid var(--secondary);
+	padding-top: 0.8rem;
+}

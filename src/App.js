@@ -1,7 +1,5 @@
 import Navbar from './components/navbar/Navbar'
 import TdPanel from './components/panels/TdPanel'
-import PropDescription from './components/panels/DescriptionPanel'
-import OutputPanel from './components/panels/OutputPanel'
 import SearchBar from './components/navbar/SearchBar'
 import { useEffect, useState } from 'react'
 import AffordancesPanel from './components/panels/AffordancesPanel'

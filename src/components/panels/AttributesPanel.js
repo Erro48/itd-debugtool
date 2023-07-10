@@ -1,6 +1,7 @@
 import React from 'react'
 import Breadcrumbs from '../utils/Breadcrumbs'
 import Attribute from '../utils/Attribute/Attribute'
+import './attributesPanel.css'
 
 const AttributesPanel = ({ affordance }) => {
 	if (affordance === undefined) return <></>
@@ -52,7 +53,7 @@ const AttributesPanel = ({ affordance }) => {
 	}
 
 	return (
-		<section className='col col-sm-12 px-0'>
+		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
 			<header>
 				<h2>{affordance.title}</h2>
 				<p className='subtitle'>{affordance.address}</p>
@@ -72,10 +73,11 @@ const AttributesPanel = ({ affordance }) => {
 					</ul>
 				</div>
 			</section>
-			<footer>
+			<footer className='row w-100 m-auto'>
+				<div className='col-10'></div>
 				<button
 					type='button'
-					className='button primary-btn'
+					className='button primary-btn col-2'
 					onClick={submitRequest}
 				>
 					Submit

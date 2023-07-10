@@ -22,7 +22,10 @@ function TdPanel({ thingDescriptions, onChange }) {
 	}
 
 	return (
-		<section className='td-container col-12 col-lg-3 px-0'>
+		<section
+			className='td-container col-12 col-lg-3 px-0'
+			data-panel='thing-descriptions-panel'
+		>
 			<header className='pt-3'>
 				<h2>Thing Descriptions</h2>
 			</header>
