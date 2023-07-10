@@ -10,18 +10,20 @@ const NumberAttribute = ({
 	multipleOf,
 	list,
 	required,
+	onChange,
 }) => {
 	const min = exclusiveMinimum !== undefined ? exclusiveMinimum - 1 : minimum
 	const max = exclusiveMaximum !== undefined ? exclusiveMaximum - 1 : maximum
 
 	if (list) {
-		return <Dropdown elements={list} />
+		return <Dropdown name={title} elements={list} onChange={onChange} />
 	}
 
 	return (
 		<input
 			type='number'
-			name={title.toLowerCase()}
+			onChange={(e) => onChange(title, e.target.value)}
+			name={title}
 			id={title.toLowerCase()}
 			min={min}
 			max={max}

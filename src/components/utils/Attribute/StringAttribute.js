@@ -1,13 +1,18 @@
 import React from 'react'
 import Dropdown from '../Dropdown'
 
-const StringAttribute = ({ title, list }) => {
+const StringAttribute = ({ title, list, onChange }) => {
 	if (list) {
-		return <Dropdown elements={list} />
+		return <Dropdown name={title} elements={list} onChange={onChange} />
 	}
 
 	return (
-		<input type='text' name={title.toLowerCase()} id={title.toLowerCase()} />
+		<input
+			type='text'
+			name={title}
+			id={title.toLowerCase()}
+			onChange={(e) => onChange(title, e.target.value)}
+		/>
 	)
 }
 

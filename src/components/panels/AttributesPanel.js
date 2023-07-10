@@ -5,6 +5,8 @@ import Attribute from '../utils/Attribute/Attribute'
 const AttributesPanel = ({ affordance }) => {
 	if (affordance === undefined) return <></>
 
+	const attributesValues = new Map()
+
 	affordance = {
 		...affordance,
 		address: `192.168.47.134/aff-type/${affordance.title}`,
@@ -29,6 +31,15 @@ const AttributesPanel = ({ affordance }) => {
 		return attributes
 	}
 
+	const handleAttributeChange = (title, value) => {
+		attributesValues.set(title, value)
+	}
+
+	const submitRequest = (e) => {
+		e.preventDefault()
+		console.log(attributesValues)
+	}
+
 	return (
 		<section className='col col-sm-12 px-0'>
 			<header>
@@ -41,14 +52,21 @@ const AttributesPanel = ({ affordance }) => {
 					<ul className='m-0 attributes-list overflow-auto'>
 						{getAttributes().map((attribute) => (
 							<li>
-								<Attribute attribute={attribute} />
+								<Attribute
+									attribute={attribute}
+									onChange={handleAttributeChange}
+								/>
 							</li>
 						))}
 					</ul>
 				</div>
 			</section>
 			<footer>
-				<button type='button' className='button primary-btn'>
+				<button
+					type='button'
+					className='button primary-btn'
+					onClick={submitRequest}
+				>
 					Submit
 				</button>
 			</footer>
