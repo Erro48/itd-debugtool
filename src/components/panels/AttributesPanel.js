@@ -58,7 +58,7 @@ const AttributesPanel = ({ affordance }) => {
 				<h2>{affordance.title}</h2>
 				<p className='subtitle'>{affordance.address}</p>
 			</header>
-			<Breadcrumbs />
+			<Breadcrumbs path={[affordance.title]} />
 			<section className='row px-2'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
 					<ul className='m-0 attributes-list overflow-auto'>
