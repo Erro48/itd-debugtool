@@ -14,7 +14,7 @@ const Dropdown = ({ name, elements, onChange }) => {
 			onChange={(e) => onChange(name, e.target.value)}
 		>
 			{elements.map((element) => (
-				<option>{element}</option>
+				<option key={element}>{element}</option>
 			))}
 		</select>
 	)
