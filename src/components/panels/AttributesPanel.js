@@ -13,20 +13,31 @@ const AttributesPanel = ({ affordance }) => {
 	}
 
 	const getAttributes = () => {
-		if (!affordance.input) return []
-
 		const attributes = []
 
+		// Check for 'uriVariables'
+		if (affordance.uriVariables) {
+			attributes.push(...Object.values(affordance.uriVariables))
+			return attributes
+		}
+
+		if (!affordance.input) {
+			return attributes
+		}
+
+		// Check for 'input.properties'
 		if (affordance.input.properties) {
-			if (affordance.input.required) {
-				const required = affordance.input.required
-				affordance.input.properties[required].required = true
-			}
+			// if (affordance.input.required) {
+			// 	const required = affordance.input.required
+			// 	affordance.input.properties[required].required = true
+			// }
 
 			attributes.push(...Object.values(affordance.input.properties))
-		} else {
-			attributes.push(affordance.input)
+
+			return attributes
 		}
+
+		attributes.push(affordance.input)
 
 		return attributes
 	}
