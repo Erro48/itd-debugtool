@@ -2,6 +2,7 @@ import React from 'react'
 import NumberAttribute from './NumberAttribute'
 import StringAttribute from './StringAttribute'
 import './attribute.css'
+import ArrayAttribute from './ArrayAttribute'
 
 const Attribute = ({ attribute, onChange }) => {
 	const { title, type, description } = attribute
@@ -26,6 +27,10 @@ const Attribute = ({ attribute, onChange }) => {
 						onChange={onChange}
 					/>
 				)
+			}
+
+			case 'array': {
+				return <ArrayAttribute {...attribute} onChange={onChange} />
 			}
 
 			default:

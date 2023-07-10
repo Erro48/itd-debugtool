@@ -1,5 +1,6 @@
 import React from 'react'
 import Dropdown from '../Dropdown'
+import InputField from '../InputField'
 
 const NumberAttribute = ({
 	title,
@@ -15,18 +16,20 @@ const NumberAttribute = ({
 	const min = exclusiveMinimum !== undefined ? exclusiveMinimum - 1 : minimum
 	const max = exclusiveMaximum !== undefined ? exclusiveMaximum - 1 : maximum
 
+	const properties = new Map()
+	properties.set('min', min)
+	properties.set('max', max)
+
 	if (list) {
 		return <Dropdown name={title} elements={list} onChange={onChange} />
 	}
 
 	return (
-		<input
+		<InputField
 			type='number'
-			onChange={(e) => onChange(title, e.target.value)}
 			name={title}
-			id={title.toLowerCase()}
-			min={min}
-			max={max}
+			onChange={onChange}
+			properties={properties}
 		/>
 	)
 }
