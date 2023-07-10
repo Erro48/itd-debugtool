@@ -1,6 +1,14 @@
 import React from 'react'
+import './inputField.css'
+import classNames from 'classnames'
 
-const InputField = ({ type, name, onChange, properties = new Map() }) => {
+const InputField = ({
+	type,
+	name,
+	onChange,
+	properties = new Map(),
+	className,
+}) => {
 	const castType = (type) => {
 		switch (type) {
 			case 'integer':
@@ -22,6 +30,7 @@ const InputField = ({ type, name, onChange, properties = new Map() }) => {
 			min={properties.get('minimum')}
 			max={properties.get('maximum')}
 			placeholder={properties.get('placeholder')}
+			className={classNames('input-field', className)}
 		/>
 	)
 }

@@ -10,7 +10,7 @@ const Dropdown = ({ name, elements, onChange }) => {
 	return (
 		<select
 			name={name}
-			className='dropdown'
+			className='input-field'
 			onChange={(e) => onChange(name, e.target.value)}
 		>
 			{elements.map((element) => (

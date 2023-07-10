@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import InputField from '../InputField'
 import Icon from '../Icon'
+import './arrayAttribute.css'
 
 const ArrayAttribute = ({ title, description, items, onChange }) => {
 	const [index, setIndex] = useState(1)
@@ -28,14 +29,15 @@ const ArrayAttribute = ({ title, description, items, onChange }) => {
 		<>
 			<ul className='array-attribute-list'>
 				{arrayItems.map((item) => (
-					<li key={item.name}>
+					<li key={item.name} className='row'>
 						<InputField
 							type={items.type}
 							name={item.name}
 							properties={new Map(Object.entries(items))}
 							onChange={onChange}
+							className={'col-10'}
 						/>
-						<button className='btn' onClick={() => deleteItem(item.name)}>
+						<button className='btn col-2' onClick={() => deleteItem(item.name)}>
 							<Icon
 								src='../icons/remove.svg'
 								alt={`Remove ${item.name} element`}

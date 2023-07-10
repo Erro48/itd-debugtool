@@ -62,7 +62,7 @@ const AttributesPanel = ({ affordance }) => {
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
 					<ul className='m-0 attributes-list overflow-auto'>
 						{getAttributes().map((attribute) => (
-							<li key={attribute.title}>
+							<li key={attribute.title} data-type='attribute'>
 								<Attribute
 									attribute={attribute}
 									onChange={handleAttributeChange}
