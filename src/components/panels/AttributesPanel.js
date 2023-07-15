@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Breadcrumbs from '../utils/Breadcrumbs'
 import Attribute from '../utils/Attribute/Attribute'
 import './attributesPanel.css'
+import Icon from '../utils/Icon'
 
 const AttributesPanel = ({ affordance }) => {
 	const attributesValues = new Map()
@@ -91,6 +92,15 @@ const AttributesPanel = ({ affordance }) => {
 		console.log(attributesValues)
 	}
 
+	const openParent = () => {
+		setCurrentAffordance(currentAffordance.parents[0])
+		setBreadcrumb((currentState) => {
+			return currentState.filter(
+				(element) => element !== currentAffordance.title
+			)
+		})
+	}
+
 	return (
 		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
 			<header>
@@ -114,7 +124,19 @@ const AttributesPanel = ({ affordance }) => {
 				</div>
 			</section>
 			<footer className='row w-100 m-auto'>
-				<div className='col-10'></div>
+				{currentAffordance.parents.length > 0 ? (
+					<button className='col-1 btn light-btn' onClick={openParent}>
+						<Icon
+							src={'./icons/left-arrow-dark.svg'}
+							alt={'Go to previous attribute'}
+						/>
+					</button>
+				) : (
+					<div className='col-1'></div>
+				)}
+
+				<div className='col-9'></div>
+
 				<button
 					type='button'
 					className='button primary-btn col-2'
