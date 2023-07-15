@@ -71,9 +71,9 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	}
 
 	return (
-		<div className='col-12 col-lg-3' data-panel='affordances-panel'>
-			<div className='row'>
-				<section className='prop-container col-12 col-sm-6 col-lg-12'>
+		<section className='col-12 col-lg-6 px-0' data-panel='affordances-panel'>
+			<div className='row w-100 m-auto'>
+				<section className='prop-container col-12 col-sm-6 col-lg-12 px-0'>
 					<header className='pt-3'>
 						<h2>Properties</h2>
 					</header>
@@ -83,7 +83,7 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 						onCardClick={handleCardClick}
 					/>
 				</section>
-				<section className='prop-container col-12 col-sm-6 col-lg-12'>
+				<section className='prop-container col-12 col-sm-6 col-lg-12 px-0'>
 					<header className='pt-3'>
 						<h2>Actions</h2>
 					</header>
@@ -94,7 +94,7 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 					/>
 				</section>
 			</div>
-		</div>
+		</section>
 	)
 }
 

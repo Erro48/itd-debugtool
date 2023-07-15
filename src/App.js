@@ -5,48 +5,6 @@ import { useEffect, useState } from 'react'
 import AffordancesPanel from './components/panels/AffordancesPanel'
 import AttributesPanel from './components/panels/AttributesPanel'
 
-// const chosenInteraction = {
-// 	interaction: 'angle',
-// 	address: 'address/thing/wheat/angle',
-// 	attributes: [
-// 		{
-// 			name: 'id',
-// 			description: 'The id of the angle to move',
-// 			type: 'number',
-// 			minimum: 0,
-// 			maximum: 100,
-// 			values: [1, 2, 3, 4, 5, 6],
-// 		},
-// 		{
-// 			name: 'Shopping list',
-// 			description: 'The shopping list',
-// 			type: 'array',
-// 		},
-// 		{
-// 			name: 'color',
-// 			description: 'The color of the matrix led',
-// 			type: 'object',
-// 			properties: {
-// 				r: {
-// 					type: 'number',
-// 					minimum: 0,
-// 					maximum: 100,
-// 				},
-// 				g: {
-// 					type: 'number',
-// 					minimum: 0,
-// 					maximum: 100,
-// 				},
-// 				b: {
-// 					type: 'number',
-// 					minimum: 0,
-// 					maximum: 100,
-// 				},
-// 			},
-// 		},
-// 	],
-// }
-
 function App() {
 	const [thingDescriptions, setThingDescriptions] = useState([])
 
@@ -116,23 +74,29 @@ function App() {
 	return (
 		<div className='App'>
 			<Navbar onRepoLoad={handleRepoLoad} />
-			<div className='container mb-3'>
+			<div className='container-fluid mb-3 ps-0'>
 				<div className='row w-100 m-auto'>
 					<div className='col-12 d-lg-none'>
 						<SearchBar onRepoLoad={handleRepoLoad} />
 					</div>
-					<TdPanel
-						thingDescriptions={thingDescriptions}
-						onChange={(newThingDescription) =>
-							setActiveThingDescription(newThingDescription)
-						}
-					/>
 
-					<AffordancesPanel
-						activeThingDescription={activeThingDescription}
-						onChange={(newAffordance) => setActiveAffordance(newAffordance)}
-					/>
-					<div className='col-12 col-lg-6 d-sm-block'>
+					{/* Side panel */}
+					<aside class='col-12 col-lg-3 px-0 aside-panel'>
+						<div class='row'>
+							<TdPanel
+								thingDescriptions={thingDescriptions}
+								onChange={(newThingDescription) =>
+									setActiveThingDescription(newThingDescription)
+								}
+							/>
+
+							<AffordancesPanel
+								activeThingDescription={activeThingDescription}
+								onChange={(newAffordance) => setActiveAffordance(newAffordance)}
+							/>
+						</div>
+					</aside>
+					<div className='col-12 col-lg-9 d-sm-block'>
 						<div className='row m-auto'>
 							<AttributesPanel affordance={activeAffordance} />
 							{/* <PropDescription

@@ -45,7 +45,6 @@ const Card = ({
 							</h3>
 							{getVersion()}
 						</div>
-						<p className='subtitle d-none d-sm-block'>{address}</p>
 					</header>
 					<div className='description pt-2 pt-sm-1'>{description}</div>
 				</div>
