@@ -14,6 +14,7 @@ const AttributesPanel = ({ affordance }) => {
 		setCurrentAffordance({
 			...affordance,
 			address: `address/${affordance.title}`,
+			parents: [],
 		})
 		setBreadcrumb([affordance.title])
 	}, [affordance])
@@ -56,7 +57,21 @@ const AttributesPanel = ({ affordance }) => {
 	}
 
 	const handleAttributeChange = (title, value) => {
-		attributesValues.set(title, value)
+		let currentTitle = title
+		let currentValue = value
+
+		currentAffordance.parents.forEach((parent) => {
+			const currentMap =
+				attributesValues.get(parent.title) === undefined
+					? new Map()
+					: attributesValues.get(parent.title)
+			currentMap.set(currentTitle, currentValue)
+
+			currentTitle = parent.title
+			currentValue = currentMap
+		})
+
+		attributesValues.set(currentTitle, currentValue)
 	}
 
 	const handleObjectExpansion = (newAffordance) => {
@@ -67,6 +82,7 @@ const AttributesPanel = ({ affordance }) => {
 		setCurrentAffordance({
 			...newAffordance,
 			address: `address/${currentAffordance.title}`,
+			parents: [currentAffordance, ...currentAffordance.parents],
 		})
 	}
 
