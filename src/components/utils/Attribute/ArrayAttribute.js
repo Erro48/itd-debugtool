@@ -1,21 +1,41 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import InputField from '../InputField'
 import Icon from '../Icon'
 import './arrayAttribute.css'
 
 const ArrayAttribute = ({ title, description, items, onChange }) => {
 	const [index, setIndex] = useState(1)
-
 	const [arrayItems, setArrayItems] = useState([
 		{
 			name: `${title}-0`,
+			value: '0',
 		},
 	])
 
+	useEffect(() => {
+		onChange(
+			title,
+			arrayItems.map((item) => item.value)
+		)
+	}, [arrayItems])
+
+	const updateItem = (inputTitle, inputValue) => {
+		setArrayItems((currentState) => {
+			const itemIndex = currentState
+				.map((item) => item.name)
+				.indexOf(inputTitle)
+			const previous = currentState.slice(0, itemIndex)
+			const next = currentState.slice(itemIndex + 1)
+
+			return [...previous, { name: inputTitle, value: inputValue }, ...next]
+		})
+	}
+
 	const addItem = () => {
 		setArrayItems((currentState) => {
-			return [...currentState, { name: `${title}-${index}` }]
+			return [...currentState, { name: `${title}-${index}`, value: '0' }]
 		})
+
 		setIndex((currentState) => currentState + 1)
 	}
 
@@ -34,7 +54,7 @@ const ArrayAttribute = ({ title, description, items, onChange }) => {
 							type={items.type}
 							name={item.name}
 							properties={new Map(Object.entries(items))}
-							onChange={onChange}
+							onChange={updateItem}
 							className={'col-10'}
 						/>
 						<button className='btn col-2' onClick={() => deleteItem(item.name)}>
