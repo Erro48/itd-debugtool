@@ -4,6 +4,7 @@ import './breadcrumbs.css'
 const Breadcrumbs = ({ path }) => {
 	const isLastPage = (page) => {
 		// If page is the last element
+		console.log(path[path.length - 1] === page)
 		return path[path.length - 1] === page
 	}
 
@@ -14,7 +15,7 @@ const Breadcrumbs = ({ path }) => {
 					<li
 						key={element}
 						className='breadcrumb-item'
-						{...(isLastPage(element) ? 'aria-current="page"' : '')}
+						aria-current={isLastPage(element) ? 'page' : ''}
 					>
 						{element}
 					</li>

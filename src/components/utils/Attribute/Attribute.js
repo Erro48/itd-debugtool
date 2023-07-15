@@ -3,8 +3,9 @@ import NumberAttribute from './NumberAttribute'
 import StringAttribute from './StringAttribute'
 import './attribute.css'
 import ArrayAttribute from './ArrayAttribute'
+import ObjectAttribute from './ObjectAttribute'
 
-const Attribute = ({ attribute, onChange }) => {
+const Attribute = ({ attribute, onChange, onExpand }) => {
 	const { title, type, description } = attribute
 	const selectAttribute = (type) => {
 		switch (type) {
@@ -31,6 +32,16 @@ const Attribute = ({ attribute, onChange }) => {
 
 			case 'array': {
 				return <ArrayAttribute {...attribute} onChange={onChange} />
+			}
+
+			case 'object': {
+				return (
+					<ObjectAttribute
+						attribute={attribute}
+						onChange={onChange}
+						onExpand={onExpand}
+					/>
+				)
 			}
 
 			default:

@@ -6,6 +6,7 @@ import './attributesPanel.css'
 const AttributesPanel = ({ affordance }) => {
 	const attributesValues = new Map()
 	const [currentAffordance, setCurrentAffordance] = useState(affordance)
+	const [breadcrumb, setBreadcrumb] = useState([])
 
 	useEffect(() => {
 		if (affordance === undefined) return
@@ -14,6 +15,7 @@ const AttributesPanel = ({ affordance }) => {
 			...affordance,
 			address: `address/${affordance.title}`,
 		})
+		setBreadcrumb([affordance.title])
 	}, [affordance])
 
 	if (currentAffordance === undefined) return <></>
@@ -27,7 +29,12 @@ const AttributesPanel = ({ affordance }) => {
 			return attributes
 		}
 
-		if (!currentAffordance.input) {
+		if (!currentAffordance.input && !currentAffordance.properties) {
+			return attributes
+		}
+
+		if (currentAffordance.properties) {
+			attributes.push(...Object.values(currentAffordance.properties))
 			return attributes
 		}
 
@@ -52,6 +59,17 @@ const AttributesPanel = ({ affordance }) => {
 		attributesValues.set(title, value)
 	}
 
+	const handleObjectExpansion = (newAffordance) => {
+		setBreadcrumb((currentState) => {
+			return [...currentState, newAffordance.title]
+		})
+
+		setCurrentAffordance({
+			...newAffordance,
+			address: `address/${currentAffordance.title}`,
+		})
+	}
+
 	const submitRequest = (e) => {
 		e.preventDefault()
 		console.log(attributesValues)
@@ -60,10 +78,10 @@ const AttributesPanel = ({ affordance }) => {
 	return (
 		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
 			<header>
-				<h2>{affordance.title}</h2>
-				<p className='subtitle'>{affordance.address}</p>
+				<h2>{currentAffordance.title}</h2>
+				<p className='subtitle mb-0'>{currentAffordance.address}</p>
 			</header>
-			<Breadcrumbs path={[affordance.title]} />
+			<Breadcrumbs path={breadcrumb} />
 			<section className='row px-2'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
 					<ul className='m-0 attributes-list overflow-auto'>
@@ -72,6 +90,7 @@ const AttributesPanel = ({ affordance }) => {
 								<Attribute
 									attribute={attribute}
 									onChange={handleAttributeChange}
+									onExpand={handleObjectExpansion}
 								/>
 							</li>
 						))}
