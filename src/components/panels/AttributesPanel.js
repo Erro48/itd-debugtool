@@ -1,44 +1,49 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Breadcrumbs from '../utils/Breadcrumbs'
 import Attribute from '../utils/Attribute/Attribute'
 import './attributesPanel.css'
 
 const AttributesPanel = ({ affordance }) => {
-	if (affordance === undefined) return <></>
-
 	const attributesValues = new Map()
+	const [currentAffordance, setCurrentAffordance] = useState(affordance)
 
-	affordance = {
-		...affordance,
-		address: `192.168.47.134/aff-type/${affordance.title}`,
-	}
+	useEffect(() => {
+		if (affordance === undefined) return
+
+		setCurrentAffordance({
+			...affordance,
+			address: `address/${affordance.title}`,
+		})
+	}, [affordance])
+
+	if (currentAffordance === undefined) return <></>
 
 	const getAttributes = () => {
 		const attributes = []
 
 		// Check for 'uriVariables'
-		if (affordance.uriVariables) {
-			attributes.push(...Object.values(affordance.uriVariables))
+		if (currentAffordance.uriVariables) {
+			attributes.push(...Object.values(currentAffordance.uriVariables))
 			return attributes
 		}
 
-		if (!affordance.input) {
+		if (!currentAffordance.input) {
 			return attributes
 		}
 
 		// Check for 'input.properties'
-		if (affordance.input.properties) {
-			// if (affordance.input.required) {
-			// 	const required = affordance.input.required
-			// 	affordance.input.properties[required].required = true
-			// }
+		// if (currentAffordance.input.properties) {
+		// 	// if (currentAffordance.input.required) {
+		// 	// 	const required = currentAffordance.input.required
+		// 	// 	currentAffordance.input.properties[required].required = true
+		// 	// }
 
-			attributes.push(...Object.values(affordance.input.properties))
+		// 	attributes.push(...Object.values(currentAffordance.input.properties))
 
-			return attributes
-		}
+		// 	return attributes
+		// }
 
-		attributes.push(affordance.input)
+		attributes.push(currentAffordance.input)
 
 		return attributes
 	}
