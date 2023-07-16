@@ -6,8 +6,10 @@ import Icon from '../utils/Icon'
 
 const AttributesPanel = ({ affordance }) => {
 	const attributesValues = new Map()
+	/* { title: title, attributes: [ { title, value } ] } */
 	const [currentAffordance, setCurrentAffordance] = useState(affordance)
 	const [breadcrumb, setBreadcrumb] = useState([])
+	const [history, setHistory] = useState([])
 
 	useEffect(() => {
 		if (affordance === undefined) return
@@ -18,6 +20,17 @@ const AttributesPanel = ({ affordance }) => {
 			parents: [],
 		})
 		setBreadcrumb([affordance.title])
+		setHistory((currentState) => {
+			return [
+				...currentState,
+				{
+					title: affordance.title,
+					attributes: [],
+					parent: null, // prendi quello prima
+					children: [],
+				},
+			]
+		})
 	}, [affordance])
 
 	if (currentAffordance === undefined) return <></>
@@ -60,8 +73,9 @@ const AttributesPanel = ({ affordance }) => {
 	const handleAttributeChange = (title, value) => {
 		let currentTitle = title
 		let currentValue = value
+		const parents = [currentAffordance, ...currentAffordance.parents]
 
-		currentAffordance.parents.forEach((parent) => {
+		parents.forEach((parent) => {
 			const currentMap =
 				attributesValues.get(parent.title) === undefined
 					? new Map()
@@ -73,11 +87,49 @@ const AttributesPanel = ({ affordance }) => {
 		})
 
 		attributesValues.set(currentTitle, currentValue)
+
+		setHistory((currentHistory) => {
+			currentHistory
+				.filter((aff) => aff.title === currentAffordance.title)
+				.forEach((item) => {
+					if (
+						item.attributes.filter((attr) => attr.title === title).length === 0
+					) {
+						// If the attribute is not present
+						item.attributes.push({ title, value })
+						return
+					}
+
+					// If it is already present, update the value
+					item.attributes.filter((attr) => attr.title === title)[0].value =
+						value
+				})
+
+			return currentHistory
+		})
 	}
 
 	const handleObjectExpansion = (newAffordance) => {
 		setBreadcrumb((currentState) => {
 			return [...currentState, newAffordance.title]
+		})
+
+		/* Aggiungo newAffordance come figlio dell'affordance corrente */
+		setHistory((currentState) => {
+			return currentState
+				.filter((aff) => aff.title === currentAffordance.title)
+				.map((aff) => aff.children.push(newAffordance.title))
+		})
+
+		/* Aggiungo newAffordance nella history */
+		setHistory((currentState) => {
+			currentState.push({
+				title: newAffordance.title,
+				attributes: [],
+				parent: currentAffordance.title,
+				children: [],
+			})
+			return currentState
 		})
 
 		setCurrentAffordance({
@@ -93,7 +145,10 @@ const AttributesPanel = ({ affordance }) => {
 	}
 
 	const openParent = () => {
-		setCurrentAffordance(currentAffordance.parents[0])
+		setCurrentAffordance({
+			...currentAffordance.parents[0],
+			summary: attributesValues,
+		})
 		setBreadcrumb((currentState) => {
 			return currentState.filter(
 				(element) => element !== currentAffordance.title
@@ -115,6 +170,15 @@ const AttributesPanel = ({ affordance }) => {
 							<li key={attribute.title} data-type='attribute'>
 								<Attribute
 									attribute={attribute}
+									summary={
+										history.filter(
+											(aff) => aff.title === attribute.title
+										)[0] !== undefined
+											? history.filter(
+													(aff) => aff.title === attribute.title
+											  )[0].attributes
+											: []
+									}
 									onChange={handleAttributeChange}
 									onExpand={handleObjectExpansion}
 								/>

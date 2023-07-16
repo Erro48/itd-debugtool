@@ -5,7 +5,7 @@ import './attribute.css'
 import ArrayAttribute from './ArrayAttribute'
 import ObjectAttribute from './ObjectAttribute'
 
-const Attribute = ({ attribute, onChange, onExpand }) => {
+const Attribute = ({ attribute, summary, onChange, onExpand }) => {
 	const { title, type, description } = attribute
 	const selectAttribute = (type) => {
 		switch (type) {
@@ -38,7 +38,7 @@ const Attribute = ({ attribute, onChange, onExpand }) => {
 				return (
 					<ObjectAttribute
 						attribute={attribute}
-						onChange={onChange}
+						summary={summary}
 						onExpand={onExpand}
 					/>
 				)

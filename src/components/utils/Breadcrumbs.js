@@ -4,7 +4,6 @@ import './breadcrumbs.css'
 const Breadcrumbs = ({ path }) => {
 	const isLastPage = (page) => {
 		// If page is the last element
-		console.log(path[path.length - 1] === page)
 		return path[path.length - 1] === page
 	}
 
