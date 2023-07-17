@@ -5,4 +5,6 @@
 	--slow-transition-speed: 500ms;
 	--normal-transition-speed: 300ms;
 	--fast-transition-speed: 100ms;
+
+	--navbar-height: 50px;
 }

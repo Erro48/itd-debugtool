@@ -1,16 +1,37 @@
 .card {
-	background-color: var(--neutral-300);
+	background-color: transparent;
 
 	text-decoration: none;
 	text-align: left;
+	border: none;
+}
+
+.card header h3 {
+	font-size: 16px;
+	margin: 0;
+}
+
+:is(.card p, .card .version) {
+	font-size: 12px;
+}
+
+.card p {
+	margin-bottom: 0;
 }
 
 .card[data-active='true'] {
-	background-color: var(--tertiary-color);
-
 	border-radius: var(--small-border-radius) 0 0 var(--small-border-radius);
-	filter: drop-shadow(0px -2px 4px var(--neutral-shadow)),
-		drop-shadow(0px 2px 4px var(--neutral-shadow));
+	box-shadow: 0 -2px 10px -4px var(--neutral-shadow),
+		0 2px 10px -4px var(--neutral-shadow);
+	z-index: 1;
+}
+
+section[data-panel='thing-descriptions-panel'] .card[data-active='true'] {
+	background-color: var(--tertiary);
+}
+
+section[data-panel='affordance-panel'] .card[data-active='true'] {
+	background-color: var(--primary);
 }
 
 /* .card:is(:active) {

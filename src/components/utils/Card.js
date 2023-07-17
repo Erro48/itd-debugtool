@@ -21,21 +21,14 @@ const Card = ({
 	return (
 		<button
 			href='/'
-			className={classNames(
-				'card',
-				'td-card',
-				'py-3',
-				'px-4',
-				'p-sm-2',
-				'w-100'
-			)}
+			className={classNames('card', 'py-3', 'px-4', 'p-sm-2', 'w-100')}
 			onClick={() => onCardClick(title)}
 			data-active={active ? active : false}
 		>
 			<div className='row'>
 				<div className='col-10 col-sm-12'>
 					<header>
-						<div className='row'>
+						<div className='row align-items-center'>
 							<h3
 								className={
 									'title col-12 col-sm-' + (version === undefined ? '12' : '8')
@@ -46,7 +39,7 @@ const Card = ({
 							{getVersion()}
 						</div>
 					</header>
-					<div className='description pt-2 pt-sm-1'>{description}</div>
+					<p className='description pt-2 pt-sm-1'>{description}</p>
 				</div>
 				<div className='col-2 d-flex d-sm-none'>
 					<Icon

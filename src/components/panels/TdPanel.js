@@ -1,5 +1,6 @@
 import CardList from '../utils/CardList'
 import './panel.css'
+import './asidePanels.css'
 
 function TdPanel({ thingDescriptions, onChange }) {
 	const handleCardClick = (cardId) => {
@@ -26,7 +27,7 @@ function TdPanel({ thingDescriptions, onChange }) {
 			className='td-container col-12 col-lg-6 px-0'
 			data-panel='thing-descriptions-panel'
 		>
-			<header className='pt-3'>
+			<header>
 				<h2>Thing Descriptions</h2>
 			</header>
 			<CardList

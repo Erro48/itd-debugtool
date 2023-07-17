@@ -74,7 +74,7 @@ function App() {
 	return (
 		<div className='App'>
 			<Navbar onRepoLoad={handleRepoLoad} />
-			<div className='container-fluid mb-3 ps-0'>
+			<div className='container-fluid ps-0'>
 				<div className='row w-100 m-auto'>
 					<div className='col-12 d-lg-none'>
 						<SearchBar onRepoLoad={handleRepoLoad} />
@@ -82,7 +82,7 @@ function App() {
 
 					{/* Side panel */}
 					<aside class='col-12 col-lg-3 px-0 aside-panel'>
-						<div class='row'>
+						<div class='row w-100 m-auto'>
 							<TdPanel
 								thingDescriptions={thingDescriptions}
 								onChange={(newThingDescription) =>
