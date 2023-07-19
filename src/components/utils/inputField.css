@@ -1,6 +1,6 @@
 :where(.input-field),
 button.add-array-item {
-	width: 95%;
+	width: 100%;
 	border-radius: var(--small-border-radius);
 	border: 1px solid var(--neutral-shadow);
 	padding: 0.5rem;
