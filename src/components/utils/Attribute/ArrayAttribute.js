@@ -54,6 +54,7 @@ const ArrayAttribute = ({ title, description, items, onChange }) => {
 							type={items.type}
 							name={item.name}
 							properties={new Map(Object.entries(items))}
+							defaultValue={items.type === 'string' ? '' : 0}
 							onChange={updateItem}
 							className={'col-10'}
 						/>

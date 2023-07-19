@@ -28,6 +28,7 @@ const NumberAttribute = ({
 		<InputField
 			type='number'
 			name={title}
+			// defaultValue={0}
 			onChange={onChange}
 			properties={properties}
 		/>

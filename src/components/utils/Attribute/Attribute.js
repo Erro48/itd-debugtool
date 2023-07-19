@@ -6,6 +6,16 @@ import ArrayAttribute from './ArrayAttribute'
 import ObjectAttribute from './ObjectAttribute'
 
 const Attribute = ({ attribute, summary, onChange, onExpand }) => {
+	console.log(summary)
+	// console.log(
+	// 	summary !== undefined &&
+	// 		Array.from(summary.keys()).map((el) => {
+	// 			return {
+	// 				title: el,
+	// 				value: summary.get(el),
+	// 			}
+	// 		})
+	// )
 	const { title, type, description } = attribute
 	const selectAttribute = (type) => {
 		switch (type) {

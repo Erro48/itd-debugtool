@@ -5,11 +5,24 @@ import './attributesPanel.css'
 import Icon from '../utils/Icon'
 
 const AttributesPanel = ({ affordance }) => {
-	const attributesValues = new Map()
+	// const attributesValues = new Map()
+	const [attributesValues, setAttributesValues] = useState(new Map())
 	/* { title: title, attributes: [ { title, value } ] } */
 	const [currentAffordance, setCurrentAffordance] = useState(affordance)
 	const [breadcrumb, setBreadcrumb] = useState([])
 	const [history, setHistory] = useState([])
+
+	const getAffordanceInitialValue = (aff) => {
+		if (aff.enum !== undefined) {
+			return aff.enum[0]
+		}
+
+		if (aff.type === 'string') {
+			return ''
+		}
+
+		return 0
+	}
 
 	useEffect(() => {
 		if (affordance === undefined) return
@@ -18,6 +31,7 @@ const AttributesPanel = ({ affordance }) => {
 			...affordance,
 			address: `address/${affordance.title}`,
 			parents: [],
+			value: getAffordanceInitialValue(affordance),
 		})
 		setBreadcrumb([affordance.title])
 		setHistory((currentState) => {
@@ -53,40 +67,29 @@ const AttributesPanel = ({ affordance }) => {
 			return attributes
 		}
 
-		// Check for 'input.properties'
-		// if (currentAffordance.input.properties) {
-		// 	// if (currentAffordance.input.required) {
-		// 	// 	const required = currentAffordance.input.required
-		// 	// 	currentAffordance.input.properties[required].required = true
-		// 	// }
-
-		// 	attributes.push(...Object.values(currentAffordance.input.properties))
-
-		// 	return attributes
-		// }
-
 		attributes.push(currentAffordance.input)
 
 		return attributes
 	}
 
 	const handleAttributeChange = (title, value) => {
-		let currentTitle = title
-		let currentValue = value
-		const parents = [currentAffordance, ...currentAffordance.parents]
+		// let currentTitle = title
+		// let currentValue = value
+		// const parents = [currentAffordance, ...currentAffordance.parents]
 
-		parents.forEach((parent) => {
+		setAttributesValues((currentState) => {
 			const currentMap =
-				attributesValues.get(parent.title) === undefined
+				attributesValues.get(currentAffordance.title) === undefined
 					? new Map()
-					: attributesValues.get(parent.title)
-			currentMap.set(currentTitle, currentValue)
+					: attributesValues.get(currentAffordance.title)
 
-			currentTitle = parent.title
-			currentValue = currentMap
+			currentMap.set(title, value)
+
+			currentState.set(currentAffordance.title, currentMap)
+			return currentState
 		})
 
-		attributesValues.set(currentTitle, currentValue)
+		console.log(attributesValues)
 
 		setHistory((currentHistory) => {
 			currentHistory
@@ -156,6 +159,18 @@ const AttributesPanel = ({ affordance }) => {
 		})
 	}
 
+	const getSummary = (attribute) => {
+		if (attributesValues !== undefined) return []
+		if (attributesValues.get(attribute.title) !== undefined) return []
+
+		return Array.from(attributesValues.get(attribute.title)).map((el) => {
+			return {
+				title: el,
+				value: attributesValues.get(attribute.title).get(el),
+			}
+		})
+	}
+
 	return (
 		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
 			<header>
@@ -170,15 +185,7 @@ const AttributesPanel = ({ affordance }) => {
 							<li key={attribute.title} data-type='attribute'>
 								<Attribute
 									attribute={attribute}
-									summary={
-										history.filter(
-											(aff) => aff.title === attribute.title
-										)[0] !== undefined
-											? history.filter(
-													(aff) => aff.title === attribute.title
-											  )[0].attributes
-											: []
-									}
+									summary={() => getSummary(attribute)}
 									onChange={handleAttributeChange}
 									onExpand={handleObjectExpansion}
 								/>
