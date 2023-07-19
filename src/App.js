@@ -99,11 +99,6 @@ function App() {
 					<div className='col-12 col-lg-9 d-sm-block'>
 						<div className='row m-auto'>
 							<AttributesPanel affordance={activeAffordance} />
-							{/* <PropDescription
-								activeAffordance={activeAffordance}
-								{...chosenInteraction}
-							/>
-							<OutputPanel /> */}
 						</div>
 					</div>
 				</div>
