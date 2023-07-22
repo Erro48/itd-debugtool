@@ -1,3 +1,5 @@
 .icon {
-	/* user-select: none; */
+	/* mask-size: contain;
+	mask: attr(data-src);
+	background: red; */
 }

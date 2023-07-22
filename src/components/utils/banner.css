@@ -1,0 +1,40 @@
+.banner {
+	--banner__primary-color: var(--primary-100);
+	--banner__secondary-color: var(--neutral-700);
+
+	padding: 1.5rem 0.7rem;
+	border-radius: var(--medium-border-radius);
+	border: 2px solid var(--banner__secondary-color);
+	background: var(--banner__primary-color);
+	width: 100%;
+	margin: 0 auto;
+}
+
+.banner img {
+	width: 100%;
+}
+
+.banner p {
+	color: var(--banner__secondary-color);
+	font-size: 18px;
+}
+
+.info-banner {
+	--banner__primary-color: var(--primary-100);
+	--banner__secondary-color: var(--neutral-700);
+}
+
+.warning-banner {
+	--banner__primary-color: var(--warning-100);
+	--banner__secondary-color: var(--warning-600);
+}
+
+.danger-banner {
+	--banner__primary-color: var(--danger-100);
+	--banner__secondary-color: var(--danger-700);
+}
+
+.success-banner {
+	--banner__primary-color: var(--success-100);
+	--banner__secondary-color: var(--success-700);
+}

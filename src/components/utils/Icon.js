@@ -12,6 +12,7 @@ const Icon = ({ src, alt, classname }) => {
 			data-bs-toggle='tooltip'
 			data-bs-placement='bottom'
 			title={alt}
+			data-src={src}
 		/>
 	)
 }

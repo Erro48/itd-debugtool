@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Breadcrumbs from '../utils/Breadcrumbs'
 import Attribute from '../utils/Attribute/Attribute'
+import Banner from '../utils/Banner'
 import './attributesPanel.css'
 import Icon from '../utils/Icon'
 
@@ -30,6 +31,25 @@ const getInitialValue = (attribute) => {
 	}
 
 	return 0
+}
+
+const displayAttributesList = (attributes) => {
+	if (attributes === undefined || attributes.length === 0) {
+		return <Banner type='info'>No attributes</Banner>
+	}
+
+	return (
+		<ul className='m-0 attributes-list overflow-auto'>
+			{attributes.map((attribute) => (
+				<li>
+					<Attribute
+						attribute={attribute}
+						onChange={() => console.log('TODO: onChange')}
+					/>
+				</li>
+			))}
+		</ul>
+	)
 }
 
 /**
@@ -114,16 +134,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 			<Breadcrumbs path={[]} />
 			<section className='row px-2'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
-					<ul className='m-0 attributes-list overflow-auto'>
-						{affordance.attributes.map((attribute) => (
-							<li>
-								<Attribute
-									attribute={attribute}
-									onChange={() => console.log('TODO: onChange')}
-								/>
-							</li>
-						))}
-					</ul>
+					{displayAttributesList(affordance.attributes)}
 				</div>
 			</section>
 			<footer className='row w-100 m-auto'>
