@@ -46,7 +46,10 @@ const ArrayAttribute = ({ title, description, items, onChange }) => {
 					</li>
 				))}
 				<li className='array-attribute-item'>
-					<button className='btn add-array-item' onClick={addItem}>
+					<button
+						className='btn secondary-btn add-array-item'
+						onClick={addItem}
+					>
 						Add element
 					</button>
 				</li>

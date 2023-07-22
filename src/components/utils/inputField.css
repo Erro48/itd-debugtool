@@ -1,10 +1,10 @@
 :where(.input-field),
 button.add-array-item {
 	width: 100%;
+	padding: 0.5rem;
+	text-align: left;
+	background-color: var(--tertiary);
+	color: var(--secondary-text-color);
 	border-radius: var(--small-border-radius);
 	border: 1px solid var(--neutral-shadow);
-	padding: 0.5rem;
-	background-color: var(--tertiary);
-	text-align: left;
-	color: var(--secondary-text-color);
 }
