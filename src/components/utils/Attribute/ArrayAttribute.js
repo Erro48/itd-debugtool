@@ -3,14 +3,16 @@ import InputField from '../InputField'
 import Icon from '../Icon'
 import './arrayAttribute.css'
 
-const ArrayAttribute = ({ title, description, items, onChange }) => {
-	const [index, setIndex] = useState(1)
-	const [arrayItems, setArrayItems] = useState([
-		{
-			name: `${title}-0`,
-			value: '0',
-		},
-	])
+const ArrayAttribute = ({ title, items, minItems = 1, maxItems, onChange }) => {
+	const [index, setIndex] = useState(minItems)
+	const [arrayItems, setArrayItems] = useState(
+		Array.from({ length: minItems }, (_, i) => {
+			return {
+				name: `${title}-${i}`,
+				value: i,
+			}
+		})
+	)
 
 	useEffect(() => {
 		onChange(
@@ -32,6 +34,12 @@ const ArrayAttribute = ({ title, description, items, onChange }) => {
 	}
 
 	const addItem = () => {
+		// Check for maxItems
+		if (maxItems && arrayItems.length === maxItems) {
+			alert(`Massimo numero di elementi raggiunto: ${maxItems}`)
+			return
+		}
+
 		setArrayItems((currentState) => {
 			return [...currentState, { name: `${title}-${index}`, value: '0' }]
 		})
@@ -40,6 +48,10 @@ const ArrayAttribute = ({ title, description, items, onChange }) => {
 	}
 
 	const deleteItem = (name) => {
+		if (minItems && arrayItems.length === minItems) {
+			alert(`Minimo numero di elementi raggiunto: ${minItems}`)
+			return
+		}
 		if (arrayItems.length > 1) {
 			setArrayItems(arrayItems.filter((item) => item.name !== name))
 		}
