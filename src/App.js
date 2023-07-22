@@ -89,6 +89,7 @@ function App() {
 		})
 	}
 
+	// on repo load
 	useEffect(() => {
 		const activeTd = thingDescriptions[0]
 		setActiveThingDescription(activeTd)
@@ -134,7 +135,7 @@ function App() {
 					/>
 					<div className='col-12 col-lg-6 d-sm-block'>
 						<div className='row m-auto'>
-							<AttributesPanel affordance={activeAffordance} />
+							<AttributesPanel activeAffordance={activeAffordance} />
 							{/* <PropDescription
 								activeAffordance={activeAffordance}
 								{...chosenInteraction}

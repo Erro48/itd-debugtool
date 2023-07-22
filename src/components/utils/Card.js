@@ -10,6 +10,7 @@ const Card = ({
 	address,
 	version,
 	active,
+	affordanceType,
 	onCardClick,
 }) => {
 	const getVersion = () => {
@@ -31,6 +32,7 @@ const Card = ({
 			)}
 			onClick={() => onCardClick(title)}
 			data-active={active ? active : false}
+			data-type={affordanceType}
 		>
 			<div className='row'>
 				<div className='col-10 col-sm-12'>

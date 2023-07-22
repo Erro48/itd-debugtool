@@ -4,190 +4,122 @@ import Attribute from '../utils/Attribute/Attribute'
 import './attributesPanel.css'
 import Icon from '../utils/Icon'
 
-const AttributesPanel = ({ affordance }) => {
-	// const attributesValues = new Map()
-	const [attributesValues, setAttributesValues] = useState(new Map())
-	/* { title: title, attributes: [ { title, value } ] } */
-	const [currentAffordance, setCurrentAffordance] = useState(affordance)
-	const [breadcrumb, setBreadcrumb] = useState([])
-	const [history, setHistory] = useState([])
-
-	const getAffordanceInitialValue = (aff) => {
-		if (aff.enum !== undefined) {
-			return aff.enum[0]
-		}
-
-		if (aff.type === 'string') {
-			return ''
-		}
-
-		return 0
+const getInitialValue = (attribute) => {
+	if (attribute.enum !== undefined) {
+		return attribute.enum[0]
 	}
 
+	if (attribute.type === undefined) {
+		return getInitialValue(attribute.input)
+	}
+
+	if (attribute.type === 'string') {
+		return ''
+	}
+
+	if (attribute.type === 'array') {
+		return getInitialValue(attribute.items)
+	}
+
+	if (attribute.minimum !== undefined) {
+		return attribute.minimum
+	}
+
+	if (attribute.maximum !== undefined) {
+		return attribute.maximum
+	}
+
+	return 0
+}
+
+/**
+ * attribute:
+ *
+ * Nella sezione 'actions':
+ * - Senza 'input': non ha parametri (mostrare schermata "niente parametri" o simili).
+ * - 'input' di tipo oggetto:
+ * 		- Senza 'properties': non ha senso.
+ * 		- 'properties': va gestita come 'actions', quindi chiamare ricorsivamente.
+ * 		- ha un attributo 'summary', che sarà una mappa "nome attributo di properties" --> "valore"
+ * - 'input' di un altro tipo: ha un attributo "value" che:
+ * 		- inizialmente sarà impostato con un valore di default (per esempio il minimo).
+ * 		- successivamente avrà il valore impostato dall'utente.
+ * 		- per il tipo array il valore di "value" sarà uguale per ogni elemento dell'array
+ */
+
+const AttributesPanel = ({ activeAffordance }) => {
+	const [affordance, setAffordance] = useState(activeAffordance)
+
+	// Update affordance on attribute change
 	useEffect(() => {
-		if (affordance === undefined) return
+		if (activeAffordance === undefined) return
 
-		setCurrentAffordance({
-			...affordance,
-			address: `address/${affordance.title}`,
-			parents: [],
-			value: getAffordanceInitialValue(affordance),
-		})
-		setBreadcrumb([affordance.title])
-		setHistory((currentState) => {
-			return [
-				...currentState,
-				{
-					title: affordance.title,
+		if (activeAffordance.affordanceType === 'actions') {
+			// If not has input
+			if (activeAffordance.input === undefined) {
+				setAffordance({
+					...activeAffordance,
+					address: `address/${activeAffordance.title}`,
 					attributes: [],
-					parent: null, // prendi quello prima
-					children: [],
-				},
-			]
-		})
-	}, [affordance])
-
-	if (currentAffordance === undefined) return <></>
-
-	const getAttributes = () => {
-		const attributes = []
-
-		// Check for 'uriVariables'
-		if (currentAffordance.uriVariables) {
-			attributes.push(...Object.values(currentAffordance.uriVariables))
-			return attributes
-		}
-
-		if (!currentAffordance.input && !currentAffordance.properties) {
-			return attributes
-		}
-
-		if (currentAffordance.properties) {
-			attributes.push(...Object.values(currentAffordance.properties))
-			return attributes
-		}
-
-		attributes.push(currentAffordance.input)
-
-		return attributes
-	}
-
-	const handleAttributeChange = (title, value) => {
-		// let currentTitle = title
-		// let currentValue = value
-		// const parents = [currentAffordance, ...currentAffordance.parents]
-
-		setAttributesValues((currentState) => {
-			const currentMap =
-				attributesValues.get(currentAffordance.title) === undefined
-					? new Map()
-					: attributesValues.get(currentAffordance.title)
-
-			currentMap.set(title, value)
-
-			currentState.set(currentAffordance.title, currentMap)
-			return currentState
-		})
-
-		console.log(attributesValues)
-
-		setHistory((currentHistory) => {
-			currentHistory
-				.filter((aff) => aff.title === currentAffordance.title)
-				.forEach((item) => {
-					if (
-						item.attributes.filter((attr) => attr.title === title).length === 0
-					) {
-						// If the attribute is not present
-						item.attributes.push({ title, value })
-						return
-					}
-
-					// If it is already present, update the value
-					item.attributes.filter((attr) => attr.title === title)[0].value =
-						value
 				})
-
-			return currentHistory
-		})
-	}
-
-	const handleObjectExpansion = (newAffordance) => {
-		setBreadcrumb((currentState) => {
-			return [...currentState, newAffordance.title]
-		})
-
-		/* Aggiungo newAffordance come figlio dell'affordance corrente */
-		setHistory((currentState) => {
-			return currentState
-				.filter((aff) => aff.title === currentAffordance.title)
-				.map((aff) => aff.children.push(newAffordance.title))
-		})
-
-		/* Aggiungo newAffordance nella history */
-		setHistory((currentState) => {
-			currentState.push({
-				title: newAffordance.title,
-				attributes: [],
-				parent: currentAffordance.title,
-				children: [],
-			})
-			return currentState
-		})
-
-		setCurrentAffordance({
-			...newAffordance,
-			address: `address/${currentAffordance.title}`,
-			parents: [currentAffordance, ...currentAffordance.parents],
-		})
-	}
-
-	const submitRequest = (e) => {
-		e.preventDefault()
-		console.log(attributesValues)
-	}
-
-	const openParent = () => {
-		setCurrentAffordance({
-			...currentAffordance.parents[0],
-			summary: attributesValues,
-		})
-		setBreadcrumb((currentState) => {
-			return currentState.filter(
-				(element) => element !== currentAffordance.title
-			)
-		})
-	}
-
-	const getSummary = (attribute) => {
-		if (attributesValues !== undefined) return []
-		if (attributesValues.get(attribute.title) !== undefined) return []
-
-		return Array.from(attributesValues.get(attribute.title)).map((el) => {
-			return {
-				title: el,
-				value: attributesValues.get(attribute.title).get(el),
+				return
 			}
+
+			// Remove input from activeAffordance fields
+			const { input, ...affordanceFields } = activeAffordance
+			const attributes = [{ ...input }]
+
+			// If input is an object
+			if (
+				activeAffordance.input.type === 'object' ||
+				activeAffordance.input.properties !== undefined
+			) {
+				// Bisogna aggiungere il campo 'summary'
+				setAffordance({
+					...activeAffordance,
+					address: `address/${activeAffordance.title}`,
+					warning: 'CAMPO TEMPORANEO',
+					attributes: attributes,
+				})
+				return
+			}
+
+			// For other types of input
+			setAffordance({
+				...affordanceFields,
+				address: `address/${activeAffordance.title}`,
+				value: getInitialValue(activeAffordance),
+				attributes: attributes,
+			})
+
+			return
+		}
+
+		setAffordance({
+			...activeAffordance,
+			address: `address/${activeAffordance.title}`,
+			attributes: [],
 		})
-	}
+	}, [activeAffordance])
+
+	if (affordance === undefined) return <></>
+	console.log(affordance)
 
 	return (
 		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
 			<header>
-				<h2>{currentAffordance.title}</h2>
-				<p className='subtitle mb-0'>{currentAffordance.address}</p>
+				<h2>{affordance.title}</h2>
+				<p className='subtitle mb-0'>{affordance.address}</p>
 			</header>
-			<Breadcrumbs path={breadcrumb} />
+			<Breadcrumbs path={[]} />
 			<section className='row px-2'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
 					<ul className='m-0 attributes-list overflow-auto'>
-						{getAttributes().map((attribute) => (
-							<li key={attribute.title} data-type='attribute'>
+						{affordance.attributes.map((attribute) => (
+							<li>
 								<Attribute
 									attribute={attribute}
-									summary={() => getSummary(attribute)}
-									onChange={handleAttributeChange}
-									onExpand={handleObjectExpansion}
+									onChange={() => console.log('TODO: onChange')}
 								/>
 							</li>
 						))}
@@ -195,8 +127,11 @@ const AttributesPanel = ({ affordance }) => {
 				</div>
 			</section>
 			<footer className='row w-100 m-auto'>
-				{currentAffordance.parents.length > 0 ? (
-					<button className='col-1 btn light-btn' onClick={openParent}>
+				{/* {currentAffordance.parents.length > 0 ? (
+					<button
+						className='col-1 btn light-btn'
+						onClick={() => console.log('expand')}
+					>
 						<Icon
 							src={'./icons/left-arrow-dark.svg'}
 							alt={'Go to previous attribute'}
@@ -204,14 +139,14 @@ const AttributesPanel = ({ affordance }) => {
 					</button>
 				) : (
 					<div className='col-1'></div>
-				)}
+				)} */}
 
 				<div className='col-9'></div>
 
 				<button
 					type='button'
 					className='button primary-btn col-2'
-					onClick={submitRequest}
+					onClick={() => console.log('Submit')}
 				>
 					Submit
 				</button>

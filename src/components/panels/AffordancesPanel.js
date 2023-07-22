@@ -2,10 +2,19 @@ import React, { useState, useEffect } from 'react'
 import CardList from '../utils/CardList'
 
 const AffordancesPanel = ({ activeThingDescription, onChange }) => {
-	const updateAffordance = (type) => {
+	/**
+	 * Returns an array of objects in the form (* are optional):
+	 * { title, description, input*, active, affordanceType, type }
+	 * @param {string} type of the affordance ("properties" or "actions")
+	 * @returns an array of objects
+	 */
+	const getAffordancesByType = (type) => {
 		let affordances
+
+		// if no TD is set, return an empty array
 		if (activeThingDescription === undefined) return []
 
+		// get affordances of one type (properties or actions)
 		switch (type) {
 			case 'properties':
 				affordances = activeThingDescription.properties
@@ -18,19 +27,23 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 
 		return affordances.map((affordance) => {
 			return {
-				...affordance.value,
 				title: affordance.title,
+				...{ ...affordance.value },
 				active: affordance.active == true,
+				affordanceType: type,
 			}
 		})
 	}
 
-	const [properties, setProperties] = useState(updateAffordance('properties'))
-	const [actions, setActions] = useState(updateAffordance('actions'))
+	const [properties, setProperties] = useState(
+		getAffordancesByType('properties')
+	)
+	const [actions, setActions] = useState(getAffordancesByType('actions'))
 
+	// when 'activeThingDescription' changes, update 'properties' and 'actions'
 	useEffect(() => {
-		setProperties(updateAffordance('properties'))
-		setActions(updateAffordance('actions'))
+		setProperties(getAffordancesByType('properties'))
+		setActions(getAffordancesByType('actions'))
 	}, [activeThingDescription])
 
 	const handleCardClick = (cardId) => {
@@ -51,6 +64,7 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 		const setStateHandler = (state) => {
 			const nextActiveIndex = state.indexOf(activeAffordance)
 
+			// Inserts 'activeAffordance' in the same position in was before
 			return [
 				...state.slice(0, nextActiveIndex),
 				activeAffordance,
