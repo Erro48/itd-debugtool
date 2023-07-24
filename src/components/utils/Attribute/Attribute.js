@@ -6,7 +6,7 @@ import ArrayAttribute from './ArrayAttribute'
 import ObjectAttribute from './ObjectAttribute'
 
 const Attribute = ({ attribute, summary, onChange, onExpand }) => {
-	console.log(summary)
+	// console.log(summary)
 	// console.log(
 	// 	summary !== undefined &&
 	// 		Array.from(summary.keys()).map((el) => {

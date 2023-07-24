@@ -34,25 +34,6 @@ const getInitialValue = (attribute) => {
 	return 0
 }
 
-const displayAttributesList = (attributes) => {
-	if (attributes === undefined || attributes.length === 0) {
-		return <Banner type='info'>No attributes</Banner>
-	}
-
-	return (
-		<ul className='m-0 attributes-list overflow-auto'>
-			{attributes.map((attribute) => (
-				<li>
-					<Attribute
-						attribute={attribute}
-						onChange={() => console.log('TODO: onChange')}
-					/>
-				</li>
-			))}
-		</ul>
-	)
-}
-
 /**
  * attribute:
  *
@@ -124,7 +105,38 @@ const AttributesPanel = ({ activeAffordance }) => {
 	}, [activeAffordance])
 
 	if (affordance === undefined) return <></>
-	console.log(affordance)
+
+	const displayAttributesList = (attributes) => {
+		if (attributes === undefined || attributes.length === 0) {
+			return <Banner type='info'>No attributes</Banner>
+		}
+
+		return (
+			<ul className='m-0 attributes-list overflow-auto'>
+				{attributes.map((attribute) => (
+					<li>
+						<Attribute attribute={attribute} onChange={handleChange} />
+					</li>
+				))}
+			</ul>
+		)
+	}
+
+	/*********************
+	 *     Handlers      *
+	 *********************/
+	const handleSubmit = () => {
+		console.log(affordance)
+	}
+
+	const handleChange = (title, value) => {
+		setAffordance((currentState) => {
+			return {
+				...currentState,
+				value: value,
+			}
+		})
+	}
 
 	return (
 		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
@@ -168,7 +180,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 				<button
 					type='button'
 					className='button primary-btn col-2'
-					onClick={() => console.log('Submit')}
+					onClick={handleSubmit}
 				>
 					Submit
 				</button>
