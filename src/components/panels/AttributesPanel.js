@@ -4,6 +4,7 @@ import Attribute from '../utils/Attribute/Attribute'
 import Banner from '../utils/Banner'
 import './attributesPanel.css'
 import Icon from '../utils/Icon'
+import CodePanel from './CodePanel'
 
 const getInitialValue = (attribute) => {
 	if (attribute.enum !== undefined) {
@@ -135,6 +136,16 @@ const AttributesPanel = ({ activeAffordance }) => {
 			<section className='row px-2'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
 					{displayAttributesList(affordance.attributes)}
+				</div>
+				<div className='col-12 col-sm-5'>
+					<div class='row'>
+						<div class='col-12'>
+							<CodePanel type='input' />
+						</div>
+						<div class='col-12'>
+							<CodePanel type='output' />
+						</div>
+					</div>
 				</div>
 			</section>
 			<footer className='row w-100 m-auto'>

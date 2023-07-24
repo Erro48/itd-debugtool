@@ -59,7 +59,7 @@ hr {
 }
 
 .light-btn {
-	border: 1px solid var(--secondary);
+	border: 2px solid var(--secondary);
 	color: var(--primary-text-color);
 	background-color: var(--primary);
 }

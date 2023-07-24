@@ -1,0 +1,12 @@
+.code-section header h3 {
+	margin-bottom: 0;
+}
+
+.code-section header::after {
+	content: none;
+}
+
+.code-section section {
+	height: 30vh;
+	overflow-y: auto;
+}
