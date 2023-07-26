@@ -1,5 +1,6 @@
 .navbar {
 	background-color: var(--brand-color);
+	height: var(--navbar-height);
 }
 
 .navbar h1 {

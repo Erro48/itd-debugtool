@@ -1,16 +1,22 @@
-li:not(:last-child) > .card:after {
+/* li:not(:last-child) > .card:after {
 	content: '';
 	border-bottom: 2px solid var(--secondary);
 	position: absolute;
 	width: 100%;
 	left: 0;
 	bottom: -10%;
+} */
+
+.card-list {
+	overflow-y: auto;
+	overflow-x: hidden;
+	gap: 0.5rem;
 }
 
-.td-card-list {
-	max-height: 80vh;
+.affordance-card-list {
+	height: 85%;
 }
 
-.prop-card-list {
-	max-height: 34vh;
+.prop-card-list::-webkit-scrollbar {
+	width: 5px;
 }

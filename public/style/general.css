@@ -7,8 +7,9 @@
 	color: var(--primary-text-color);
 }
 
-*:is(:focus, :focus-visible) {
-	outline: none;
+*:is(:focus-visible) {
+	outline: 2px solid var(--warning-400);
+	outline-offset: -5px;
 	/* outline: 2px solid var(--brand-color); */
 	/* border-radius: var(--small-border-radius); */
 }
@@ -31,31 +32,29 @@ hr {
 }
 
 .primary-btn {
-	background-color: var(--primary-color);
+	background-color: var(--primary);
 	border: 2px solid;
-	border-color: var(--primary-color);
-	color: var(--light-color);
+	border-color: var(--brand-color);
+	color: var(--primary-text-color);
 }
 
-.primary-btn:hover,
-.primary-btn:focus {
-	outline: none;
+.primary-btn:hover {
+	/* outline: none;
 	background-color: var(--brand-color);
-	border-color: var(--brand-color);
+	border-color: var(--brand-color); */
+	filter: brightness(0.8);
 }
 
 .secondary-btn {
-	background-color: var(--light-color);
-	border: 2px solid var(--primary-color);
-	color: var(--primary-color);
+	background-color: var(--tertiary);
+	color: var(--secondary-text-color);
+	border-radius: var(--small-border-radius);
+	border: 1px solid var(--neutral-shadow);
 }
 
-.secondary-btn:hover,
-.secondary-btn:focus {
-	outline: none;
-	border-color: var(--brand-color);
-	color: var(--brand-color);
-	filter: brightness(95%);
+.secondary-btn:hover {
+	background-color: var(--secondary);
+	color: var(--tertiary);
 }
 
 .light-btn {

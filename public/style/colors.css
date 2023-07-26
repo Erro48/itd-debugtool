@@ -11,7 +11,7 @@
 
 	/* ----- Details ----- */
 	--brand-color-shadow: var(--primary-300);
-	--neutral-shadow: var(--neutral-300);
+	--neutral-shadow: var(--neutral-700);
 	--error-element: var(--danger-200);
 
 	--input-code-section__primary: var(--success-200);

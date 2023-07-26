@@ -1,18 +1,5 @@
 /* #region Header */
-section > header::after {
-	content: '';
-	display: inline-block;
-	width: 100%;
-	border-bottom: 3px solid var(--secondary);
-	background-color: var(--secondary);
-}
 
-section header > h2 {
-	color: var(--title-text-color);
-	font-family: var(--title-font);
-	font-size: 30px;
-	font-weight: bold;
-}
 /* #endregion Header */
 
 /* #region List */

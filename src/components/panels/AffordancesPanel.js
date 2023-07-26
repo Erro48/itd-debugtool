@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import CardList from '../utils/CardList'
+import './asidePanels.css'
 
 const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	/**
@@ -85,30 +86,36 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	}
 
 	return (
-		<div className='col-12 col-lg-3' data-panel='affordances-panel'>
-			<div className='row'>
-				<section className='prop-container col-12 col-sm-6 col-lg-12'>
-					<header className='pt-3'>
+		<section className='col-12 col-lg-6 px-0' data-panel='affordances-panel'>
+			<div className='row w-100 m-auto'>
+				<section
+					className='col-12 col-sm-6 col-lg-12 px-0'
+					data-panel='affordance-panel'
+				>
+					<header>
 						<h2>Properties</h2>
 					</header>
 					<CardList
 						cards={properties}
-						className={'prop-card-list'}
+						className={'affordance-card-list'}
 						onCardClick={handleCardClick}
 					/>
 				</section>
-				<section className='prop-container col-12 col-sm-6 col-lg-12'>
-					<header className='pt-3'>
+				<section
+					className='col-12 col-sm-6 col-lg-12 px-0'
+					data-panel='affordance-panel'
+				>
+					<header>
 						<h2>Actions</h2>
 					</header>
 					<CardList
 						cards={actions}
-						className={'prop-card-list'}
+						className={'affordance-card-list'}
 						onCardClick={handleCardClick}
 					/>
 				</section>
 			</div>
-		</div>
+		</section>
 	)
 }
 

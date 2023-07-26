@@ -50,6 +50,7 @@ const getInitialValue = (attribute) => {
  */
 
 const AttributesPanel = ({ activeAffordance }) => {
+	console.log(activeAffordance)
 	const [affordance, setAffordance] = useState(activeAffordance)
 
 	// Update affordance on attribute change

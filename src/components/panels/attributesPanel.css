@@ -2,6 +2,27 @@
 	max-height: 70dvh;
 }
 
+[data-panel='attributes-panel'] {
+	height: calc(100vh - var(--navbar-height));
+	display: flex;
+	flex-direction: column;
+}
+
+[data-panel='attributes-panel'] header {
+	border-bottom: 2px solid var(--secondary);
+	padding: 0.8rem 0;
+	margin-bottom: 0.8rem;
+}
+
+[data-panel='attributes-panel'] header p {
+	margin-bottom: 0;
+	color: var(--secondary-text-color);
+}
+
+[data-panel='attributes-panel'] section {
+	height: 77%;
+}
+
 [data-panel='attributes-panel'] footer {
 	border-top: 2px solid var(--secondary);
 	padding-top: 0.8rem;
