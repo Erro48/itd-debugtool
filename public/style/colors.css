@@ -14,6 +14,12 @@
 	--neutral-shadow: var(--neutral-300);
 	--error-element: var(--danger-200);
 
+	--input-code-section__primary: var(--success-200);
+	--input-code-section__secondary: var(--success-800);
+
+	--output-code-section__primary: var(--info-200);
+	--output-code-section__secondary: var(--info-900);
+
 	/* ----- Texts ----- */
 	--primary-text-color: var(--neutral-900);
 	--secondary-text-color: var(--neutral-700);

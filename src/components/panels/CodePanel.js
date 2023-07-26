@@ -57,7 +57,7 @@ const formatCode = (code, iterationCounter = 1) => {
 
 const CodePanel = ({ type, attribute }) => {
 	return (
-		<section className={classNames('code-section', type)}>
+		<section className='code-section' data-section-type={type}>
 			<header className='row'>
 				<h3 className='col-9'>{type}</h3>
 				<div class='col-3'>

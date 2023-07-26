@@ -145,12 +145,12 @@ const AttributesPanel = ({ activeAffordance }) => {
 				<p className='subtitle mb-0'>{affordance.address}</p>
 			</header>
 			<Breadcrumbs path={[]} />
-			<section className='row px-2'>
+			<section className='row px-2 mb-1'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
 					{displayAttributesList(affordance.attributes)}
 				</div>
 				<div className='col-12 col-sm-5'>
-					<div class='row'>
+					<div class='row gap-1'>
 						<div class='col-12'>
 							<CodePanel type='input' />
 						</div>
