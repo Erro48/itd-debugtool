@@ -1,10 +1,18 @@
+/*
+	Table of Contents
+	- General
+	- Header
+	- Body
+*/
+
+/* #region General */
 .code-section {
 	--code-section__primary-clr: var(--neutral-200);
 	--code-section__secondary-clr: var(--primary-text-color);
 
 	background-color: var(--code-section__primary-clr);
 	border: 2px solid var(--code-section__secondary-clr);
-	border-radius: var(--small-border-radius);
+	border-radius: var(--medium-border-radius);
 
 	padding: 0.25rem;
 }
@@ -18,6 +26,12 @@
 	--code-section__primary-clr: var(--output-code-section__primary);
 	--code-section__secondary-clr: var(--output-code-section__secondary);
 }
+/* #endregion General */
+
+/* #region Header*/
+.code-section header {
+	border: none;
+}
 
 .code-section header h3 {
 	margin-bottom: 0;
@@ -25,12 +39,12 @@
 	text-transform: capitalize;
 	font-size: 20px;
 }
+/* #endregion Header*/
 
-.code-section header::after {
-	content: none;
-}
-
+/* #region Body */
 .code-section section {
-	height: 30vh;
+	height: 33vh;
 	overflow-y: auto;
+	margin-top: 0.25rem;
 }
+/* #endregion Body */

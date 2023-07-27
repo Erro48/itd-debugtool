@@ -58,9 +58,9 @@ const formatCode = (code, iterationCounter = 1) => {
 const CodePanel = ({ type, attribute }) => {
 	return (
 		<section className='code-section' data-section-type={type}>
-			<header className='row'>
-				<h3 className='col-9'>{type}</h3>
-				<div class='col-3'>
+			<header className='row w-100 m-auto p-0'>
+				<h3 className='col-9 p-0'>{type}</h3>
+				<div class='col-3 d-flex justify-content-end p-0'>
 					<Icon
 						src='./icons/copy.svg'
 						alt='Copy'

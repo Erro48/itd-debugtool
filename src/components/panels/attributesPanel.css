@@ -11,16 +11,16 @@
 [data-panel='attributes-panel'] header {
 	border-bottom: 2px solid var(--secondary);
 	padding: 0.8rem 0;
-	margin-bottom: 0.8rem;
+	/* margin-bottom: 0.8rem; */
+}
+
+[data-panel='attributes-panel'] header h2 {
+	margin-bottom: 0;
 }
 
 [data-panel='attributes-panel'] header p {
 	margin-bottom: 0;
 	color: var(--secondary-text-color);
-}
-
-[data-panel='attributes-panel'] section {
-	height: 77%;
 }
 
 [data-panel='attributes-panel'] footer {

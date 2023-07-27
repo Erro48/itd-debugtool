@@ -21,7 +21,7 @@ const ObjectAttribute = ({ attribute, summary = [], onExpand }) => {
 				))}
 			</ul>
 			<button
-				className='btn primary-btn w-100'
+				className='button primary-btn w-100'
 				onClick={() => onExpand({ ...attribute })}
 			>
 				Expand

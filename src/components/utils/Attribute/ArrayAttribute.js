@@ -70,7 +70,10 @@ const ArrayAttribute = ({ title, items, minItems = 1, maxItems, onChange }) => {
 							onChange={updateItem}
 							className={'col-10'}
 						/>
-						<button className='btn col-2' onClick={() => deleteItem(item.name)}>
+						<button
+							className='button col-2'
+							onClick={() => deleteItem(item.name)}
+						>
 							<Icon
 								src='../icons/remove.svg'
 								alt={`Remove ${item.name} element`}
@@ -80,7 +83,7 @@ const ArrayAttribute = ({ title, items, minItems = 1, maxItems, onChange }) => {
 				))}
 				<li className='array-attribute-item'>
 					<button
-						className='btn secondary-btn add-array-item'
+						className='button secondary-btn add-array-item'
 						onClick={addItem}
 					>
 						Add element

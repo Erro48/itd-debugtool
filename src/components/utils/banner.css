@@ -2,7 +2,7 @@
 	--banner__primary-color: var(--primary-100);
 	--banner__secondary-color: var(--neutral-700);
 
-	padding: 1.5rem 0.7rem;
+	padding: 10px 5px;
 	border-radius: var(--medium-border-radius);
 	border: 2px solid var(--banner__secondary-color);
 	background: var(--banner__primary-color);

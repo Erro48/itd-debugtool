@@ -21,7 +21,7 @@ const getIconUrl = (type) => {
 const Banner = ({ type = 'info', children }) => {
 	return (
 		<section className={classNames('row banner', `${type}-banner`)}>
-			<div className='col-2'>
+			<div className='col-4 col-md-3 col-lg-2 col-xxl-1'>
 				<Icon src={getIconUrl(type)} alt={''} />
 			</div>
 			<div className='col my-auto'>

@@ -1,5 +1,6 @@
 import React from 'react'
 import './breadcrumbs.css'
+import classNames from 'classnames'
 
 const Breadcrumbs = ({ path }) => {
 	const isLastPage = (page) => {
@@ -8,7 +9,10 @@ const Breadcrumbs = ({ path }) => {
 	}
 
 	return (
-		<nav aria-label='breadcrumb'>
+		<nav
+			aria-label='breadcrumb'
+			className={classNames(path.length === 0 ? 'd-none' : '')}
+		>
 			<ol className='breadcrumb m-0'>
 				{path.map((element) => (
 					<li

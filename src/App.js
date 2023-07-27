@@ -97,7 +97,8 @@ function App() {
 							/>
 						</div>
 					</aside>
-					<div className='col-12 col-lg-9 d-sm-block'>
+					<div className='col-1'></div>
+					<div className='col-12 col-lg-7 d-sm-block'>
 						<div className='row m-auto'>
 							<AttributesPanel activeAffordance={activeAffordance} />
 						</div>

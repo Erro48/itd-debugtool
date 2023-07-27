@@ -141,16 +141,16 @@ const AttributesPanel = ({ activeAffordance }) => {
 
 	return (
 		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
-			<header>
+			<header className='px-2'>
 				<h2>{affordance.title}</h2>
 				<p className='subtitle mb-0'>{affordance.address}</p>
 			</header>
 			<Breadcrumbs path={[]} />
-			<section className='row px-2 mb-1'>
-				<div className='col-12 col-sm-7 mb-3 mb-sm-0'>
+			<section className='row mb-1 w-100 m-auto ps-2'>
+				<div className='col-12 col-sm-7 mb-3 mb-sm-0 ps-0'>
 					{displayAttributesList(affordance.attributes)}
 				</div>
-				<div className='col-12 col-sm-5'>
+				<div className='col-12 col-sm-5 p-0'>
 					<div class='row gap-1'>
 						<div class='col-12'>
 							<CodePanel type='input' />
@@ -180,7 +180,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 
 				<button
 					type='button'
-					className='button primary-btn col-2'
+					className='button primary-btn col'
 					onClick={handleSubmit}
 				>
 					Submit
