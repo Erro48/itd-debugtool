@@ -6,11 +6,12 @@
 	height: calc(100vh - var(--navbar-height));
 	display: flex;
 	flex-direction: column;
+	padding: 0.8rem 0;
 }
 
 [data-panel='attributes-panel'] > header {
 	border-bottom: 2px solid var(--secondary);
-	padding: 0.8rem 0;
+	padding-bottom: 0.8rem;
 	/* margin-bottom: 0.8rem; */
 }
 

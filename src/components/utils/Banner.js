@@ -27,10 +27,11 @@ const Banner = ({
 	closable = false,
 	title,
 	onClose,
+	classname,
 	children,
 }) => {
 	return (
-		<section className={classNames('banner', `${type}-banner`)}>
+		<section className={classNames('banner', `${type}-banner`, classname)}>
 			{(title || closable) && (
 				<header className='row w-100 mx-auto'>
 					<div className='col-11'>{title}</div>

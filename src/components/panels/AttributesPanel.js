@@ -105,7 +105,12 @@ const AttributesPanel = ({ activeAffordance }) => {
 		})
 	}, [activeAffordance])
 
-	if (affordance === undefined) return <></>
+	if (affordance === undefined)
+		return (
+			<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
+				<Banner classname='my-5 w-50'>No Thing Descriptions loaded...</Banner>
+			</section>
+		)
 
 	const displayAttributesList = (attributes) => {
 		if (attributes === undefined || attributes.length === 0) {
