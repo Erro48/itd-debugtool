@@ -46,6 +46,11 @@ function App() {
 				return [...state, thingDescription]
 			}
 
+			// If already in, replace it
+			state = state
+				.filter((td) => td.title === thingDescription.title)
+				.map((td) => thingDescription)
+
 			return state
 		})
 	}
