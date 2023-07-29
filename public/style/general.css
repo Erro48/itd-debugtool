@@ -36,17 +36,16 @@ hr {
 }
 
 .primary-btn {
-	background-color: var(--primary);
-	border: 2px solid;
-	border-color: var(--brand-color);
+	border: 2px solid var(--brand-color);
 	color: var(--primary-text-color);
+	border-radius: var(--medium-border-radius);
+	font-weight: var(--bold-font-weight);
+	background-color: var(--primary-100);
 }
 
 .primary-btn:hover {
-	/* outline: none;
-	background-color: var(--brand-color);
-	border-color: var(--brand-color); */
-	filter: brightness(0.8);
+	background: var(--primary);
+	box-shadow: 0px 0px 5px var(--brand-color);
 }
 
 .secondary-btn {
