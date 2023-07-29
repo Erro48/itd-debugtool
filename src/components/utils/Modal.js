@@ -17,13 +17,15 @@ const Modal = ({ type, show, onClose, children }) => {
 		}
 	}, [open])
 
+	console.log(children.name)
+
 	return (
 		<dialog data-modal>
 			<section className='row w-100 mx-auto'>
 				<div className='col-md-3'></div>
 				<div className='col-12 col-md-6'>
 					<Banner type={type} closable={true} onClose={onClose}>
-						{children}
+						{children.message}
 					</Banner>
 				</div>
 			</section>

@@ -69,13 +69,23 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 			? 'Repository not loaded correctly'
 			: 'Repository loaded'
 
-		return (
+		const iconJSX = (
 			<Icon
 				src={'../icons/' + iconName + '.svg'}
 				alt={iconAlt}
 				classname={classnames({ 'd-none': !loadingError && !repoLoaded })}
 			/>
 		)
+
+		if (loadingError) {
+			return (
+				<button class='button transparent-btn' onClick={onShowError}>
+					{iconJSX}
+				</button>
+			)
+		}
+
+		return iconJSX
 	}
 
 	return (
@@ -104,9 +114,7 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 			<div className='col-2 p-0'>
 				<ul className='row m-0 w-100 h-100 p-0'>
 					<li className='col-6 d-flex align-items-center justify-content-center'>
-						<button class='button transparent-btn' onClick={onShowError}>
-							{getLoadingIcon()}
-						</button>
+						{getLoadingIcon()}
 					</li>
 					<li className='col-6 d-flex align-items-center justify-content-center'>
 						<button className='button transparent-btn'>

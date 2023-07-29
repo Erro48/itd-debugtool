@@ -14,6 +14,10 @@
 	/* border-radius: var(--small-border-radius); */
 }
 
+::backdrop {
+	--backdrop-color: #485e6b55; /* var(--neutral-600) */
+}
+
 hr {
 	border-radius: 10px;
 }

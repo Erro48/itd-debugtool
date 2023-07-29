@@ -5,3 +5,7 @@ dialog[data-modal='true'] {
 	background-color: transparent;
 	top: 10%;
 }
+
+dialog::backdrop {
+	background-color: var(--backdrop-color);
+}

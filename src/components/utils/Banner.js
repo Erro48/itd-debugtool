@@ -10,6 +10,10 @@ const getIconUrl = (type) => {
 			iconName = 'warning'
 			break
 		}
+		case 'danger': {
+			iconName = 'folder-failed'
+			break
+		}
 		default: {
 			iconName = 'gears'
 		}
@@ -45,7 +49,7 @@ const Banner = ({
 				</header>
 			)}
 			<section className='row w-100 mx-auto'>
-				<div className='col-4 col-md-3 col-lg-2 col-xxl-1'>
+				<div className='col-3 col-lg-2 col-xxl-1 d-flex align-items-center'>
 					<Icon src={getIconUrl(type)} alt='' />
 				</div>
 				<div className='col my-auto'>

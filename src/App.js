@@ -94,7 +94,7 @@ function App() {
 						show={showRepoError}
 						onClose={() => setShowRepoError(false)}
 					>
-						{new Error(repoError).message}
+						{new Error(repoError)}
 					</Modal>
 
 					<div className='col-12 d-lg-none'>
