@@ -4,12 +4,15 @@ import SearchBar from './components/navbar/SearchBar'
 import { useEffect, useState } from 'react'
 import AffordancesPanel from './components/panels/AffordancesPanel'
 import AttributesPanel from './components/panels/AttributesPanel'
+import Modal from './components/utils/Modal'
 
 function App() {
 	const [thingDescriptions, setThingDescriptions] = useState([])
 
 	const [activeThingDescription, setActiveThingDescription] = useState()
 	const [activeAffordance, setActiveAffordance] = useState()
+	const [repoError, setRepoError] = useState()
+	const [showRepoError, setShowRepoError] = useState(false)
 
 	/**
 	 * Add the thing description passed in the current list of thing descriptions
@@ -47,6 +50,11 @@ function App() {
 		})
 	}
 
+	const handleRepoError = (error) => {
+		setRepoError(error)
+		setShowRepoError(true)
+	}
+
 	// on repo load
 	useEffect(() => {
 		const activeTd = thingDescriptions[0]
@@ -73,12 +81,25 @@ function App() {
 	}, [activeThingDescription])
 
 	return (
-		<div className='App'>
-			<Navbar onRepoLoad={handleRepoLoad} />
+		<main className='App'>
+			<Navbar
+				onRepoLoad={handleRepoLoad}
+				onError={handleRepoError}
+				onShowError={() => setShowRepoError(true)}
+			/>
 			<div className='container-fluid ps-0'>
 				<div className='row w-100 m-auto'>
+					{/* {displayRepositoryError()} */}
+					<Modal
+						type='danger'
+						show={showRepoError}
+						onClose={() => setShowRepoError(false)}
+					>
+						{new Error(repoError).message}
+					</Modal>
+
 					<div className='col-12 d-lg-none'>
-						<SearchBar onRepoLoad={handleRepoLoad} />
+						<SearchBar onRepoLoad={handleRepoLoad} onError={handleRepoError} />
 					</div>
 
 					{/* Side panel */}
@@ -105,7 +126,7 @@ function App() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }
 

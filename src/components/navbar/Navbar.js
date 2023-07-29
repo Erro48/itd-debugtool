@@ -1,7 +1,7 @@
 import SearchBar from './SearchBar'
 import './navbar.css'
 
-function Navbar({ onRepoLoad }) {
+function Navbar({ onRepoLoad, onError, onShowError }) {
 	return (
 		<nav className='navbar navbar-expand-lg'>
 			<div className='container'>
@@ -23,7 +23,11 @@ function Navbar({ onRepoLoad }) {
 					className='collapse navbar-collapse d-none'
 					id='navbarSupportedContent'
 				>
-					<SearchBar onRepoLoad={onRepoLoad} />
+					<SearchBar
+						onRepoLoad={onRepoLoad}
+						onError={onError}
+						onShowError={onShowError}
+					/>
 				</div>
 			</div>
 		</nav>

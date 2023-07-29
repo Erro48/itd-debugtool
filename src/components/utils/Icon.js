@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import './icon.css'
 
-const Icon = ({ src, alt, classname }) => {
+const Icon = ({ src, alt, onClick, classname }) => {
 	return (
 		<img
 			src={src}
@@ -13,6 +13,7 @@ const Icon = ({ src, alt, classname }) => {
 			data-bs-placement='bottom'
 			title={alt}
 			data-src={src}
+			onClick={onClick}
 		/>
 	)
 }

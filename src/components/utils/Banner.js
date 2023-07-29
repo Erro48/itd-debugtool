@@ -18,15 +18,40 @@ const getIconUrl = (type) => {
 	return `./icons/${iconName}.svg`
 }
 
-const Banner = ({ type = 'info', children }) => {
+const Banner = ({
+	type = 'info',
+	closable = false,
+	title,
+	onClose,
+	children,
+}) => {
 	return (
-		<section className={classNames('row banner', `${type}-banner`)}>
-			<div className='col-4 col-md-3 col-lg-2 col-xxl-1'>
-				<Icon src={getIconUrl(type)} alt={''} />
-			</div>
-			<div className='col my-auto'>
-				<p className='mb-0'>{children}</p>
-			</div>
+		<section className={classNames('banner', `${type}-banner`)}>
+			{(title || closable) && (
+				<header className='row w-100 mx-auto'>
+					<div className='col-11'>{title}</div>
+					<div className='col-1 d-flex justify-content-end'>
+						{closable && (
+							<button className='button transparent-btn p-0'>
+								<Icon
+									src='./icons/close.svg'
+									alt='Close'
+									classname='small-icon'
+									onClick={onClose}
+								/>
+							</button>
+						)}
+					</div>
+				</header>
+			)}
+			<section className='row w-100 mx-auto'>
+				<div className='col-4 col-md-3 col-lg-2 col-xxl-1'>
+					<Icon src={getIconUrl(type)} alt='' />
+				</div>
+				<div className='col my-auto'>
+					<p className='mb-0'>{children}</p>
+				</div>
+			</section>
 		</section>
 	)
 }

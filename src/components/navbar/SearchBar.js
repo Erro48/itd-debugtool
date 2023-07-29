@@ -3,7 +3,7 @@ import Icon from '../utils/Icon'
 import classnames from 'classnames'
 import './searchBar.css'
 
-function SearchBar({ onRepoLoad }) {
+function SearchBar({ onRepoLoad, onError, onShowError }) {
 	const [loadingError, setLoadingError] = useState(false)
 	const [repoLoaded, setRepoLoaded] = useState(false)
 
@@ -23,6 +23,8 @@ function SearchBar({ onRepoLoad }) {
 		setRepoLoaded(false)
 
 		const affordanceUpdater = (input, output) => {
+			if (input === undefined) return
+
 			Object.entries(input).forEach((entry) => {
 				output.push({
 					title: entry[0],
@@ -49,6 +51,7 @@ function SearchBar({ onRepoLoad }) {
 					onRepoLoad(thingDescription)
 				} catch (err) {
 					setLoadingError(true)
+					onError(err)
 				}
 			}
 
@@ -62,7 +65,10 @@ function SearchBar({ onRepoLoad }) {
 
 	const getLoadingIcon = () => {
 		const iconName = loadingError ? 'close' : 'tick-outline'
-		const iconAlt = loadingError ? 'Repository not loaded' : 'Repository loaded'
+		const iconAlt = loadingError
+			? 'Repository not loaded correctly'
+			: 'Repository loaded'
+
 		return (
 			<Icon
 				src={'../icons/' + iconName + '.svg'}
@@ -98,7 +104,9 @@ function SearchBar({ onRepoLoad }) {
 			<div className='col-2 p-0'>
 				<ul className='row m-0 w-100 h-100 p-0'>
 					<li className='col-6 d-flex align-items-center justify-content-center'>
-						{getLoadingIcon()}
+						<button class='button transparent-btn' onClick={onShowError}>
+							{getLoadingIcon()}
+						</button>
 					</li>
 					<li className='col-6 d-flex align-items-center justify-content-center'>
 						<button className='button transparent-btn'>

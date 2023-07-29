@@ -1,0 +1,7 @@
+dialog[data-modal='true'] {
+	z-index: 1000;
+	padding: 0;
+	border: none;
+	background-color: transparent;
+	top: 10%;
+}
