@@ -89,7 +89,6 @@ function App() {
 			/>
 			<div className='container-fluid ps-0'>
 				<div className='row w-100 m-auto'>
-					{/* {displayRepositoryError()} */}
 					<Modal
 						type='danger'
 						show={showRepoError}
@@ -99,7 +98,11 @@ function App() {
 					</Modal>
 
 					<div className='col-12 d-lg-none'>
-						<SearchBar onRepoLoad={handleRepoLoad} onError={handleRepoError} />
+						<SearchBar
+							onRepoLoad={handleRepoLoad}
+							onError={handleRepoError}
+							onShowError={() => setShowRepoError(true)}
+						/>
 					</div>
 
 					{/* Side panel */}
