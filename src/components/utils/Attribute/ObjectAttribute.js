@@ -1,7 +1,16 @@
 import React, { useState } from 'react'
 
 const ObjectAttribute = ({ attribute, onExpand }) => {
-	const [objectAttributes, setObjectAttributes] = useState(attribute.summary)
+	const summary =
+		attribute.attributes !== undefined
+			? attribute.attributes.map((attr) => {
+					return {
+						title: attr.title,
+						value: attr.value,
+					}
+			  })
+			: []
+	const [objectAttributes, setObjectAttributes] = useState(summary)
 
 	const formatValue = (value) => {
 		if (Array.isArray(value)) {

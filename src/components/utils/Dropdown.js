@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import './dropdown.css'
 
-const Dropdown = ({ name, elements, onChange }) => {
-	// On first load, calls onChange with first element
+const Dropdown = ({ name, elements, defaultValue, onChange }) => {
+	// On first load, calls onChange with first element if defaultValue is undefined
 	useEffect(() => {
-		onChange(name, elements[0].toString())
+		if (defaultValue === undefined) {
+			onChange(name, elements[0].toString())
+		}
 	}, [])
 
 	return (
@@ -14,7 +16,9 @@ const Dropdown = ({ name, elements, onChange }) => {
 			onChange={(e) => onChange(name, e.target.value)}
 		>
 			{elements.map((element) => (
-				<option key={element}>{element}</option>
+				<option key={element} selected={element === defaultValue}>
+					{element}
+				</option>
 			))}
 		</select>
 	)

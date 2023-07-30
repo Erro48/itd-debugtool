@@ -10,6 +10,7 @@ const NumberAttribute = ({
 	exclusiveMaximum,
 	multipleOf,
 	list,
+	value,
 	required,
 	onChange,
 }) => {
@@ -21,14 +22,21 @@ const NumberAttribute = ({
 	properties.set('maximum', max)
 
 	if (list) {
-		return <Dropdown name={title} elements={list} onChange={onChange} />
+		return (
+			<Dropdown
+				name={title}
+				elements={list}
+				defaultValue={value}
+				onChange={onChange}
+			/>
+		)
 	}
 
 	return (
 		<InputField
 			type='number'
 			name={title}
-			// defaultValue={0}
+			defaultValue={value}
 			onChange={onChange}
 			properties={properties}
 		/>

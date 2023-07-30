@@ -3,15 +3,32 @@ import InputField from '../InputField'
 import Icon from '../Icon'
 import './arrayAttribute.css'
 
-const ArrayAttribute = ({ title, items, minItems = 1, maxItems, onChange }) => {
-	const [index, setIndex] = useState(minItems)
+const ArrayAttribute = ({
+	title,
+	items,
+	minItems = 1,
+	maxItems,
+	value,
+	onChange,
+}) => {
+	const [index, setIndex] = useState(
+		value !== undefined ? value.length : minItems
+	)
 	const [arrayItems, setArrayItems] = useState(
-		Array.from({ length: minItems }, (_, i) => {
-			return {
-				name: `${title}-${i}`,
-				value: i,
-			}
-		})
+		value !== undefined
+			? value.map((element) => {
+					const i = value.indexOf(element)
+					return {
+						name: `${title}-${i}`,
+						value: element,
+					}
+			  })
+			: Array.from({ length: minItems }, (_, i) => {
+					return {
+						name: `${title}-${i}`,
+						value: i,
+					}
+			  })
 	)
 
 	useEffect(() => {
@@ -66,7 +83,7 @@ const ArrayAttribute = ({ title, items, minItems = 1, maxItems, onChange }) => {
 							type={items.type}
 							name={item.name}
 							properties={new Map(Object.entries(items))}
-							defaultValue={items.type === 'string' ? '' : 0}
+							defaultValue={item.value}
 							onChange={updateItem}
 							className={'col-10'}
 						/>

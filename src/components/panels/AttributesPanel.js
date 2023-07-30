@@ -4,9 +4,13 @@ import Attribute from '../utils/Attribute/Attribute'
 import Banner from '../utils/Banner'
 import './attributesPanel.css'
 import CodePanel from './CodePanel'
-import { act } from 'react-dom/test-utils'
+import Icon from '../utils/Icon'
 
 const getInitialValue = (attribute) => {
+	if (attribute.value !== undefined) {
+		return attribute.value
+	}
+
 	if (attribute.enum !== undefined) {
 		return attribute.enum[0]
 	}
@@ -20,7 +24,7 @@ const getInitialValue = (attribute) => {
 	}
 
 	if (attribute.type === 'array') {
-		return getInitialValue(attribute.items)
+		return [getInitialValue(attribute.items)]
 	}
 
 	if (attribute.minimum !== undefined) {
@@ -72,7 +76,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 			// Remove input from activeAffordance fields
 			const { input, ...affordanceFields } = activeAffordance
 			const attributes =
-				activeAffordance.input !== undefined
+				activeAffordance.attributes === undefined
 					? [{ ...activeAffordance.input }]
 					: [...activeAffordance.attributes]
 
@@ -148,6 +152,10 @@ const AttributesPanel = ({ activeAffordance }) => {
 	const getAttributeValue = (summary, title, property) => {
 		const filteredValues = summary.filter((prop) => prop.title === title)
 
+		if (property.value !== undefined) {
+			return property.value
+		}
+
 		if (filteredValues.length === 0) {
 			return getInitialValue(property)
 		}
@@ -189,23 +197,38 @@ const AttributesPanel = ({ activeAffordance }) => {
 	}
 
 	const handleExpand = (newAffordance) => {
-		const newProperties = Object.entries(newAffordance.properties).map(
-			(property) => {
-				const [propTitle, propValue] = property
-				return {
-					...propValue,
-					value: getAttributeValue(newAffordance.summary, propTitle, propValue),
-				}
+		const newProperties = (
+			newAffordance.attributes === undefined
+				? Object.entries(newAffordance.properties)
+				: newAffordance.attributes.map((attribute) => [
+						attribute.title,
+						attribute,
+				  ])
+		).map((property) => {
+			const [title, value] = property
+			return {
+				...value,
+				value: getAttributeValue(newAffordance.summary, title, value),
 			}
-		)
+		})
 
-		// console.log(newAffordance)
+		// const newProperties = Object.entries(newAffordance.properties).map(
+		// 	(property) => {
+		// 		const [title, value] = property
+		// 		console.log({ property, title, value })
+		// 		return {
+		// 			...value,
+		// 			value: getAttributeValue(newAffordance.summary, title, value),
+		// 		}
+		// 	}
+		// )
 
 		refreshPage({
 			...newAffordance,
 			address: affordance.address,
 			affordanceType: affordance.affordanceType,
 			attributes: newProperties,
+			parent: affordance,
 		})
 
 		// activeAffordance = {
@@ -244,19 +267,24 @@ const AttributesPanel = ({ activeAffordance }) => {
 				</div>
 			</section>
 			<footer className='row w-100 m-auto'>
-				{/* {currentAffordance.parents.length > 0 ? (
+				{affordance.parent !== undefined ? (
 					<button
-						className='col-1 btn light-btn'
-						onClick={() => console.log('expand')}
+						className='col-1 button light-btn'
+						onClick={() =>
+							refreshPage({
+								...affordance.parent,
+								attributes: [affordance],
+							})
+						}
 					>
 						<Icon
 							src={'./icons/left-arrow-dark.svg'}
-							alt={'Go to previous attribute'}
+							alt={`Go to ${affordance.parent.title} attribute`}
 						/>
 					</button>
 				) : (
 					<div className='col-1'></div>
-				)} */}
+				)}
 
 				<div className='col-9'></div>
 
