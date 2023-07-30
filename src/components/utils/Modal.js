@@ -17,8 +17,6 @@ const Modal = ({ type, show, onClose, children }) => {
 		}
 	}, [open])
 
-	console.log(children.name)
-
 	return (
 		<dialog data-modal>
 			<section className='row w-100 mx-auto'>

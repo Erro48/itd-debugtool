@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-const ObjectAttribute = ({ attribute, summary = [], onExpand }) => {
-	const [objectAttributes, setObjectAttributes] = useState(summary)
+const ObjectAttribute = ({ attribute, onExpand }) => {
+	const [objectAttributes, setObjectAttributes] = useState(attribute.summary)
 
 	const formatValue = (value) => {
 		if (Array.isArray(value)) {
@@ -13,6 +13,7 @@ const ObjectAttribute = ({ attribute, summary = [], onExpand }) => {
 
 	return (
 		<>
+			<p>Summary</p>
 			<ul className='object-recap'>
 				{objectAttributes.map((attr) => (
 					<li key={attr.title}>

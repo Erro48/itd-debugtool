@@ -3,8 +3,8 @@ import Breadcrumbs from '../utils/Breadcrumbs'
 import Attribute from '../utils/Attribute/Attribute'
 import Banner from '../utils/Banner'
 import './attributesPanel.css'
-import Icon from '../utils/Icon'
 import CodePanel from './CodePanel'
+import { act } from 'react-dom/test-utils'
 
 const getInitialValue = (attribute) => {
 	if (attribute.enum !== undefined) {
@@ -50,16 +50,17 @@ const getInitialValue = (attribute) => {
  */
 
 const AttributesPanel = ({ activeAffordance }) => {
-	console.log(activeAffordance)
 	const [affordance, setAffordance] = useState(activeAffordance)
 
-	// Update affordance on attribute change
-	useEffect(() => {
+	const refreshPage = (activeAffordance) => {
 		if (activeAffordance === undefined) return
 
 		if (activeAffordance.affordanceType === 'actions') {
-			// If not has input
-			if (activeAffordance.input === undefined) {
+			// If not has input and properties
+			if (
+				activeAffordance.input === undefined &&
+				activeAffordance.attributes === undefined
+			) {
 				setAffordance({
 					...activeAffordance,
 					address: `address/${activeAffordance.title}`,
@@ -70,10 +71,14 @@ const AttributesPanel = ({ activeAffordance }) => {
 
 			// Remove input from activeAffordance fields
 			const { input, ...affordanceFields } = activeAffordance
-			const attributes = [{ ...input }]
+			const attributes =
+				activeAffordance.input !== undefined
+					? [{ ...activeAffordance.input }]
+					: [...activeAffordance.attributes]
 
 			// If input is an object
 			if (
+				activeAffordance.attributes !== undefined ||
 				activeAffordance.input.type === 'object' ||
 				activeAffordance.input.properties !== undefined
 			) {
@@ -81,8 +86,13 @@ const AttributesPanel = ({ activeAffordance }) => {
 				setAffordance({
 					...activeAffordance,
 					address: `address/${activeAffordance.title}`,
-					warning: 'CAMPO TEMPORANEO',
-					attributes: attributes,
+					// summary: ['init'],
+					attributes: attributes.map((attribute) => {
+						return {
+							...attribute,
+							summary: [],
+						}
+					}),
 				})
 				return
 			}
@@ -103,7 +113,10 @@ const AttributesPanel = ({ activeAffordance }) => {
 			address: `address/${activeAffordance.title}`,
 			attributes: [],
 		})
-	}, [activeAffordance])
+	}
+
+	// Update affordance on attribute change
+	useEffect(() => refreshPage(activeAffordance), [activeAffordance])
 
 	if (affordance === undefined)
 		return (
@@ -121,11 +134,25 @@ const AttributesPanel = ({ activeAffordance }) => {
 			<ul className='m-0 attributes-list overflow-auto'>
 				{attributes.map((attribute) => (
 					<li>
-						<Attribute attribute={attribute} onChange={handleChange} />
+						<Attribute
+							attribute={attribute}
+							onChange={handleChange}
+							onExpand={handleExpand}
+						/>
 					</li>
 				))}
 			</ul>
 		)
+	}
+
+	const getAttributeValue = (summary, title, property) => {
+		const filteredValues = summary.filter((prop) => prop.title === title)
+
+		if (filteredValues.length === 0) {
+			return getInitialValue(property)
+		}
+
+		return filteredValues[0]
 	}
 
 	/*********************
@@ -136,12 +163,62 @@ const AttributesPanel = ({ activeAffordance }) => {
 	}
 
 	const handleChange = (title, value) => {
+		/*
+		Devo aggiornare i value dentro ad attributes
+		affordance.attributes.map(element => {...element, value: value})
+		*/
 		setAffordance((currentState) => {
-			return {
-				...currentState,
-				value: value,
-			}
+			const updatedAttribute = currentState.attributes
+				.filter((attribute) => attribute.title === title)
+				.map((attribute) => {
+					return {
+						...attribute,
+						value: value,
+					}
+				})[0]
+
+			const newAttributes = currentState.attributes.map((attribute) => {
+				if (attribute.title === updatedAttribute.title) {
+					return updatedAttribute
+				}
+
+				return attribute
+			})
+			return { ...currentState, attributes: newAttributes }
 		})
+	}
+
+	const handleExpand = (newAffordance) => {
+		const newProperties = Object.entries(newAffordance.properties).map(
+			(property) => {
+				const [propTitle, propValue] = property
+				return {
+					...propValue,
+					value: getAttributeValue(newAffordance.summary, propTitle, propValue),
+				}
+			}
+		)
+
+		// console.log(newAffordance)
+
+		refreshPage({
+			...newAffordance,
+			address: affordance.address,
+			affordanceType: affordance.affordanceType,
+			attributes: newProperties,
+		})
+
+		// activeAffordance = {
+		// 	...newAffordance,
+		// 	properties: newProperties,
+		// }
+		// setAffordance((currentState) => {
+		// 	return {
+		// 		...newAffordance,
+		// 		address: affordance.address,
+		// 		input: newProperties,
+		// 	}
+		// })
 	}
 
 	return (

@@ -71,7 +71,7 @@ const ArrayAttribute = ({ title, items, minItems = 1, maxItems, onChange }) => {
 							className={'col-10'}
 						/>
 						<button
-							className='button col-2'
+							className='button transparent-btn col-2'
 							onClick={() => deleteItem(item.name)}
 						>
 							<Icon

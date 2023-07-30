@@ -45,13 +45,7 @@ const Attribute = ({ attribute, summary, onChange, onExpand }) => {
 			}
 
 			case 'object': {
-				return (
-					<ObjectAttribute
-						attribute={attribute}
-						summary={summary}
-						onExpand={onExpand}
-					/>
-				)
+				return <ObjectAttribute attribute={attribute} onExpand={onExpand} />
 			}
 
 			default:
