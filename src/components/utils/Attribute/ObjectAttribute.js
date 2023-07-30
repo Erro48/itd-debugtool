@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './objectAttribute.css'
 
 const ObjectAttribute = ({ attribute, onExpand }) => {
 	const summary =
@@ -22,16 +23,16 @@ const ObjectAttribute = ({ attribute, onExpand }) => {
 
 	return (
 		<>
-			<p>Summary</p>
 			<ul className='object-recap'>
 				{objectAttributes.map((attr) => (
-					<li key={attr.title}>
-						{attr.title}: {formatValue(attr.value)}
+					<li key={attr.title} className='row'>
+						<div class='col'>{attr.title}</div>
+						<strong class='col text-end'>{formatValue(attr.value)}</strong>
 					</li>
 				))}
 			</ul>
 			<button
-				className='button primary-btn w-100'
+				className='button primary-btn w-100 mx-auto my-2'
 				onClick={() => onExpand({ ...attribute })}
 			>
 				Expand
