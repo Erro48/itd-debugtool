@@ -63,14 +63,21 @@ function App() {
 	// on repo load
 	useEffect(() => {
 		const activeTd = thingDescriptions[0]
-		setActiveThingDescription(activeTd)
 
 		if (activeTd === undefined) return
 
-		const activeAff = [...activeTd.properties, ...activeTd.actions].filter(
+		activeTd.active = true
+		setActiveThingDescription(activeTd)
+
+		let activeAff = [...activeTd.properties, ...activeTd.actions].filter(
 			(affordance) => affordance.active
 		)[0]
 
+		if (activeAff === undefined) {
+			activeAff = [...activeTd.properties, ...activeTd.actions][0]
+		}
+
+		activeAff.active = true
 		setActiveAffordance(activeAff)
 	}, [thingDescriptions])
 
