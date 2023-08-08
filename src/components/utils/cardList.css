@@ -20,3 +20,11 @@
 .prop-card-list::-webkit-scrollbar {
 	width: 5px;
 }
+
+.card-list li:not(:last-child)::after {
+	content: '';
+	width: 90%;
+	border-bottom: 1px solid var(--tertiary);
+	margin-left: 5%;
+	display: block;
+}

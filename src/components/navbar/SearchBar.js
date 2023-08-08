@@ -93,7 +93,7 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 			id='search-bar'
 			className='row pt-lg-0 mt-3 mt-lg-0 mx-auto rounded-pill overflow-hidden'
 		>
-			<form className='col-10'>
+			<form className='col-9 col-md-10'>
 				<div className='row'>
 					<input
 						className='px-3 py-2 border-0 col-10'
@@ -111,7 +111,7 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 					</button>
 				</div>
 			</form>
-			<div className='col-2 p-0'>
+			<div className='col-3 col-md-2 p-0'>
 				<ul className='row m-0 w-100 h-100 p-0'>
 					<li className='col-6 d-flex align-items-center justify-content-center'>
 						{getLoadingIcon()}

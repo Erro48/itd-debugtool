@@ -92,6 +92,20 @@ function App() {
 		setActiveAffordance(activeAff)
 	}, [activeThingDescription])
 
+	const handleThingDescriptionChange = (newThingDescription) => {
+		setActiveThingDescription(newThingDescription)
+		document
+			.querySelector('[data-panel="affordances-panel"]')
+			.scrollIntoView({ behavior: 'smooth' })
+	}
+
+	const handleAffordanceChange = (newAffordance) => {
+		setActiveAffordance(newAffordance)
+		document
+			.querySelector('[data-panel="attributes-panel"]')
+			.scrollIntoView({ behavior: 'smooth' })
+	}
+
 	return (
 		<main className='App'>
 			<Navbar
@@ -99,7 +113,7 @@ function App() {
 				onError={handleRepoError}
 				onShowError={() => setShowRepoError(true)}
 			/>
-			<div className='container-fluid ps-0'>
+			<div className='container-fluid p-0'>
 				<div className='row w-100 m-auto'>
 					<Modal
 						type='danger'
@@ -118,18 +132,16 @@ function App() {
 					</div>
 
 					{/* Side panel */}
-					<aside class='col-12 col-lg-3 px-0 aside-panel'>
+					<aside class='col-12 col-lg-3 px-0 aside-panel pt-2 pt-md-0 mt-4 mt-md-0'>
 						<div class='row w-100 m-auto'>
 							<TdPanel
 								thingDescriptions={thingDescriptions}
-								onChange={(newThingDescription) =>
-									setActiveThingDescription(newThingDescription)
-								}
+								onChange={handleThingDescriptionChange}
 							/>
 
 							<AffordancesPanel
 								activeThingDescription={activeThingDescription}
-								onChange={(newAffordance) => setActiveAffordance(newAffordance)}
+								onChange={handleAffordanceChange}
 							/>
 						</div>
 					</aside>

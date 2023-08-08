@@ -5,12 +5,10 @@
 	text-align: left;
 	border: none;
 }
-
 .card header h3 {
 	font-size: 16px;
 	margin: 0;
 }
-
 :is(.card p, .card .version) {
 	font-size: 12px;
 	opacity: 0.7;
@@ -24,69 +22,33 @@
 	margin-bottom: 0;
 }
 
-.card[data-active='true'] {
-	border-radius: var(--small-border-radius) 0 0 var(--small-border-radius);
-	box-shadow: 0 -2px 10px -4px var(--neutral-shadow),
-		0 2px 10px -4px var(--neutral-shadow);
-	z-index: 1;
-}
-
-section[data-panel='thing-descriptions-panel'] .card[data-active='true'] {
-	background-color: var(--tertiary);
-}
-
-section[data-panel='affordance-panel'] .card[data-active='true'] {
-	background-color: var(--primary);
-}
-
-/* .card:is(:active) {
-	outline: 1px solid var(--brand-color-shadow) !important;
-	box-shadow: 0 0 6px var(--brand-color-shadow);
-}
-
-.card[data-active='true'] {
-	outline: 1px solid var(--brand-color) !important;
-	box-shadow: 0 0 6px var(--brand-color);
-}
-
-.card h3.title {
-	font-weight: 500;
-	font-size: 22px;
-	line-height: 22px;
-	text-transform: capitalize;
-}
-
-.card:is(:focus, :hover) h3 {
-	text-decoration: underline;
-	color: var(--brand-color);
-}
-
-.card span.version {
-	text-align: right;
-	color: var(--secondary-text-color);
-}
-
-.card p.subtitle {
-	color: var(--secondary-text-color);
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 12px;
-}
-
-.card .description {
-	color: var(--secondary-text-color);
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 20px;
-}
-
 .card img.right-arrow {
-	rotate: 180deg;
+	transform: rotate(180deg);
 }
 
-@media screen and (min-width: 768px) {
-	.card {
-		filter: none;
-		border: none;
+.card[data-active='true'] header * {
+	font-weight: bold;
+	letter-spacing: 0.05rem;
+}
+
+@media (width > 992px) {
+	.card[data-active='true'] {
+		border-radius: var(--small-border-radius) 0 0 var(--small-border-radius);
+		box-shadow: 0 -2px 10px -4px var(--neutral-shadow),
+			0 2px 10px -4px var(--neutral-shadow);
+		z-index: 1;
 	}
-} */
+
+	.card[data-active='true'] header * {
+		font-weight: normal;
+		letter-spacing: 0;
+	}
+
+	section[data-panel='thing-descriptions-panel'] .card[data-active='true'] {
+		background-color: var(--tertiary);
+	}
+
+	section[data-panel='affordance-panel'] .card[data-active='true'] {
+		background-color: var(--primary);
+	}
+}

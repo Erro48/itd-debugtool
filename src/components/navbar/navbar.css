@@ -1,12 +1,19 @@
 .navbar {
-	background-color: var(--brand-color);
+	background-color: var(--primary);
 	height: var(--navbar-height);
+	border-bottom: 2px solid var(--secondary);
+	box-sizing: border-box;
 }
 
 .navbar h1 {
 	margin: 0;
 	font-size: 30px;
-	font-weight: var(--bold-font-weight);
+	/* font-weight: var(--bold-font-weight); */
 	letter-spacing: -1px;
 	font-family: var(--title-font);
+}
+
+.navbar span {
+	color: var(--brand-color);
+	font-weight: var(--bold-font-weight);
 }

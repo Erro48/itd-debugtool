@@ -5,34 +5,24 @@ Table of Contets
 */
 
 aside section {
-	background-color: var(--tertiary);
+	background-color: var(--primary);
 }
 
-aside section[data-panel='thing-descriptions-panel'] {
-	position: relative;
-	height: calc(100vh - var(--navbar-height));
-}
+@media (width > 992px) {
+	aside section {
+		background-color: var(--tertiary);
+	}
 
-aside section[data-panel='affordances-panel'] {
-	position: relative;
-}
-aside section[data-panel='affordance-panel'] {
-	height: calc((100vh - var(--navbar-height)) / 2);
-}
-
-aside > div > section::after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	pointer-events: none;
-	box-shadow: inset -6px 0px 10px -6px var(--neutral-shadow);
-}
-
-aside section[data-panel='thing-descriptions-panel']::after {
-	background-color: var(--primary-800-25);
+	aside > div > section::after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		pointer-events: none;
+		box-shadow: inset -6px 0px 10px -6px var(--neutral-shadow);
+	}
 }
 
 /* aside section[data-panel='affordance-panel']::after {
@@ -41,14 +31,14 @@ aside section[data-panel='thing-descriptions-panel']::after {
 
 /* #region Header */
 aside section > header {
-	padding: 0.25rem 5% 0;
+	padding: 0 0.75rem;
 	position: relative;
 }
 
 aside section > header:after {
 	content: '';
 	display: inline-block;
-	width: 90%;
+	width: 95%;
 	border-bottom: 1px solid var(--secondary);
 	background-color: var(--secondary);
 	position: absolute;
@@ -61,6 +51,33 @@ aside section > header h2 {
 	font-size: 18px;
 	color: var(--title-text-color);
 	font-family: var(--title-font);
+	font-weight: bold;
 }
 
 /* #endregion Header */
+
+/* #region Thing Description Panel */
+aside section[data-panel='thing-descriptions-panel']::after {
+	background-color: var(--primary-800-25);
+	/* height: 100vh; */
+}
+
+@media (width > 992px) {
+	aside section[data-panel='thing-descriptions-panel'] {
+		position: relative;
+		height: calc(100vh - var(--navbar-height));
+	}
+}
+
+/* #endregion Thing Description Panel */
+
+/* #region Affordance Panel */
+aside section[data-panel='affordances-panel'] {
+	position: relative;
+}
+@media (width > 992px) {
+	aside section[data-panel='affordance-panel'] {
+		height: calc((100vh - var(--navbar-height)) / 2);
+	}
+}
+/* #region Affordance Panel */

@@ -125,7 +125,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 	if (affordance === undefined)
 		return (
 			<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
-				<Banner classname='my-5 w-50'>No Thing Descriptions loaded...</Banner>
+				<Banner classname='my-5 w-75'>No Thing Descriptions loaded...</Banner>
 			</section>
 		)
 
@@ -251,8 +251,8 @@ const AttributesPanel = ({ activeAffordance }) => {
 				<p className='subtitle mb-0'>{affordance.address}</p>
 			</header>
 			<Breadcrumbs path={[]} />
-			<section className='row mb-1 w-100 m-auto ps-2'>
-				<div className='col-12 col-sm-7 mb-3 mb-sm-0 ps-0'>
+			<section className='row mb-1 w-100 my-2 mx-auto p-0 ps-md-2'>
+				<div className='col-12 col-sm-7 mb-3 mb-sm-0 ps-md-0'>
 					{displayAttributesList(affordance.attributes)}
 				</div>
 				<div className='col-12 col-sm-5 p-0'>
