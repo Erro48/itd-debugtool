@@ -132,8 +132,8 @@ function App() {
 					</div>
 
 					{/* Side panel */}
-					<aside class='col-12 col-lg-3 px-0 aside-panel pt-2 pt-md-0 mt-4 mt-md-0'>
-						<div class='row w-100 m-auto'>
+					<aside className='col-12 col-lg-3 px-0 aside-panel pt-2 pt-md-0 mt-4 mt-md-0'>
+						<div className='row w-100 m-auto'>
 							<TdPanel
 								thingDescriptions={thingDescriptions}
 								onChange={handleThingDescriptionChange}
