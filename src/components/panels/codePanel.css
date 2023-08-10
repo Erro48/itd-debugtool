@@ -39,6 +39,12 @@
 	text-transform: capitalize;
 	font-size: 20px;
 }
+
+.code-section header img {
+	width: 1.75rem;
+	aspect-ratio: 1;
+}
+
 /* #endregion Header*/
 
 /* #region Body */

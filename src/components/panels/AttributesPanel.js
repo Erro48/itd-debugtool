@@ -258,7 +258,15 @@ const AttributesPanel = ({ activeAffordance }) => {
 				<div className='col-12 col-sm-5 p-0'>
 					<div class='row gap-1'>
 						<div class='col-12'>
-							<CodePanel type='input' />
+							<CodePanel
+								type='input'
+								attributes={affordance.attributes.map((attribute) => {
+									return {
+										...attribute,
+										parent: affordance,
+									}
+								})}
+							/>
 						</div>
 						<div class='col-12'>
 							<CodePanel type='output' />

@@ -3,10 +3,6 @@ import './codePanel.css'
 import classNames from 'classnames'
 import Icon from '../utils/Icon'
 
-const tabulation = (repeat = 1) => {
-	return '  '.repeat(repeat)
-}
-
 const tmp = {
 	id: 3,
 	colors: ['red', '#c2c2c2'],
@@ -20,42 +16,41 @@ const tmp = {
 	},
 }
 
-const formatKey = (key) => {
-	return `<span className="code-key">${key}</span>`
-}
+const formatCode = (attributes) => {
+	if (attributes === undefined || attributes.length === 0) return {}
 
-const formatCode = (code, iterationCounter = 1) => {
-	let formattedCode = '{\n'
+	const code = {}
 
-	Object.entries(code).forEach((entry) => {
-		const [entryKey, entryValue] = entry
-		let value = ''
-
-		// If value is an object
-		if (
-			typeof entryValue === 'object' &&
-			entryValue !== null &&
-			!Array.isArray(entryValue)
-		) {
-			value = formatCode(entryValue, iterationCounter + 1)
-		} else if (Array.isArray(entryValue)) {
-			const joinSeparator = ',\n' + tabulation(iterationCounter + 1)
-			const array = entryValue.join(joinSeparator)
-			value = `[\n${tabulation(iterationCounter + 1)}${array}\n${tabulation(
-				iterationCounter
-			)}]`
-		} else {
-			value = `"${entryValue}"`
+	attributes.forEach((attribute) => {
+		let value = attribute.value
+		if (attribute.type !== undefined && attribute.type === 'object') {
+			value = formatCode(attribute.attributes)
 		}
 
-		formattedCode += tabulation(iterationCounter) + `${entryKey}: ${value},\n`
+		code[attribute.title] = value
 	})
 
-	formattedCode += tabulation(iterationCounter - 1) + '}'
-	return formattedCode
+	return code
 }
 
-const CodePanel = ({ type, attribute }) => {
+const CodePanel = ({ type, attributes }) => {
+	const COPY_ANIMATION_DELAY = 2000
+
+	const copyCode = () => {
+		const code = document.querySelector(
+			`[data-section-type=${type}] code`
+		).innerHTML
+		navigator.clipboard.writeText(code)
+
+		document.querySelector(`[data-section-type=${type}] img`).src =
+			'./icons/tick-outline.svg'
+
+		setTimeout(() => {
+			document.querySelector(`[data-section-type=${type}] img`).src =
+				'./icons/copy.svg'
+		}, COPY_ANIMATION_DELAY)
+	}
+
 	return (
 		<section className='code-section' data-section-type={type}>
 			<header className='row w-100 m-auto p-0'>
@@ -65,12 +60,13 @@ const CodePanel = ({ type, attribute }) => {
 						src='./icons/copy.svg'
 						alt='Copy'
 						classname={'button light-btn'}
+						onClick={copyCode}
 					/>
 				</div>
 			</header>
 			<section>
 				<pre>
-					<code>{formatCode(tmp)}</code>
+					<code>{JSON.stringify(formatCode(attributes), null, 2)}</code>
 				</pre>
 			</section>
 		</section>
