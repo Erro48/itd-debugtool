@@ -212,17 +212,6 @@ const AttributesPanel = ({ activeAffordance }) => {
 			}
 		})
 
-		// const newProperties = Object.entries(newAffordance.properties).map(
-		// 	(property) => {
-		// 		const [title, value] = property
-		// 		console.log({ property, title, value })
-		// 		return {
-		// 			...value,
-		// 			value: getAttributeValue(newAffordance.summary, title, value),
-		// 		}
-		// 	}
-		// )
-
 		refreshPage({
 			...newAffordance,
 			address: affordance.address,
@@ -230,28 +219,22 @@ const AttributesPanel = ({ activeAffordance }) => {
 			attributes: newProperties,
 			parent: affordance,
 		})
+	}
 
-		// activeAffordance = {
-		// 	...newAffordance,
-		// 	properties: newProperties,
-		// }
-		// setAffordance((currentState) => {
-		// 	return {
-		// 		...newAffordance,
-		// 		address: affordance.address,
-		// 		input: newProperties,
-		// 	}
-		// })
+	const getBreadcrumb = (currentAffordance) => {
+		if (currentAffordance.parent === undefined) return [currentAffordance.title]
+
+		return [...getBreadcrumb(currentAffordance.parent), currentAffordance.title]
 	}
 
 	return (
 		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
-			<header className='px-2'>
+			<header className='px-2 py-1'>
 				<h2>{affordance.title}</h2>
 				<p className='subtitle mb-0'>{affordance.address}</p>
 			</header>
-			<Breadcrumbs path={[]} />
-			<section className='row mb-1 w-100 my-2 mx-auto p-0 ps-md-2'>
+			<Breadcrumbs path={getBreadcrumb(affordance)} />
+			<section className='row mb-1 w-100 my-1 mx-auto p-0 ps-md-2'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0 ps-md-0'>
 					{displayAttributesList(affordance.attributes)}
 				</div>

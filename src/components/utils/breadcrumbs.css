@@ -1,8 +1,8 @@
 nav[aria-label='breadcrumb'] {
 	width: 100%;
-	overflow-x: auto;
+	/* overflow-x: auto; */
 	white-space: nowrap;
-	margin-bottom: 0.6rem;
+	/* margin-bottom: 0.6rem; */
 }
 
 ol.breadcrumb {
@@ -15,7 +15,7 @@ ol.breadcrumb {
 	display: inline-block;
 	color: var(--secondary-text-color);
 	white-space: nowrap;
-	font-size: 15px;
+	font-size: 13px;
 }
 
 .breadcrumb-item[aria-current='page'] {
