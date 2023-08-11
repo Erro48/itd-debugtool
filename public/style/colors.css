@@ -21,9 +21,9 @@
 	--error-text-color: var(--danger-800);
 
 	/* ----- Code section ----- */
-	--input-code-section__primary: var(--success-200);
-	--input-code-section__secondary: var(--success-800);
+	--input-code-section__primary: var(--neutral-200);
+	--input-code-section__secondary: var(--neutral-800);
 
-	--output-code-section__primary: var(--info-200);
-	--output-code-section__secondary: var(--info-900);
+	--output-code-section__primary: var(--primary-200);
+	--output-code-section__secondary: var(--primary-900);
 }

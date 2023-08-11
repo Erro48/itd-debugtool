@@ -11,7 +11,7 @@ const Breadcrumbs = ({ path }) => {
 	return (
 		<nav
 			aria-label='breadcrumb'
-			className={classNames(path.length === 0 ? 'd-none' : '')}
+			className={classNames(path.length === 0 ? 'd-none' : '', 'px-2')}
 		>
 			<ol className='breadcrumb m-0'>
 				{path.map((element) => (

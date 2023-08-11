@@ -20,8 +20,8 @@
 }
 
 .info-banner {
-	--banner__primary-color: var(--primary-100);
-	--banner__secondary-color: var(--neutral-700);
+	--banner__primary-color: var(--info-100);
+	--banner__secondary-color: var(--info-900);
 }
 
 .warning-banner {

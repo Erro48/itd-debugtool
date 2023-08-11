@@ -45,6 +45,10 @@
 	aspect-ratio: 1;
 }
 
+.copy-btn-animation {
+	background-color: var(--success-200);
+}
+
 /* #endregion Header*/
 
 /* #region Body */

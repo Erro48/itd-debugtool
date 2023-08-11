@@ -42,12 +42,14 @@ const CodePanel = ({ type, attributes }) => {
 		).innerHTML
 		navigator.clipboard.writeText(code)
 
-		document.querySelector(`[data-section-type=${type}] img`).src =
-			'./icons/tick-outline.svg'
+		const copyBtn = document.querySelector(`[data-section-type=${type}] img`)
+
+		copyBtn.src = './icons/tick-outline.svg'
+		copyBtn.classList.add('copy-btn-animation')
 
 		setTimeout(() => {
-			document.querySelector(`[data-section-type=${type}] img`).src =
-				'./icons/copy.svg'
+			copyBtn.src = './icons/copy.svg'
+			copyBtn.classList.remove('copy-btn-animation')
 		}, COPY_ANIMATION_DELAY)
 	}
 
