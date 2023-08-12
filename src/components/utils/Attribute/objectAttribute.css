@@ -6,9 +6,26 @@
 	color: var(--secondary-text-color);
 }
 
-.object-recap li:not(:last-child)::after {
+.object-recap ul {
+	padding-left: 0.75rem;
+}
+
+.object-recap div {
+	padding: 0;
+}
+
+ul.object-recap ul {
+	border-left: 2px solid var(--secondary);
+	/* padding-left: 1.5rem; */
+}
+
+.object-recap li:not(:has(li))::after {
 	content: '';
 	border-bottom: 1px solid var(--tertiary);
 	width: 100%;
-	margin: 0 0.5rem;
+	margin-right: 0.5rem;
+}
+
+.object-recap > li:last-child::after {
+	width: 0px;
 }
