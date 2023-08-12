@@ -135,9 +135,9 @@ const AttributesPanel = ({ activeAffordance }) => {
 		}
 
 		return (
-			<ul className='m-0 attributes-list overflow-auto'>
+			<ul className='m-0 attributes-list overflow-auto pe-md-1'>
 				{attributes.map((attribute) => (
-					<li>
+					<li key={attribute.title}>
 						<Attribute
 							attribute={attribute}
 							onChange={handleChange}
@@ -235,7 +235,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 			</header>
 			<Breadcrumbs path={getBreadcrumb(affordance)} />
 			<section className='row mb-1 w-100 my-1 mx-auto p-0 ps-md-2'>
-				<div className='col-12 col-sm-7 mb-3 mb-sm-0 ps-md-0'>
+				<div className='col-12 col-sm-7 mb-3 mb-sm-0 ps-md-0 pe-md-2'>
 					{displayAttributesList(affordance.attributes)}
 				</div>
 				<div className='col-12 col-sm-5 p-0'>
@@ -264,7 +264,9 @@ const AttributesPanel = ({ activeAffordance }) => {
 						onClick={() =>
 							refreshPage({
 								...affordance.parent,
-								attributes: [affordance],
+								attributes: affordance.parent.attributes.map((attribute) =>
+									attribute.title === affordance.title ? affordance : attribute
+								),
 							})
 						}
 					>
