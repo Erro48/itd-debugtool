@@ -86,7 +86,6 @@ const AttributesPanel = ({ activeAffordance }) => {
 				activeAffordance.input.type === 'object' ||
 				activeAffordance.input.properties !== undefined
 			) {
-				// Bisogna aggiungere il campo 'summary'
 				setAffordance({
 					...activeAffordance,
 					address: `address/${activeAffordance.title}`,
@@ -133,6 +132,8 @@ const AttributesPanel = ({ activeAffordance }) => {
 		if (attributes === undefined || attributes.length === 0) {
 			return <Banner type='info'>No attributes</Banner>
 		}
+
+		console.log(affordance)
 
 		return (
 			<ul className='m-0 attributes-list overflow-auto pe-md-1'>

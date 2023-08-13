@@ -5,15 +5,20 @@ import './objectAttribute.css'
 const getSummary = (attribute) => {
 	const getSummaryObject = (child) => {
 		if (child.type === 'object') {
+			const attributes =
+				child.attributes === undefined
+					? child.properties
+					: child.attributes.reduce(
+							(acc, attr) => ({
+								...acc,
+								[attr.title]: getSummaryObject(attr), // qui
+							}),
+							{}
+					  )
+
 			return {
 				title: child.title,
-				value: child.attributes.reduce(
-					(acc, attr) => ({
-						...acc,
-						[attr.title]: getSummaryObject(attr), // qui
-					}),
-					{}
-				),
+				value: attributes,
 			}
 		}
 
@@ -36,10 +41,6 @@ const ObjectAttribute = ({ attribute, onExpand }) => {
 	const formatValue = (value) => {
 		if (Array.isArray(value)) {
 			return `[ ${value.join(', ')} ]`
-		}
-
-		if (value !== null && typeof value === 'object') {
-			return 'Wow'
 		}
 
 		return value
