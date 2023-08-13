@@ -14,11 +14,10 @@ const Dropdown = ({ name, elements, defaultValue, onChange }) => {
 			name={name}
 			className='input-field'
 			onChange={(e) => onChange(name, e.target.value)}
+			defaultValue={defaultValue}
 		>
 			{elements.map((element) => (
-				<option key={element} selected={element === defaultValue}>
-					{element}
-				</option>
+				<option key={element}>{element}</option>
 			))}
 		</select>
 	)

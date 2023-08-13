@@ -27,8 +27,8 @@ const Card = ({
 			data-active={active ? active : false}
 			data-type={affordanceType}
 		>
-			<div className='row'>
-				<div className='col-11 col-sm-12'>
+			<div className='row w-100 mx-auto'>
+				<div className='col-10 col-sm-11 col-sm-12'>
 					<header>
 						<div className='row align-items-center'>
 							<h3
@@ -43,7 +43,7 @@ const Card = ({
 					</header>
 					<p className='description pt-2 pt-sm-1'>{description}</p>
 				</div>
-				<div className='col-1 d-flex d-sm-none'>
+				<div className='col-2 col-sm-1 d-flex d-sm-none'>
 					<Icon
 						src='../icons/left-arrow-dark.svg'
 						alt={'Select ' + title}

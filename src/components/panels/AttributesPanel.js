@@ -133,8 +133,6 @@ const AttributesPanel = ({ activeAffordance }) => {
 			return <Banner type='info'>No attributes</Banner>
 		}
 
-		console.log(affordance)
-
 		return (
 			<ul className='m-0 attributes-list overflow-auto pe-md-1'>
 				{attributes.map((attribute) => (
@@ -240,8 +238,8 @@ const AttributesPanel = ({ activeAffordance }) => {
 					{displayAttributesList(affordance.attributes)}
 				</div>
 				<div className='col-12 col-sm-5 p-0'>
-					<div class='row gap-1'>
-						<div class='col-12'>
+					<div className='row gap-1'>
+						<div className='col-12'>
 							<CodePanel
 								type='input'
 								attributes={affordance.attributes.map((attribute) => {
@@ -252,7 +250,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 								})}
 							/>
 						</div>
-						<div class='col-12'>
+						<div className='col-12'>
 							<CodePanel type='output' />
 						</div>
 					</div>

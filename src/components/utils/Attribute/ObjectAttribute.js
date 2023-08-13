@@ -68,7 +68,7 @@ const ObjectAttribute = ({ attribute, onExpand }) => {
 						)}
 					</ul>
 				) : (
-					<strong class='col text-end'>{formatValue(element.value)}</strong>
+					<strong className='col text-end'>{formatValue(element.value)}</strong>
 				)}
 			</li>
 		))

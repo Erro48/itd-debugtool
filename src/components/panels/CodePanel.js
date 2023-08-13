@@ -9,6 +9,11 @@ const formatCode = (attributes) => {
 
 	attributes.forEach((attribute) => {
 		let value = attribute.value
+
+		if (Array.isArray(value)) {
+			value = value.map((element) => element.toString())
+		}
+
 		if (attribute.type !== undefined && attribute.type === 'object') {
 			value = formatCode(attribute.attributes)
 		}
