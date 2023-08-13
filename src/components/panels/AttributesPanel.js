@@ -5,6 +5,7 @@ import Banner from '../utils/Banner'
 import './attributesPanel.css'
 import CodePanel from './CodePanel'
 import Icon from '../utils/Icon'
+import SubmitButton from '../utils/Buttons/SubmitButton'
 
 const getInitialValue = (attribute) => {
 	if (attribute.value !== undefined) {
@@ -165,10 +166,6 @@ const AttributesPanel = ({ activeAffordance }) => {
 	/*********************
 	 *     Handlers      *
 	 *********************/
-	const handleSubmit = () => {
-		console.log(affordance)
-	}
-
 	const handleChange = (title, value) => {
 		/*
 		Devo aggiornare i value dentro ad attributes
@@ -280,13 +277,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 
 				<div className='col-9'></div>
 
-				<button
-					type='button'
-					className='button primary-btn col'
-					onClick={handleSubmit}
-				>
-					Submit
-				</button>
+				<SubmitButton affordance={affordance} />
 			</footer>
 		</section>
 	)

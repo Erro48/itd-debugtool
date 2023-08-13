@@ -1,6 +1,6 @@
 import React from 'react'
 import './codePanel.css'
-import Icon from '../utils/Icon'
+import CopyButton from '../utils/Buttons/CopyButton'
 
 const formatCode = (attributes) => {
 	if (attributes === undefined || attributes.length === 0) return {}
@@ -25,36 +25,16 @@ const formatCode = (attributes) => {
 }
 
 const CodePanel = ({ type, attributes }) => {
-	const COPY_ANIMATION_DELAY = 2000
 	const CODE_INDENTETION = 3
-
-	const copyCode = () => {
-		const code = document.querySelector(
-			`[data-section-type=${type}] code`
-		).innerHTML
-		navigator.clipboard.writeText(code)
-
-		const copyBtn = document.querySelector(`[data-section-type=${type}] img`)
-
-		copyBtn.src = './icons/tick-outline.svg'
-		copyBtn.classList.add('copy-btn-animation')
-
-		setTimeout(() => {
-			copyBtn.src = './icons/copy.svg'
-			copyBtn.classList.remove('copy-btn-animation')
-		}, COPY_ANIMATION_DELAY)
-	}
 
 	return (
 		<section className='code-section' data-section-type={type}>
 			<header className='row w-100 m-auto p-0'>
 				<h3 className='col-9 p-0'>{type}</h3>
 				<div className='col-3 d-flex justify-content-end p-0'>
-					<Icon
-						src='./icons/copy.svg'
-						alt='Copy'
-						classname={'button light-btn'}
-						onClick={copyCode}
+					<CopyButton
+						textElement={'[data-section-type=' + type + '] code'}
+						copyBtnElement={'[data-section-type=' + type + '] img'}
 					/>
 				</div>
 			</header>
