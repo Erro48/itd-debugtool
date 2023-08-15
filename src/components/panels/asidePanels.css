@@ -4,6 +4,19 @@ Table of Contets
 
 */
 
+section ul {
+	list-style: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 15px;
+}
+
+section ul li {
+	width: 100%;
+}
+
 aside section {
 	background-color: var(--primary);
 }

@@ -1,5 +1,4 @@
 import CardList from '../utils/CardList'
-import './panel.css'
 import './asidePanels.css'
 
 function TdPanel({ thingDescriptions, onChange }) {
