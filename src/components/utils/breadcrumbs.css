@@ -1,8 +1,9 @@
-nav[aria-label='breadcrumb'] {
+nav[aria-label='breadcrumb'] > div {
 	width: 100%;
-	/* overflow-x: auto; */
 	white-space: nowrap;
-	/* margin-bottom: 0.6rem; */
+	overflow-x: auto;
+	overflow-y: hidden;
+	text-transform: lowercase;
 }
 
 ol.breadcrumb {

@@ -15,16 +15,29 @@
 	border-radius: var(--medium-border-radius);
 
 	padding: 0.25rem;
+	text-transform: lowercase;
 }
 
-.code-section[data-section-type='input'] {
+.code-section[data-section-type='input'],
+.code-btn[data-btn-type='input'] {
 	--code-section__primary-clr: var(--input-code-section__primary);
 	--code-section__secondary-clr: var(--input-code-section__secondary);
 }
 
-.code-section[data-section-type='output'] {
+.code-section[data-section-type='output'],
+.code-btn[data-btn-type='output'] {
 	--code-section__primary-clr: var(--output-code-section__primary);
 	--code-section__secondary-clr: var(--output-code-section__secondary);
+}
+
+.code-btn {
+	--code-section__primary-clr: var(--neutral-200);
+	--code-section__secondary-clr: var(--primary-text-color);
+
+	font-weight: bold;
+	background-color: var(--code-section__primary-clr);
+	border: 2px solid var(--code-section__secondary-clr);
+	border-radius: var(--medium-border-radius);
 }
 /* #endregion General */
 
@@ -40,15 +53,10 @@
 	font-size: 20px;
 }
 
-.code-section header img {
+.code-section img[role='copy-button'] {
 	width: 1.75rem;
 	aspect-ratio: 1;
 }
-
-.copy-btn-animation {
-	background-color: var(--success-200);
-}
-
 /* #endregion Header*/
 
 /* #region Body */

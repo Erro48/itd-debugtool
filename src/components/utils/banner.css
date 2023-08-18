@@ -10,6 +10,16 @@
 	margin: 0 auto;
 }
 
+@media (width > 768px) {
+	.banner {
+		width: 75%;
+	}
+}
+
+.banner :has(> img) {
+	width: 4rem;
+}
+
 .banner img {
 	width: 100%;
 }

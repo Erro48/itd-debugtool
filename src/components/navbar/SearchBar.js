@@ -91,7 +91,7 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 	return (
 		<div
 			id='search-bar'
-			className='row pt-lg-0 mt-3 mt-lg-0 mx-auto rounded-pill overflow-hidden'
+			className='row m-3  mx-md-auto rounded-pill overflow-hidden'
 		>
 			<form className='col-9 col-md-10'>
 				<div className='row'>

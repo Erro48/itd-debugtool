@@ -2,7 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import './icon.css'
 
-const Icon = ({ src, alt, onClick, classname }) => {
+const Icon = ({ src, alt, role, onClick, classname }) => {
 	return (
 		<img
 			src={src}
@@ -14,6 +14,7 @@ const Icon = ({ src, alt, onClick, classname }) => {
 			title={alt}
 			data-src={src}
 			onClick={onClick}
+			role={role}
 		/>
 	)
 }

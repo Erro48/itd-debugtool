@@ -11,23 +11,25 @@ const Breadcrumbs = ({ path }) => {
 	return (
 		<nav
 			aria-label='breadcrumb'
-			className={classNames(path.length === 0 ? 'd-none' : '', 'px-2')}
+			className={classNames(path.length === 0 ? 'd-none' : '')}
 		>
-			<ol className='breadcrumb m-0'>
-				{path.map((element) => (
-					<li
-						key={element}
-						className='breadcrumb-item'
-						aria-current={isLastPage(element) ? 'page' : ''}
-					>
-						{element}
-					</li>
-				))}
-				{/* <li className='breadcrumb-item'>angle</li>
+			<div>
+				<ol className='breadcrumb m-0'>
+					{path.map((element) => (
+						<li
+							key={element}
+							className='breadcrumb-item'
+							aria-current={isLastPage(element) ? 'page' : ''}
+						>
+							{element}
+						</li>
+					))}
+					{/* <li className='breadcrumb-item'>angle</li>
 				<li className='breadcrumb-item active' aria-current='page'>
 					object1
 				</li> */}
-			</ol>
+				</ol>
+			</div>
 		</nav>
 	)
 }

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Icon from '../Icon'
+import classNames from 'classnames'
 
-const CopyButton = ({ textElement, copyBtnElement }) => {
+const CopyButton = ({ textElement, copyBtnElement, className }) => {
 	const COPY_ANIMATION_DELAY = 2000
+	const [imgSrc, setImgSrc] = useState('./icons/copy.svg')
 
 	const copyText = () => {
 		const code = document.querySelector(textElement).innerHTML
@@ -12,12 +14,10 @@ const CopyButton = ({ textElement, copyBtnElement }) => {
 	const startAnimation = () => {
 		const copyBtn = document.querySelector(copyBtnElement)
 
-		copyBtn.src = './icons/tick-outline.svg'
-		copyBtn.classList.add('copy-btn-animation')
+		setImgSrc('./icons/tick-outline.svg')
 
 		setTimeout(() => {
-			copyBtn.src = './icons/copy.svg'
-			copyBtn.classList.remove('copy-btn-animation')
+			setImgSrc('./icons/copy.svg')
 		}, COPY_ANIMATION_DELAY)
 	}
 
@@ -28,9 +28,10 @@ const CopyButton = ({ textElement, copyBtnElement }) => {
 
 	return (
 		<Icon
-			src='./icons/copy.svg'
+			src={imgSrc}
 			alt='Copy'
-			classname={'button light-btn'}
+			classname={classNames('button light-btn', className)}
+			role='copy-button'
 			onClick={handleClick}
 		/>
 	)

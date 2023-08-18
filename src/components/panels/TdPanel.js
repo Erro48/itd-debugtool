@@ -1,5 +1,4 @@
-import CardList from '../utils/CardList'
-import './asidePanels.css'
+import AsidePanel from './AsidePanel'
 
 function TdPanel({ thingDescriptions, onChange }) {
 	const handleCardClick = (cardId) => {
@@ -22,19 +21,16 @@ function TdPanel({ thingDescriptions, onChange }) {
 	}
 
 	return (
-		<section
-			className='td-container col-12 col-lg-6 px-4 px-md-0'
-			data-panel='thing-descriptions-panel'
-		>
-			<header>
-				<h2>Thing Descriptions</h2>
-			</header>
-			<CardList
-				cards={thingDescriptions}
-				className={'td-card-list'}
-				onCardClick={handleCardClick}
-			/>
-		</section>
+		<AsidePanel
+			sections={[
+				{
+					title: 'Thing Descriptions',
+					list: thingDescriptions,
+					handleElementClick: handleCardClick,
+				},
+			]}
+			dataSection={'thing-descriptions-panel'}
+		/>
 	)
 }
 

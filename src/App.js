@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import AffordancesPanel from './components/panels/AffordancesPanel'
 import AttributesPanel from './components/panels/AttributesPanel'
 import Modal from './components/utils/Modal'
+import Header from './components/navbar/Header'
 
 function App() {
 	const [thingDescriptions, setThingDescriptions] = useState([])
@@ -130,46 +131,34 @@ function App() {
 
 	return (
 		<main className='App'>
-			<Navbar
+			<Header
 				onRepoLoad={handleRepoLoad}
 				onError={handleRepoError}
 				onShowError={() => setShowRepoError(true)}
 			/>
+
 			<div className='container-fluid p-0'>
-				<div className='row w-100 m-auto'>
-					<Modal
-						type='danger'
-						show={showRepoError}
-						onClose={() => setShowRepoError(false)}
-					>
-						{new Error(repoError).message}
-					</Modal>
-
-					<div className='col-12 d-lg-none'>
-						<SearchBar
-							onRepoLoad={handleRepoLoad}
-							onError={handleRepoError}
-							onShowError={() => setShowRepoError(true)}
-						/>
-					</div>
-
-					{/* Side panel */}
-					<aside className='col-12 col-lg-3 px-0 aside-panel pt-2 pt-md-0 mt-4 mt-md-0'>
-						<div className='row w-100 m-auto'>
-							<TdPanel
-								thingDescriptions={thingDescriptions}
-								onChange={handleThingDescriptionChange}
-							/>
-
-							<AffordancesPanel
-								activeThingDescription={activeThingDescription}
-								onChange={handleAffordanceChange}
-							/>
+				<div className='row w-100 mx-auto'>
+					<aside className='aside-panel col-12 col-lg-3'>
+						<div className='row'>
+							<div className='col-12 col-lg-6 p-0'>
+								<TdPanel
+									thingDescriptions={thingDescriptions}
+									onChange={handleThingDescriptionChange}
+								/>
+							</div>
+							<div className='col-12 col-lg-6 p-0'>
+								<AffordancesPanel
+									activeThingDescription={activeThingDescription}
+									onChange={handleAffordanceChange}
+								/>
+							</div>
 						</div>
 					</aside>
-					<div className='col-1'></div>
-					<div className='col-12 col-lg-7 d-sm-block'>
-						<div className='row m-auto'>
+
+					<div className='col-12 col-lg-9 d-sm-block'>
+						<div className='row mx-auto container px-0'>
+							<div className='d-none d-lg-block col-lg-2'></div>
 							<AttributesPanel activeAffordance={activeAffordance} />
 						</div>
 					</div>

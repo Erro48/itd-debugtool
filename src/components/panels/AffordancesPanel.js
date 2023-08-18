@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import CardList from '../utils/CardList'
-import './asidePanels.css'
+import AsidePanel from './AsidePanel'
 
 const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	/**
@@ -86,39 +85,23 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 	}
 
 	return (
-		<section
-			className='col-12 col-lg-6 px-4 px-md-0'
-			data-panel='affordances-panel'
-		>
-			<div className='row w-100 m-auto'>
-				<section
-					className='col-12 col-sm-6 col-lg-12 px-0'
-					data-panel='affordance-panel'
-				>
-					<header>
-						<h2>Properties</h2>
-					</header>
-					<CardList
-						cards={properties}
-						className={'affordance-card-list'}
-						onCardClick={handleCardClick}
-					/>
-				</section>
-				<section
-					className='col-12 col-sm-6 col-lg-12 px-0'
-					data-panel='affordance-panel'
-				>
-					<header>
-						<h2>Actions</h2>
-					</header>
-					<CardList
-						cards={actions}
-						className={'affordance-card-list'}
-						onCardClick={handleCardClick}
-					/>
-				</section>
-			</div>
-		</section>
+		<AsidePanel
+			sections={[
+				{
+					title: 'Properties',
+					list: properties,
+					handleElementClick: handleCardClick,
+					dataSection: 'affordance-panel',
+				},
+				{
+					title: 'Actions',
+					list: actions,
+					handleElementClick: handleCardClick,
+					dataSection: 'affordance-panel',
+				},
+			]}
+			dataSection={'affordances-panel'}
+		/>
 	)
 }
 

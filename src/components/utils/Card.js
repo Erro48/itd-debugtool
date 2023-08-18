@@ -21,8 +21,7 @@ const Card = ({
 
 	return (
 		<button
-			href='/'
-			className={classNames('card', 'py-3', 'px-4', 'p-sm-2', 'w-100')}
+			className={classNames('card', 'py-2', 'px-1', 'w-100')}
 			onClick={() => onCardClick(title)}
 			data-active={active ? active : false}
 			data-type={affordanceType}

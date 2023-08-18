@@ -1,5 +1,6 @@
 .object-recap {
 	gap: 0.75rem;
+	text-transform: lowercase;
 }
 
 :where(.object-recap li, .object-recap li *) {

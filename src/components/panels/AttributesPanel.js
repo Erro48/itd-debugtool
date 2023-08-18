@@ -125,7 +125,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 	if (affordance === undefined)
 		return (
 			<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
-				<Banner classname='my-5 w-75'>No Thing Descriptions loaded...</Banner>
+				<Banner classname='my-5'>No Thing Descriptions loaded...</Banner>
 			</section>
 		)
 
@@ -224,19 +224,19 @@ const AttributesPanel = ({ activeAffordance }) => {
 	}
 
 	return (
-		<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
-			<header className='px-2 py-1'>
+		<section className='col col-lg-8' data-panel='attributes-panel'>
+			<header className='pb-1'>
 				<h2>{affordance.title}</h2>
 				<p className='subtitle mb-0'>{affordance.address}</p>
 			</header>
 			<Breadcrumbs path={getBreadcrumb(affordance)} />
-			<section className='row mb-1 w-100 my-1 mx-auto p-0 ps-md-2'>
+			<section className='row w-100 mx-auto'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0 ps-md-0 pe-md-2'>
 					{displayAttributesList(affordance.attributes)}
 				</div>
 				<div className='col-12 col-sm-5 p-0'>
-					<div className='row gap-1'>
-						<div className='col-12'>
+					<div className='row gap-sm-1'>
+						<div className='col-6 col-md-12'>
 							<CodePanel
 								type='input'
 								attributes={affordance.attributes.map((attribute) => {
@@ -247,35 +247,40 @@ const AttributesPanel = ({ activeAffordance }) => {
 								})}
 							/>
 						</div>
-						<div className='col-12'>
+						<div className='col-6 col-md-12'>
 							<CodePanel type='output' />
 						</div>
 					</div>
 				</div>
 			</section>
-			<footer className='row w-100 m-auto'>
+			<footer className='row w-100 mx-auto my-1	'>
 				{affordance.parent !== undefined ? (
-					<button
-						className='col-1 button light-btn'
-						onClick={() =>
-							refreshPage({
-								...affordance.parent,
-								attributes: affordance.parent.attributes.map((attribute) =>
-									attribute.title === affordance.title ? affordance : attribute
-								),
-							})
-						}
-					>
-						<Icon
-							src={'./icons/left-arrow-dark.svg'}
-							alt={`Go to ${affordance.parent.title} attribute`}
-						/>
-					</button>
+					<>
+						<button
+							className='col-2 col-sm-1 button light-btn'
+							onClick={() =>
+								refreshPage({
+									...affordance.parent,
+									attributes: affordance.parent.attributes.map((attribute) =>
+										attribute.title === affordance.title
+											? affordance
+											: attribute
+									),
+								})
+							}
+						>
+							<Icon
+								src={'./icons/left-arrow-dark.svg'}
+								alt={`Go to ${affordance.parent.title} attribute`}
+							/>
+						</button>
+						<div className='col-1 d-sm-none'></div>
+					</>
 				) : (
-					<div className='col-1'></div>
+					<div className='d-none d-sm-block col-sm-1'></div>
 				)}
 
-				<div className='col-9'></div>
+				<div className='d-none d-sm-block col-sm-9'></div>
 
 				<SubmitButton affordance={affordance} />
 			</footer>

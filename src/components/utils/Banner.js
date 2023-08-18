@@ -49,14 +49,14 @@ const Banner = ({
 					</div>
 				</header>
 			)}
-			<section className='row w-100 mx-auto'>
+			<div className='row w-100 mx-auto'>
 				<div className='col-3 col-lg-2 col-xxl-1 d-flex align-items-center'>
 					<Icon src={getIconUrl(type)} alt='' />
 				</div>
 				<div className='col my-auto'>
 					<p className='mb-0'>{children}</p>
 				</div>
-			</section>
+			</div>
 		</section>
 	)
 }
