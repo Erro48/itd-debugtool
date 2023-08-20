@@ -236,7 +236,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 				</div>
 				<div className='col-12 col-sm-5 p-0'>
 					<div className='row gap-sm-1'>
-						<div className='col-6 col-md-12'>
+						<div className='col-6 col-sm-12'>
 							<CodePanel
 								type='input'
 								attributes={affordance.attributes.map((attribute) => {
@@ -247,7 +247,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 								})}
 							/>
 						</div>
-						<div className='col-6 col-md-12'>
+						<div className='col-6 col-sm-12'>
 							<CodePanel type='output' />
 						</div>
 					</div>

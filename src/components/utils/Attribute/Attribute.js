@@ -4,18 +4,9 @@ import StringAttribute from './StringAttribute'
 import './attribute.css'
 import ArrayAttribute from './ArrayAttribute'
 import ObjectAttribute from './ObjectAttribute'
+import BooleanAttribute from './BooleanAttribute'
 
-const Attribute = ({ attribute, summary, onChange, onExpand }) => {
-	// console.log(summary)
-	// console.log(
-	// 	summary !== undefined &&
-	// 		Array.from(summary.keys()).map((el) => {
-	// 			return {
-	// 				title: el,
-	// 				value: summary.get(el),
-	// 			}
-	// 		})
-	// )
+const Attribute = ({ attribute, onChange, onExpand }) => {
 	const { title, type, description } = attribute
 	const selectAttribute = (type) => {
 		switch (type) {
@@ -46,6 +37,10 @@ const Attribute = ({ attribute, summary, onChange, onExpand }) => {
 
 			case 'object': {
 				return <ObjectAttribute attribute={attribute} onExpand={onExpand} />
+			}
+
+			case 'boolean': {
+				return <BooleanAttribute attribute={attribute} onChange={onChange} />
 			}
 
 			default:
