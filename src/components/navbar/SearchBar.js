@@ -128,9 +128,8 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 									className='d-none'
 									id='open-repo'
 									type='file'
-									webkitdirectory=''
-									directory=''
-									multiple=''
+									accept='.json'
+									multiple='true'
 									onChange={handleForChange}
 								/>
 							</label>
