@@ -11,46 +11,65 @@ const Card = ({
 	version,
 	active,
 	affordanceType,
+	onRemoveCard,
 	onCardClick,
 }) => {
+	const removable = onRemoveCard !== undefined
+
 	const getVersion = () => {
 		if (version !== undefined) {
-			return <span className='version col-4 d-none d-sm-block'>{version}</span>
+			return (
+				<span className='version col-4 d-none d-sm-inline'>v{version}</span>
+			)
 		}
 	}
 
 	return (
-		<button
-			className={classNames('card', 'py-2', 'px-1', 'w-100')}
-			onClick={() => onCardClick(title)}
-			data-active={active ? active : false}
-			data-type={affordanceType}
-		>
-			<div className='row w-100 mx-auto'>
-				<div className='col-10 col-sm-11 col-sm-12'>
-					<header>
-						<div className='row align-items-center'>
-							<h3
-								className={
-									'title col-12 col-sm-' + (version === undefined ? '12' : '8')
-								}
-							>
-								{title}
-							</h3>
+		<div className='row m-0 p-0'>
+			<button
+				className={classNames(
+					'card py-2 px-1 order-1 order-sm-0',
+					{ 'col-10 col-lg-9': removable },
+					{ 'col-12': !removable }
+				)}
+				onClick={() => onCardClick(title)}
+				data-active={active ? active : false}
+				data-type={affordanceType}
+			>
+				<div className='row w-100 mx-auto'>
+					<div className='col-10 col-sm-11 col-sm-12'>
+						<header>
+							<h3 className={'title'}>{title}</h3>
+						</header>
+						<p className='description pt-2 pt-sm-1'>
 							{getVersion()}
-						</div>
-					</header>
-					<p className='description pt-2 pt-sm-1'>{description}</p>
+							{description}
+						</p>
+					</div>
+					<div className='col-2 col-sm-1 d-flex d-sm-none'>
+						<Icon
+							src='../icons/left-arrow-dark.svg'
+							alt={'Select ' + title}
+							classname='right-arrow'
+						/>
+					</div>
 				</div>
-				<div className='col-2 col-sm-1 d-flex d-sm-none'>
-					<Icon
-						src='../icons/left-arrow-dark.svg'
-						alt={'Select ' + title}
-						classname='right-arrow'
-					/>
-				</div>
-			</div>
-		</button>
+			</button>
+
+			<button
+				className={classNames(
+					'col-2 transparent-btn remove-td',
+					{ 'd-none': !removable },
+					{ 'col-lg-3': removable }
+				)}
+				onClick={() => onRemoveCard(title)}
+			>
+				<Icon
+					src={'./icons/remove.svg'}
+					alt={`Remove ${title} thing description`}
+				/>
+			</button>
+		</div>
 	)
 }
 

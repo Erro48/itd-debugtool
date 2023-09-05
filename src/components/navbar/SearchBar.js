@@ -129,7 +129,7 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 									id='open-repo'
 									type='file'
 									accept='.json'
-									multiple='true'
+									multiple={true}
 									onChange={handleForChange}
 								/>
 							</label>

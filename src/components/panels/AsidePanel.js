@@ -3,7 +3,7 @@ import CardList from '../utils/CardList'
 import './asidePanels.css'
 import classNames from 'classnames'
 
-const AsidePanel = ({ sections, dataSection }) => {
+const AsidePanel = ({ sections, onRemoveCard, dataSection }) => {
 	return (
 		<div className='container px-md-0' data-panel={dataSection}>
 			<div className='row w-100 m-auto'>
@@ -22,6 +22,7 @@ const AsidePanel = ({ sections, dataSection }) => {
 						<CardList
 							cards={section.list}
 							className={section.dataSection}
+							onRemoveCard={onRemoveCard}
 							onCardClick={section.handleElementClick}
 						/>
 					</section>

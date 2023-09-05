@@ -79,9 +79,16 @@ function App() {
 
 	// on repo load
 	useEffect(() => {
-		const activeTd = thingDescriptions[0]
+		const activeTd =
+			thingDescriptions.filter((td) => td.active).length === 0
+				? thingDescriptions[0]
+				: thingDescriptions.filter((td) => td.active)[0]
 
-		if (activeTd === undefined) return
+		if (activeTd === undefined) {
+			setActiveThingDescription(undefined)
+			setActiveAffordance(undefined)
+			return
+		}
 
 		activeTd.active = true
 		setActiveThingDescription(activeTd)
@@ -129,6 +136,11 @@ function App() {
 		}
 	}
 
+	const handleRemoveThingDescription = (title) => {
+		setThingDescriptions((state) => state.filter((td) => td.title !== title))
+		setActiveAffordance(undefined)
+	}
+
 	return (
 		<main className='App'>
 			<Header
@@ -145,6 +157,7 @@ function App() {
 								<TdPanel
 									thingDescriptions={thingDescriptions}
 									onChange={handleThingDescriptionChange}
+									onRemoveThingDescription={handleRemoveThingDescription}
 								/>
 							</div>
 							<div className='col-12 col-lg-6 p-0'>

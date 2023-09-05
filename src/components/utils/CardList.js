@@ -2,14 +2,19 @@ import React from 'react'
 import Card from './Card'
 
 import './cardList.css'
+import Icon from './Icon'
 
-const CardList = ({ cards, className, onCardClick }) => {
+const CardList = ({ cards, onRemoveCard, className, onCardClick }) => {
 	return (
 		<ul className={'card-list mb-0 ' + className}>
 			{cards.map((card) => {
 				return (
 					<li key={card.title}>
-						<Card {...card} onCardClick={onCardClick} />
+						<Card
+							{...card}
+							onRemoveCard={onRemoveCard}
+							onCardClick={onCardClick}
+						/>
 					</li>
 				)
 			})}

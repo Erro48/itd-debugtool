@@ -58,7 +58,11 @@ const AttributesPanel = ({ activeAffordance }) => {
 	const [affordance, setAffordance] = useState(activeAffordance)
 
 	const refreshPage = (activeAffordance) => {
-		if (activeAffordance === undefined) return
+		console.log(activeAffordance)
+		if (activeAffordance === undefined) {
+			setAffordance(undefined)
+			return
+		}
 
 		if (activeAffordance.affordanceType === 'actions') {
 			// If not has input and properties
@@ -121,13 +125,6 @@ const AttributesPanel = ({ activeAffordance }) => {
 
 	// Update affordance on attribute change
 	useEffect(() => refreshPage(activeAffordance), [activeAffordance])
-
-	if (affordance === undefined)
-		return (
-			<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
-				<Banner classname='my-5'>No Thing Descriptions loaded...</Banner>
-			</section>
-		)
 
 	const displayAttributesList = (attributes) => {
 		if (attributes === undefined || attributes.length === 0) {
@@ -221,6 +218,14 @@ const AttributesPanel = ({ activeAffordance }) => {
 		if (currentAffordance.parent === undefined) return [currentAffordance.title]
 
 		return [...getBreadcrumb(currentAffordance.parent), currentAffordance.title]
+	}
+
+	if (affordance === undefined) {
+		return (
+			<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
+				<Banner classname='my-5'>No Thing Descriptions loaded...</Banner>
+			</section>
+		)
 	}
 
 	return (

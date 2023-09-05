@@ -4,7 +4,9 @@
 	text-decoration: none;
 	text-align: left;
 	border: none;
+	word-break: break-word;
 }
+
 .card header h3 {
 	font-size: 16px;
 	margin: 0;
@@ -12,11 +14,18 @@
 }
 :is(.card p, .card .version) {
 	font-size: 12px;
-	opacity: 0.7;
+	/* opacity: 0.7; */
+	color: var(--secondary-text-color);
 }
 
 .card .version {
 	text-align: right;
+	font-weight: bold;
+	background-color: var(--primary-200);
+	border-radius: 10px;
+	border: 1px solid var(--brand-color);
+	padding: 0.1rem 0.25rem;
+	margin-right: 0.5rem;
 }
 
 .card .description {
@@ -25,6 +34,7 @@
 
 .card p {
 	margin-bottom: 0;
+	word-break: break-word;
 }
 
 .card img.right-arrow {
@@ -37,11 +47,13 @@
 }
 
 @media (width > 992px) {
-	.card[data-active='true'] {
+	div:has(> .card[data-active='true']) {
 		border-radius: var(--small-border-radius) 0 0 var(--small-border-radius);
 		box-shadow: 0 -2px 10px -4px var(--neutral-shadow),
 			0 2px 10px -4px var(--neutral-shadow);
 		z-index: 1;
+		position: relative;
+		background: var(--tertiary);
 	}
 
 	.card[data-active='true'] header * {

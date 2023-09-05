@@ -1,6 +1,6 @@
 import AsidePanel from './AsidePanel'
 
-function TdPanel({ thingDescriptions, onChange }) {
+function TdPanel({ thingDescriptions, onChange, onRemoveThingDescription }) {
 	const handleCardClick = (cardId) => {
 		thingDescriptions.map((td) => (td.active = false))
 		thingDescriptions
@@ -30,6 +30,7 @@ function TdPanel({ thingDescriptions, onChange }) {
 				},
 			]}
 			dataSection={'thing-descriptions-panel'}
+			onRemoveCard={onRemoveThingDescription}
 		/>
 	)
 }
