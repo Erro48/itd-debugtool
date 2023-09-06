@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Icon from '../Icon'
 import classNames from 'classnames'
 
-const CopyButton = ({ textElement, copyBtnElement, className }) => {
+const CopyButton = ({ textElement, className }) => {
 	const COPY_ANIMATION_DELAY = 2000
 	const [imgSrc, setImgSrc] = useState('./icons/copy.svg')
 
@@ -12,8 +12,6 @@ const CopyButton = ({ textElement, copyBtnElement, className }) => {
 	}
 
 	const startAnimation = () => {
-		const copyBtn = document.querySelector(copyBtnElement)
-
 		setImgSrc('./icons/tick-outline.svg')
 
 		setTimeout(() => {

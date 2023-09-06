@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './codePanel.css'
 import CopyButton from '../utils/Buttons/CopyButton'
 import classNames from 'classnames'
+import EditModeButton from '../utils/Buttons/EditModeButton'
 
 const formatCode = (attributes) => {
 	if (attributes === undefined || attributes.length === 0) return {}
@@ -27,17 +28,24 @@ const formatCode = (attributes) => {
 
 const CodePanel = ({ type, attributes }) => {
 	const CODE_INDENTETION = 3
+	const [readonlyTextarea, setReadonlyTextarea] = useState(true)
 
 	const codeJsx = (
 		<pre>
-			<code>
-				{JSON.stringify(formatCode(attributes), null, CODE_INDENTETION)}
-			</code>
+			{/* <code> */}
+			<textarea
+				name='code-snippet'
+				id={`code-snippet-${type}`}
+				readOnly={readonlyTextarea}
+				value={JSON.stringify(formatCode(attributes), null, CODE_INDENTETION)}
+			/>
+			{/* </code> */}
 		</pre>
 	)
 
 	return (
 		<>
+			{/* Mobile version */}
 			<button
 				type='button'
 				className='btn code-btn w-100 d-sm-none'
@@ -81,15 +89,26 @@ const CodePanel = ({ type, attributes }) => {
 				</div>
 			</div>
 
+			{/* Desktop version */}
 			<section
 				className='code-section d-none d-sm-block'
 				data-section-type={type}
 			>
 				<header className='row w-100 m-auto p-0'>
 					<h3 className='col-9 p-0'>{type}</h3>
-					<div className='col-3 d-flex justify-content-end p-0'>
+					<div className='col-3 d-flex justify-content-end p-0 gap-1'>
+						{type === 'input' ?? 'true'}
+
+						{/* {type === 'input' ? (
+							<EditModeButton
+								onClick={() => setReadonlyTextarea((state) => !state)}
+							/>
+						) : (
+							''
+						)} */}
+
 						<CopyButton
-							textElement={'[data-section-type=' + type + '] code'}
+							textElement={'[data-section-type=' + type + '] textarea'}
 							copyBtnElement={'[data-section-type=' + type + '] img'}
 						/>
 					</div>
