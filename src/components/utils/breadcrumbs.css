@@ -19,7 +19,7 @@ ol.breadcrumb {
 	font-size: 13px;
 }
 
-.breadcrumb-item[aria-current='page'] {
+.breadcrumb-item[aria-current='page'] button {
 	color: var(--brand-color);
 }
 

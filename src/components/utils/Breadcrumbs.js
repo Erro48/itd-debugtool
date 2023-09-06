@@ -2,7 +2,7 @@ import React from 'react'
 import './breadcrumbs.css'
 import classNames from 'classnames'
 
-const Breadcrumbs = ({ path }) => {
+const Breadcrumbs = ({ path, onClick }) => {
 	const isLastPage = (page) => {
 		// If page is the last element
 		return path[path.length - 1] === page
@@ -21,13 +21,15 @@ const Breadcrumbs = ({ path }) => {
 							className='breadcrumb-item'
 							aria-current={isLastPage(element) ? 'page' : ''}
 						>
-							{element}
+							<button
+								className='transparent-btn'
+								onClick={(event) => onClick(event.target.value)}
+								value={element}
+							>
+								{element}
+							</button>
 						</li>
 					))}
-					{/* <li className='breadcrumb-item'>angle</li>
-				<li className='breadcrumb-item active' aria-current='page'>
-					object1
-				</li> */}
 				</ol>
 			</div>
 		</nav>

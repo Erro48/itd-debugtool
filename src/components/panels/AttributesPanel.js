@@ -220,6 +220,31 @@ const AttributesPanel = ({ activeAffordance }) => {
 		return [...getBreadcrumb(currentAffordance.parent), currentAffordance.title]
 	}
 
+	/**
+	 * Given an affordance title, recursivly search in parents affordances an affordance with title `affordanceTitle`
+	 * @param {string} affordanceTitle
+	 */
+	const parseAffordance = (affordanceTitle, currentAffordance = affordance) => {
+		if (currentAffordance === undefined || affordanceTitle === undefined) return
+
+		if (currentAffordance.parent.title === affordanceTitle) {
+			selectAffordance(currentAffordance.parent, currentAffordance)
+		} else {
+			parseAffordance(affordanceTitle, currentAffordance.parent)
+		}
+	}
+
+	const selectAffordance = (affordance, previousAffordance) => {
+		refreshPage({
+			...affordance,
+			attributes: affordance.attributes.map((attribute) =>
+				attribute.title === previousAffordance.title
+					? previousAffordance
+					: attribute
+			),
+		})
+	}
+
 	if (affordance === undefined) {
 		return (
 			<section className='col col-sm-12 px-0' data-panel='attributes-panel'>
@@ -234,7 +259,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 				<h2>{affordance.title}</h2>
 				<p className='subtitle mb-0'>{affordance.address}</p>
 			</header>
-			<Breadcrumbs path={getBreadcrumb(affordance)} />
+			<Breadcrumbs path={getBreadcrumb(affordance)} onClick={parseAffordance} />
 			<section className='row w-100 mx-auto'>
 				<div className='col-12 col-sm-7 mb-3 mb-sm-0 ps-md-0 pe-md-2'>
 					{displayAttributesList(affordance.attributes)}
@@ -263,16 +288,7 @@ const AttributesPanel = ({ activeAffordance }) => {
 					<>
 						<button
 							className='col-2 col-sm-1 button light-btn'
-							onClick={() =>
-								refreshPage({
-									...affordance.parent,
-									attributes: affordance.parent.attributes.map((attribute) =>
-										attribute.title === affordance.title
-											? affordance
-											: attribute
-									),
-								})
-							}
+							onClick={() => selectAffordance(affordance.parent, affordance)}
 						>
 							<Icon
 								src={'./icons/left-arrow-dark.svg'}
