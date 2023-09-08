@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import SearchBar from './SearchBar'
+import { ErrorBoundary } from 'react-error-boundary'
 
 const Header = ({ onRepoLoad, onError, onShowError }) => {
 	const [width, setWidth] = useState(window.innerWidth)

@@ -58,7 +58,6 @@ const AttributesPanel = ({ activeAffordance }) => {
 	const [affordance, setAffordance] = useState(activeAffordance)
 
 	const refreshPage = (activeAffordance) => {
-		console.log(activeAffordance)
 		if (activeAffordance === undefined) {
 			setAffordance(undefined)
 			return
