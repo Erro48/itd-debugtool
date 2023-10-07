@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import './codePanel.css'
-import CopyButton from '../utils/Buttons/CopyButton'
+import CopyButton from '../../utils/Buttons/CopyButton'
 import classNames from 'classnames'
-import EditModeButton from '../utils/Buttons/EditModeButton'
+import EditModeButton from '../../utils/Buttons/EditModeButton'
 
 const formatCode = (attributes) => {
 	if (attributes === undefined || attributes.length === 0) return {}
@@ -91,7 +91,7 @@ const CodePanel = ({ type, attributes }) => {
 
 			{/* Desktop version */}
 			<section
-				className='code-section d-none d-sm-block'
+				className='code-section d-none d-sm-flex flex-column'
 				data-section-type={type}
 			>
 				<header className='row w-100 m-auto p-0'>

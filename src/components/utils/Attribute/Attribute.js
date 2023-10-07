@@ -8,7 +8,7 @@ import BooleanAttribute from './BooleanAttribute'
 
 const Attribute = ({ attribute, onChange, onExpand }) => {
 	const { title, type, description } = attribute
-	const selectAttribute = (type) => {
+	function selectAttribute(type) {
 		switch (type) {
 			case 'number':
 			case 'integer': {

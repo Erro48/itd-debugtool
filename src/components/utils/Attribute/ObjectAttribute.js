@@ -81,7 +81,7 @@ const ObjectAttribute = ({ attribute, onExpand }) => {
 				className='button primary-btn w-100 mx-auto my-2'
 				onClick={() => onExpand({ ...attribute })}
 			>
-				Expand
+				Display object attributes
 			</button>
 		</>
 	)

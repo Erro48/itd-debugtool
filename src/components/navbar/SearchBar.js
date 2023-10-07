@@ -5,6 +5,7 @@ import Cookies from 'universal-cookie'
 import './searchBar.css'
 
 const cookies = new Cookies(null, { path: '/' })
+const TdTools = window.Wot.Tools
 
 function SearchBar({ onRepoLoad, onError, onShowError }) {
 	const [loadingError, setLoadingError] = useState(false)
@@ -23,18 +24,8 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 
 		fetch(repository)
 			.then((response) => response.json())
-			.then((json) => {
-				const thingDescription = json
-				const properties = []
-				const actions = []
-
-				affordanceUpdater(thingDescription.properties, properties)
-				affordanceUpdater(thingDescription.actions, actions)
-
-				thingDescription.properties = properties
-				thingDescription.actions = actions
-
-				onRepoLoad(thingDescription)
+			.then(async (json) => {
+				computeThingDescription(JSON.stringify(json))
 
 				repositoryDatalist.current = [
 					...repositoryDatalist.current.filter((item) => item !== repository),
@@ -43,15 +34,44 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 			})
 	}
 
-	const affordanceUpdater = (input, output) => {
+	/**
+	 * Change an object affordance in an array
+	 * @param {*} input input affordance
+	 * @returns object as array
+	 */
+	function affordanceUpdater(input) {
 		if (input === undefined) return
+		const output = []
 
 		Object.entries(input).forEach((entry) => {
 			output.push({
 				title: entry[0],
-				value: entry[1],
+				...entry[1],
 			})
 		})
+
+		return output
+	}
+
+	function computeThingDescription(tdAsString) {
+		try {
+			const thingDescription = TdTools.parseTD(tdAsString)
+			const properties = []
+			const actions = []
+
+			thingDescription.properties = affordanceUpdater(
+				thingDescription.properties,
+				properties
+			)
+			thingDescription.actions = affordanceUpdater(
+				thingDescription.actions,
+				actions
+			)
+
+			onRepoLoad(thingDescription)
+		} catch (err) {
+			alert(err) // temporaneo
+		}
 	}
 
 	const handleForChange = (event) => {
@@ -63,19 +83,8 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 		fileList.forEach((file) => {
 			const reader = new FileReader()
 			reader.onload = (e) => {
-				const fileContent = e.target.result
 				try {
-					const thingDescription = JSON.parse(fileContent)
-					const properties = []
-					const actions = []
-
-					affordanceUpdater(thingDescription.properties, properties)
-					affordanceUpdater(thingDescription.actions, actions)
-
-					thingDescription.properties = properties
-					thingDescription.actions = actions
-
-					onRepoLoad(thingDescription)
+					computeThingDescription(e.target.result)
 				} catch (err) {
 					setLoadingError(true)
 					onError(err)
@@ -89,28 +98,6 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 			setRepoLoaded(true)
 		})
 	}
-
-	// const handleFileUpload = (event) => {
-	// 	const fileList = Object.values(event.target.files)
-	// 	setLoadingError(false)
-	// 	setRepoLoaded(false)
-
-	// 	fileList.forEach((binfile) => {
-	// 		const reader = new FileReader()
-	// 		let result
-
-	// 		reader.onload = function (e) {
-	// 			// get file content
-	// 			var bin = e.target.result
-
-	// 			// console.log(JSON.parse(bin))
-	// 			result = JSON.parse(bin)
-	// 			console.log('Dentro', result)
-	// 		}
-	// 		reader.readAsText(binfile)
-	// 		console.log('Fuori', result)
-	// 	})
-	// }
 
 	const getLoadingIcon = () => {
 		const iconName = loadingError ? 'close' : 'tick-outline'

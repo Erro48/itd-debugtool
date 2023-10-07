@@ -5,7 +5,7 @@ import classNames from 'classnames'
 const InputField = ({
 	type,
 	name,
-	defaultValue,
+	defaultValue = '',
 	onChange,
 	properties = new Map(),
 	className,

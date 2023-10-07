@@ -28,7 +28,7 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 		return affordances.map((affordance) => {
 			return {
 				title: affordance.title,
-				...{ ...affordance.value },
+				...{ ...affordance },
 				active: affordance.active == true,
 				affordanceType: type,
 			}

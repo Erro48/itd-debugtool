@@ -15,6 +15,7 @@ section ul {
 
 section ul li {
 	width: 100%;
+	margin: 0.45em 0;
 }
 
 aside section {
