@@ -1,3 +1,3 @@
-# WoT-Dashboard
+# MashupTd-Nexus
 
-Dashboard which simplifies the interactions with Things in the Web of Things world
+Mashup which simplifies the interactions with Things in the Web of Things world
