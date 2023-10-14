@@ -47,6 +47,7 @@ const AttributesSection = ({ affordance, onChange }) => {
 		).map((property) => {
 			const [title, value] = property
 			return {
+				title: value?.title ?? title,
 				...value,
 				value: getAttributeValue(value),
 			}

@@ -2,7 +2,7 @@ import React from 'react'
 import SubmitButton from '../../utils/Buttons/SubmitButton'
 import Icon from '../../utils/Icon'
 
-const Footer = ({ affordance, handleAffordanceChange }) => {
+const Footer = ({ affordance, handleAffordanceChange, onSubmit }) => {
 	return (
 		<footer className='row w-100 mx-auto my-1	'>
 			{affordance.parent !== undefined ? (
@@ -26,7 +26,7 @@ const Footer = ({ affordance, handleAffordanceChange }) => {
 
 			<div className='d-none d-sm-block col-sm-9'></div>
 
-			<SubmitButton affordance={affordance} />
+			<SubmitButton affordance={affordance} onSubmit={onSubmit} />
 		</footer>
 	)
 }

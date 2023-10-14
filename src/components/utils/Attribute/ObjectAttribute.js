@@ -74,6 +74,16 @@ const ObjectAttribute = ({ attribute, onExpand }) => {
 		))
 	}
 
+	function showButtonMessage() {
+		if (attribute?.title === undefined) return "Display object's attributes"
+
+		const string =
+			attribute?.title?.slice(-1) === 's'
+				? attribute.title + "'"
+				: attribute.title + "'s"
+		return `Display ${string} attributes`
+	}
+
 	return (
 		<>
 			<ul className='object-recap'>{displayList(objectAttributes)}</ul>
@@ -81,7 +91,7 @@ const ObjectAttribute = ({ attribute, onExpand }) => {
 				className='button primary-btn w-100 mx-auto my-2'
 				onClick={() => onExpand({ ...attribute })}
 			>
-				Display object attributes
+				{showButtonMessage()}
 			</button>
 		</>
 	)

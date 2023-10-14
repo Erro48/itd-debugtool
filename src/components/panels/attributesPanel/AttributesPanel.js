@@ -14,146 +14,15 @@ const AttributesPanel = ({
 	onChangeValue,
 	updateNestedAffordance,
 }) => {
-	// const [affordance, setAffordance] = useState({
-	// 	...activeAffordance,
-	// 	attributes:
-	// 		activeAffordance?.attributes?.map((attribute) => {
-	// 			return {
-	// 				...attribute,
-	// 				value: getInitialValue(attribute),
-	// 			}
-	// 		}) ?? [],
-	// })
 	const [affordance, setAffordance] = useState(activeAffordance)
+	const [output, setOutput] = useState({})
 	const mainAffordance = useRef(activeAffordance)
 
-	/**
-	 *
-	 * @param {*} affToFormat
-	 * @returns the formatted affordance
-	 */
-	// function formatAffordance(affToFormat) {
-	// 	if (affToFormat === undefined) return undefined
-
-	// 	// Add 'value' field to attributes' items
-	// 	affToFormat.attributes = affToFormat.attributes?.map((attribute) => {
-	// 		return { ...attribute, value: getInitialValue(attribute) }
-	// 	})
-
-	// 	let attributes = []
-	// 	let affordanceFields = affToFormat
-
-	// 	// If are present 'uriVariables', attributes is an array of { uriVariable.title, uriVariable.value}
-	// 	if (affToFormat.uriVariables !== undefined) {
-	// 		attributes = Object.entries(affToFormat.uriVariables).map((entry) => {
-	// 			return {
-	// 				title: entry[0],
-	// 				...entry[1],
-	// 			}
-	// 		})
-	// 	}
-
-	// 	if (
-	// 		affToFormat.input !== undefined ||
-	// 		affToFormat.attributes !== undefined
-	// 	) {
-	// 		// Remove input from affToFormat fields
-	// 		const { input, ...tempAffordanceFields } = affToFormat
-	// 		attributes =
-	// 			affToFormat.attributes === undefined
-	// 				? [{ ...affToFormat.input }]
-	// 				: [...affToFormat.attributes]
-
-	// 		// If input is an object
-	// 		if (
-	// 			affToFormat.attributes === undefined &&
-	// 			affToFormat.input.type !== 'object' &&
-	// 			affToFormat.input.properties === undefined
-	// 		) {
-	// 			affordanceFields = tempAffordanceFields
-	// 		}
-	// 	}
-
-	// 	return {
-	// 		...affordanceFields,
-	// 		address: '',
-	// 		attributes,
-	// 		value: getInitialValue(affToFormat),
-	// 	}
-	// }
-
-	// function refreshPage(activeAffordance) {
-	// 	// console.log(activeAffordance)
-	// 	if (activeAffordance === undefined) return
-
-	// 	activeAffordance.attributes = activeAffordance?.attributes?.map(
-	// 		(attribute) => {
-	// 			return {
-	// 				...attribute,
-	// 				value: getInitialValue(attribute),
-	// 			}
-	// 		}
-	// 	)
-
-	// 	let attributes = []
-	// 	let affordanceFields = activeAffordance
-
-	// 	if (activeAffordance === undefined) return setAffordance(undefined)
-
-	// 	if (activeAffordance.uriVariables !== undefined) {
-	// 		attributes = Object.entries(activeAffordance.uriVariables).map(
-	// 			(entry) => {
-	// 				return {
-	// 					title: entry[0],
-	// 					...entry[1],
-	// 				}
-	// 			}
-	// 		)
-	// 	}
-
-	// 	if (
-	// 		// activeAffordance.uriVariables === undefined &&
-	// 		activeAffordance.input !== undefined ||
-	// 		activeAffordance.attributes !== undefined
-	// 	) {
-	// 		// Remove input from activeAffordance fields
-	// 		const { input, ...tempAffordanceFields } = activeAffordance
-	// 		attributes =
-	// 			activeAffordance.attributes === undefined
-	// 				? [{ ...activeAffordance.input }]
-	// 				: [...activeAffordance.attributes]
-
-	// 		// If input is an object
-	// 		if (
-	// 			activeAffordance.attributes !== undefined ||
-	// 			activeAffordance.input.type === 'object' ||
-	// 			activeAffordance.input.properties !== undefined
-	// 		) {
-	// 			attributes = attributes.map((attribute) => {
-	// 				return {
-	// 					...attribute,
-	// 				}
-	// 			})
-	// 		} else {
-	// 			affordanceFields = tempAffordanceFields
-	// 		}
-	// 	}
-
-	// 	// console.log(attributes)
-
-	// 	setAffordance({
-	// 		...affordanceFields,
-	// 		address: '',
-	// 		attributes,
-	// 		value: getInitialValue(activeAffordance),
-	// 	})
-	// }
-
 	// Update affordance on attribute change
-	useEffect(
-		() => setAffordance(formatAffordance(activeAffordance)),
-		[activeAffordance]
-	)
+	useEffect(() => {
+		setAffordance(formatAffordance(activeAffordance))
+		setOutput({})
+	}, [activeAffordance])
 
 	/**
 	 * Sets newAffordance as the current affordance.
@@ -172,7 +41,6 @@ const AttributesPanel = ({
 		})
 
 		setAffordance(currentAffordance)
-		// onChangeValue(currentAffordance)
 	}
 
 	if (affordance === undefined) {
@@ -198,7 +66,6 @@ const AttributesPanel = ({
 				),
 			],
 		}
-		// }
 	}
 
 	return (
@@ -227,10 +94,11 @@ const AttributesPanel = ({
 					}}
 				/>
 
-				<CodePanelsSection affordance={affordance} />
+				<CodePanelsSection affordance={affordance} output={output} />
 			</section>
 			<Footer
 				affordance={affordance}
+				onSubmit={(output) => setOutput(output)}
 				handleAffordanceChange={loadPreviousAffordance}
 			/>
 		</section>

@@ -3,7 +3,7 @@ import Header from './components/navbar/Header'
 import AffordancesPanel from './components/panels/AffordancesPanel'
 import TdPanel from './components/panels/TdPanel'
 import AttributesPanel from './components/panels/attributesPanel/AttributesPanel'
-import { getInitialValue } from './js/utils'
+import { addIdentifierToChildAttribute, getInitialValue } from './js/utils'
 
 window.mobileCheck = function () {
 	let check = false
@@ -92,8 +92,6 @@ function App() {
 		}
 
 		updateAffordancesArray(activeAffordance)
-
-		// console.log(affordances.current)
 	}
 
 	function updateAffordancesArray(affordanceToUpdate) {
@@ -103,28 +101,6 @@ function App() {
 				? { ...affordance, ...affordanceToUpdate }
 				: affordance
 		)
-
-		// // affordanceToUpdate is a nested affordance
-		// if (
-		// 	affordances.current.filter(
-		// 		(aff) => aff.title === affordanceToUpdate.title
-		// 	).length === 0
-		// ) {
-		// 	const affordancePath = getAffordancePath(affordanceToUpdate)
-		// 	const parentIndex = affordances.current
-		// 		.map((affordance) => affordance.title)
-		// 		.indexOf(affordancePath[0].title)
-
-		// 	affordances.current[parentIndex].
-		// }
-
-		// Set all affordances as not active, except the one titles as newAffordance
-		// affordances.current = affordances.current.map((affordance) => {
-		// 	return {
-		// 		...affordance,
-		// 		active: affordance.title === newAffordance?.title,
-		// 	}
-		// })
 	}
 
 	/**
@@ -205,7 +181,19 @@ function App() {
 					})
 				})
 				.reduce((prev, current) => [...prev, ...current], [])
-				.map((affordance) => formatAffordance(affordance)),
+				.map((affordance) => formatAffordance(affordance))
+				.map((affordance) => {
+					affordance.attributes = affordance.attributes.map((attribute) => {
+						return {
+							title:
+								attribute.title ??
+								addIdentifierToChildAttribute(affordance.title),
+							...attribute,
+						}
+					})
+					console.log(affordance)
+					return affordance
+				}),
 		]
 
 		// Filtro le affordances appartenenti a td ancora presenti (caso di eliminazione di TD)

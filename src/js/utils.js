@@ -1,5 +1,7 @@
 'use strict'
 
+const CHILD_IDENTIFIER = ' (child)'
+
 export function getInitialValue(attribute) {
 	if (attribute === undefined) return undefined
 
@@ -32,4 +34,34 @@ export function getInitialValue(attribute) {
 	}
 
 	return 0
+}
+
+export function serializeAttributes(attributes) {
+	if (attributes === undefined || attributes.length === 0) return {}
+
+	const code = {}
+
+	attributes.forEach((attribute) => {
+		let value = attribute.value
+
+		if (Array.isArray(value)) {
+			value = value.map((element) => element.toString())
+		}
+
+		if (attribute.type !== undefined && attribute.type === 'object') {
+			value = serializeAttributes(attribute.attributes)
+		}
+
+		code[removeIdentifierFromChildAttribute(attribute.title)] = value
+	})
+
+	return code
+}
+
+export function addIdentifierToChildAttribute(string) {
+	return string + CHILD_IDENTIFIER
+}
+
+function removeIdentifierFromChildAttribute(string) {
+	return string.replace(CHILD_IDENTIFIER, '')
 }

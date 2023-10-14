@@ -3,28 +3,7 @@ import './codePanel.css'
 import CopyButton from '../../utils/Buttons/CopyButton'
 import classNames from 'classnames'
 import EditModeButton from '../../utils/Buttons/EditModeButton'
-
-const formatCode = (attributes) => {
-	if (attributes === undefined || attributes.length === 0) return {}
-
-	const code = {}
-
-	attributes.forEach((attribute) => {
-		let value = attribute.value
-
-		if (Array.isArray(value)) {
-			value = value.map((element) => element.toString())
-		}
-
-		if (attribute.type !== undefined && attribute.type === 'object') {
-			value = formatCode(attribute.attributes)
-		}
-
-		code[attribute.title] = value
-	})
-
-	return code
-}
+import { serializeAttributes } from '../../../js/utils'
 
 const CodePanel = ({ type, attributes }) => {
 	const CODE_INDENTETION = 3
@@ -37,7 +16,11 @@ const CodePanel = ({ type, attributes }) => {
 				name='code-snippet'
 				id={`code-snippet-${type}`}
 				readOnly={readonlyTextarea}
-				value={JSON.stringify(formatCode(attributes), null, CODE_INDENTETION)}
+				value={JSON.stringify(
+					serializeAttributes(attributes),
+					null,
+					CODE_INDENTETION
+				)}
 			/>
 			{/* </code> */}
 		</pre>
