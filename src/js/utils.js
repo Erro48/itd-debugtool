@@ -1,6 +1,6 @@
 'use strict'
 
-const CHILD_IDENTIFIER = ' (child)'
+const CHILD_IDENTIFIER = '*'
 
 export function getInitialValue(attribute) {
 	if (attribute === undefined) return undefined
