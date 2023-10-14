@@ -42,7 +42,7 @@ function App() {
 		return [...getAffordancePath(affordance.parent), affordance]
 	}
 
-	// Updates activeAffordance and affordances array
+	// Updates activeAffordance
 	function updateActiveAffordance(affordance) {
 		affordance = formatAffordance(affordance)
 
@@ -108,6 +108,7 @@ function App() {
 	 * @param {*} thingDescription to be added to the list
 	 */
 	function handleRepoLoad(thingDescription) {
+		console.log(thingDescriptions, affordances.current)
 		setThingDescriptions((state) => {
 			// If it is the first thing description
 			if (state.length === 0) {
@@ -126,6 +127,7 @@ function App() {
 
 				// Set td as active
 				thingDescription = { ...thingDescription, active: true }
+				return [thingDescription]
 			}
 
 			// If not already in, add to the list
@@ -191,7 +193,6 @@ function App() {
 							...attribute,
 						}
 					})
-					console.log(affordance)
 					return affordance
 				}),
 		]
@@ -201,6 +202,12 @@ function App() {
 			thingDescriptions
 				.map((td) => td.title)
 				.includes(affordance.thingDescription)
+		)
+
+		setActiveAffordance(
+			affordances.current.filter(
+				(affordance) => affordance.thingDescription === activeTd.title
+			)[0] ?? affordances.current[0]
 		)
 	}, [thingDescriptions])
 
@@ -212,6 +219,8 @@ function App() {
 		let activeAff =
 			affordances.current.filter((affordance) => affordance.active)[0] ??
 			affordances.current[0]
+
+		console.log(activeAff)
 
 		// se non è presente un'affordance attiva, prendo la prima di affordances.current
 		if (
@@ -257,6 +266,9 @@ function App() {
 	const handleRemoveThingDescription = (title) => {
 		setThingDescriptions((state) => state.filter((td) => td.title !== title))
 		setActiveAffordance(undefined)
+		affordances.current = affordances.current.filter(
+			(affordance) => affordance.thingDescription !== title
+		)
 	}
 
 	function formatAffordance(affToFormat) {

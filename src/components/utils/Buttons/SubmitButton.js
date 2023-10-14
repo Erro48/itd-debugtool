@@ -9,7 +9,7 @@ const SubmitButton = ({ affordance, onSubmit }) => {
 			affordance?.forms[0].href,
 			affordance.attributes
 		)
-		const contentType = affordance?.forms[0].contentType
+		const contentType = affordance?.forms[0].contentType ?? 'application/json'
 		const op = Array.isArray(affordance?.forms[0]?.op)
 			? affordance?.forms[0]?.op[0]
 			: affordance?.forms[0]?.op
@@ -19,7 +19,7 @@ const SubmitButton = ({ affordance, onSubmit }) => {
 			contentType,
 			attributes: affordance?.attributes,
 		})
-
+		console.log(URI, options)
 		const response = await fetch(URI, options).then((response) =>
 			response.json()
 		)
