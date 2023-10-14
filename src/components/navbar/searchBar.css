@@ -4,6 +4,7 @@
 
 #search-bar input {
 	background-color: inherit;
+	color: var(--secondary-text-color);
 
 	font-weight: var(--medium-font-weight);
 }

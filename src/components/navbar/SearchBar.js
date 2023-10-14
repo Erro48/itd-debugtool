@@ -70,7 +70,7 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 
 			onRepoLoad(thingDescription)
 		} catch (err) {
-			alert(err) // temporaneo
+			alert(err)
 		}
 	}
 
@@ -99,37 +99,12 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 		})
 	}
 
-	const getLoadingIcon = () => {
-		const iconName = loadingError ? 'close' : 'tick-outline'
-		const iconAlt = loadingError
-			? 'Repository not loaded correctly'
-			: 'Repository loaded'
-
-		const iconJSX = (
-			<Icon
-				src={'../icons/' + iconName + '.svg'}
-				alt={iconAlt}
-				classname={classnames({ 'd-none': !loadingError && !repoLoaded })}
-			/>
-		)
-
-		if (loadingError) {
-			return (
-				<button class='button transparent-btn' onClick={onShowError}>
-					{iconJSX}
-				</button>
-			)
-		}
-
-		return iconJSX
-	}
-
 	return (
 		<div
 			id='search-bar'
 			className='row m-3  mx-md-auto rounded-pill overflow-hidden'
 		>
-			<form className='col-9 col-md-10'>
+			<form className='col-10 col-md-11' onSubmit={performSearch}>
 				<div className='row'>
 					<button
 						type='button'
@@ -145,7 +120,6 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 						aria-label='Search for a repository'
 						list='repository-history'
 						onChange={(event) => setRepository(event.target.value)}
-						// value={repository}
 					/>
 					<datalist id='repository-history'>
 						{repositoryDatalist.current.map((link) => (
@@ -154,31 +128,24 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 					</datalist>
 				</div>
 			</form>
-			<div className='col-3 col-md-2 p-0'>
-				<ul className='row m-0 w-100 h-100 p-0'>
-					<li className='col-6 d-flex align-items-center justify-content-center'>
-						{getLoadingIcon()}
-					</li>
-					<li className='col-6 d-flex align-items-center justify-content-center'>
-						<button type='button' className='button transparent-btn'>
-							<label htmlFor='open-repo'>
-								<Icon
-									src='../icons/baseline-folder-open.svg'
-									alt='Choose repository'
-								/>
+			<div className='col-2 col-md-1 p-0 d-flex justify-content-center'>
+				<button type='button' className='button transparent-btn'>
+					<label htmlFor='open-repo'>
+						<Icon
+							src='../icons/baseline-folder-open.svg'
+							alt='Choose repository'
+						/>
 
-								<input
-									className='d-none'
-									id='open-repo'
-									type='file'
-									accept='.json'
-									multiple={true}
-									onChange={handleForChange}
-								/>
-							</label>
-						</button>
-					</li>
-				</ul>
+						<input
+							className='d-none'
+							id='open-repo'
+							type='file'
+							accept='.json'
+							multiple={true}
+							onChange={handleForChange}
+						/>
+					</label>
+				</button>
 			</div>
 		</div>
 	)
