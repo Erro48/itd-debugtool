@@ -3,7 +3,11 @@ import Header from './components/navbar/Header'
 import AffordancesPanel from './components/panels/AffordancesPanel'
 import TdPanel from './components/panels/TdPanel'
 import AttributesPanel from './components/panels/attributesPanel/AttributesPanel'
-import { addIdentifierToChildAttribute, getInitialValue } from './js/utils'
+import {
+	addIdentifierToChildAttribute,
+	getAddress,
+	getInitialValue,
+} from './js/utils'
 
 window.mobileCheck = function () {
 	let check = false
@@ -108,7 +112,6 @@ function App() {
 	 * @param {*} thingDescription to be added to the list
 	 */
 	function handleRepoLoad(thingDescription) {
-		console.log(thingDescriptions, affordances.current)
 		setThingDescriptions((state) => {
 			// If it is the first thing description
 			if (state.length === 0) {
@@ -220,8 +223,6 @@ function App() {
 			affordances.current.filter((affordance) => affordance.active)[0] ??
 			affordances.current[0]
 
-		console.log(activeAff)
-
 		// se non è presente un'affordance attiva, prendo la prima di affordances.current
 		if (
 			affordances.current.filter((affordance) => affordance.active)[0] ===
@@ -315,7 +316,12 @@ function App() {
 
 		return {
 			...affordanceFields,
-			address: '',
+			address: getAddress(
+				affordanceFields,
+				thingDescriptions.filter(
+					(td) => td.title === affordanceFields.thingDescription
+				)[0]
+			),
 			attributes,
 			value: getInitialValue(affToFormat),
 		}

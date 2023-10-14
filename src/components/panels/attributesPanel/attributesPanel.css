@@ -34,3 +34,13 @@
 	border-top: 2px solid var(--secondary);
 	padding-top: 0.8rem;
 }
+
+a.affordance-address {
+	text-decoration: none;
+	font-size: 0.85em;
+}
+
+em {
+	font-size: 0.85em;
+	color: var(--secondary-text-color);
+}

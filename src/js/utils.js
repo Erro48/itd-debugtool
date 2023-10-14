@@ -62,6 +62,39 @@ export function addIdentifierToChildAttribute(string) {
 	return string + CHILD_IDENTIFIER
 }
 
+export function getAddress(affordance, thingDescription) {
+	const validURLRegExp = new RegExp('^(?:[a-z+]+:)?//', 'i')
+	const baseURI = thingDescription?.base
+	const relativeURI = affordance.forms?.[0]?.href
+
+	let finalURI = undefined
+
+	if (validURLRegExp.test(relativeURI)) {
+		finalURI = relativeURI // relative URL is more specific
+	}
+
+	if (validURLRegExp.test(baseURI) && !validURLRegExp.test(relativeURI)) {
+		finalURI = baseURI + relativeURI
+	}
+
+	if (affordance?.uriVariables) {
+		finalURI = formatUrlWithUriVariables(finalURI, affordance.attributes)
+	}
+	return finalURI
+}
+
+function formatUrlWithUriVariables(url, uriVariables) {
+	url += '?'
+	uriVariables?.forEach((variable) => {
+		url = url
+			.replace(`{${variable.title}}`, '')
+			.replace(`{?${variable.title}}`, '')
+
+		url += `${variable.title}=${variable.value}&`
+	})
+	return url.slice(0, -1)
+}
+
 function removeIdentifierFromChildAttribute(string) {
 	return string.replace(CHILD_IDENTIFIER, '')
 }

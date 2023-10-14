@@ -1,14 +1,11 @@
 import React from 'react'
-import { serializeAttributes } from '../../../js/utils'
+import { getAddress, serializeAttributes } from '../../../js/utils'
 
 const SubmitButton = ({ affordance, onSubmit }) => {
 	async function handleSubmit(affordance) {
 		if (affordance?.parent !== undefined) return handleSubmit(affordance.parent)
 
-		const URI = formatUriWithVariables(
-			affordance?.forms[0].href,
-			affordance.attributes
-		)
+		const URI = getAddress(affordance)
 		const contentType = affordance?.forms[0].contentType ?? 'application/json'
 		const op = Array.isArray(affordance?.forms[0]?.op)
 			? affordance?.forms[0]?.op[0]
@@ -19,7 +16,7 @@ const SubmitButton = ({ affordance, onSubmit }) => {
 			contentType,
 			attributes: affordance?.attributes,
 		})
-		console.log(URI, options)
+
 		const response = await fetch(URI, options).then((response) =>
 			response.json()
 		)
@@ -40,15 +37,6 @@ const SubmitButton = ({ affordance, onSubmit }) => {
 			headers,
 			...(body && { body }),
 		}
-	}
-
-	function formatUriWithVariables(uri, uriVariables) {
-		uriVariables.forEach((variable) => {
-			uri = uri.replace(`{${variable.title}}`, variable.value)
-			uri = uri.replace(`{?${variable.title}}`, variable.value)
-		})
-
-		return uri
 	}
 
 	function getHttpMethod(op) {
