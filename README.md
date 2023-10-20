@@ -1,3 +1,3 @@
-# WoT-Dashboard
+# Interactive TD DebugTool
 
-Dashboard which simplifies the interactions with Things in the Web of Things world
+Debug tool which simplifies the interactions with Things in the Web of Things world

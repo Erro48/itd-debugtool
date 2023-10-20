@@ -5,7 +5,7 @@ function Navbar({ children }) {
 		<nav className='navbar navbar-expand-lg'>
 			<div className='container'>
 				<h1>
-					MashupTd <span>Nexus</span>
+					<span>iTD</span>DebugTool
 				</h1>
 				<div
 					className='collapse navbar-collapse d-none'
