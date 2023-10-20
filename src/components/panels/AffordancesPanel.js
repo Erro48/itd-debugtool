@@ -16,12 +16,13 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 
 		// get affordances of one type (properties or actions)
 		switch (type) {
-			case 'properties':
-				affordances = activeThingDescription.properties
-				break
-
 			case 'actions':
 				affordances = activeThingDescription.actions
+				break
+
+			default:
+			case 'properties':
+				affordances = activeThingDescription.properties
 				break
 		}
 
@@ -29,7 +30,7 @@ const AffordancesPanel = ({ activeThingDescription, onChange }) => {
 			return {
 				title: affordance.title,
 				...{ ...affordance },
-				active: affordance.active == true,
+				active: affordance.active === true,
 				affordanceType: type,
 			}
 		})

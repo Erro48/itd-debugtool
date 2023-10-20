@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import './codePanel.css'
-import CopyButton from '../../utils/Buttons/CopyButton'
-import classNames from 'classnames'
-import EditModeButton from '../../utils/Buttons/EditModeButton'
 import { serializeAttributes } from '../../../js/utils'
+import CopyButton from '../../utils/Buttons/CopyButton'
+import './codePanel.css'
 
 const CodePanel = ({ type, attributes }) => {
 	const CODE_INDENTETION = 3
-	const [readonlyTextarea, setReadonlyTextarea] = useState(true)
+	const [readonlyTextarea] = useState(true)
 
 	const codeJsx = (
 		<pre>

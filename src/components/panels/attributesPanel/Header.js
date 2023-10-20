@@ -1,5 +1,4 @@
 import React from 'react'
-import CopyButton from '../../utils/Buttons/CopyButton'
 
 const Header = ({ affordance }) => {
 	function displayAddress() {

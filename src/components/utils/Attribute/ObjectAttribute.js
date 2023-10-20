@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import './objectAttribute.css'
 
-/* [ { title: "Title", value: number/string/array/oggetto } ] */
 const getSummary = (attribute) => {
 	const getSummaryObject = (child) => {
 		if (child.type === 'object') {

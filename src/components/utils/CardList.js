@@ -1,8 +1,6 @@
 import React from 'react'
 import Card from './Card'
-
 import './cardList.css'
-import Icon from './Icon'
 
 const CardList = ({ cards, onRemoveCard, className, onCardClick }) => {
 	return (
