@@ -41,8 +41,6 @@ export function serializeAttributes(attributes) {
 
 	const code = {}
 
-	console.log(attributes)
-
 	attributes.forEach((attribute) => {
 		let value = attribute.value
 
@@ -57,8 +55,6 @@ export function serializeAttributes(attributes) {
 
 		code[removeIdentifierFromChildAttribute(attribute.title)] = value
 	})
-
-	console.log(code)
 
 	return code
 }
@@ -86,6 +82,13 @@ export function getAddress(affordance, thingDescription) {
 		finalURI = formatUrlWithUriVariables(finalURI, affordance.attributes)
 	}
 	return finalURI
+}
+
+export async function performQuery(URL, options) {
+	return await fetch(
+		process.env.REACT_APP_CORS_PROXY_SERVER + URL,
+		options
+	).then((response) => response.json())
 }
 
 function formatUrlWithUriVariables(url, uriVariables) {

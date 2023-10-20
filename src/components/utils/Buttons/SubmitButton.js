@@ -1,11 +1,15 @@
 import React from 'react'
-import { getAddress, serializeAttributes } from '../../../js/utils'
+import {
+	getAddress,
+	performQuery,
+	serializeAttributes,
+} from '../../../js/utils'
 
 const SubmitButton = ({ affordance, onSubmit }) => {
 	async function handleSubmit(affordance) {
 		if (affordance?.parent !== undefined) return handleSubmit(affordance.parent)
 
-		const URI = getAddress(affordance)
+		const URL = getAddress(affordance)
 		const contentType = affordance?.forms[0].contentType ?? 'application/json'
 		const op = Array.isArray(affordance?.forms[0]?.op)
 			? affordance?.forms[0]?.op[0]
@@ -17,15 +21,7 @@ const SubmitButton = ({ affordance, onSubmit }) => {
 			attributes: affordance?.attributes,
 		})
 
-		const tmpURL = 'http://localhost:8080/' + URI
-
-		console.log(tmpURL, options)
-
-		const response = await fetch(tmpURL, options).then((response) =>
-			response.json()
-		)
-
-		onSubmit(response)
+		onSubmit(await performQuery(URL, options))
 	}
 
 	function getHttpRequestOptions({ op, contentType, attributes }) {

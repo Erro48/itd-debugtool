@@ -1,15 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
-import Icon from '../utils/Icon'
-import classnames from 'classnames'
 import Cookies from 'universal-cookie'
+import { performQuery } from '../../js/utils'
+import Icon from '../utils/Icon'
 import './searchBar.css'
 
 const cookies = new Cookies(null, { path: '/' })
 const TdTools = window.Wot.Tools
 
-function SearchBar({ onRepoLoad, onError, onShowError }) {
+function SearchBar({ onRepoLoad, onError }) {
 	const [loadingError, setLoadingError] = useState(false)
-	const [repoLoaded, setRepoLoaded] = useState(false)
+	const [, setRepoLoaded] = useState(false)
 	const [repository, setRepository] = useState('')
 	const repositoryDatalist = useRef(cookies.get('search-data-list') ?? [])
 
@@ -22,23 +22,14 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 	const performSearch = (e) => {
 		e.preventDefault()
 
-		const tmpURL = 'http://localhost:8080/' + repository
-		console.log(tmpURL)
+		performQuery(repository).then(async (json) => {
+			computeThingDescription(JSON.stringify(json))
 
-		fetch(tmpURL)
-			.then((response) => {
-				console.log(response)
-				return response.json()
-			})
-			.then(async (json) => {
-				console.log(json)
-				computeThingDescription(JSON.stringify(json))
-
-				repositoryDatalist.current = [
-					...repositoryDatalist.current.filter((item) => item !== repository),
-					repository,
-				]
-			})
+			repositoryDatalist.current = [
+				...repositoryDatalist.current.filter((item) => item !== repository),
+				repository,
+			]
+		})
 	}
 
 	/**

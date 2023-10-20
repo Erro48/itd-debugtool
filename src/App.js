@@ -329,11 +329,7 @@ function App() {
 
 	return (
 		<main className='App'>
-			<Header
-				onRepoLoad={handleRepoLoad}
-				onError={handleRepoError}
-				onShowError={() => setShowRepoError(true)}
-			/>
+			<Header onRepoLoad={handleRepoLoad} onError={handleRepoError} />
 
 			<div className='container-fluid p-0'>
 				<div className='row w-100 mx-auto'>

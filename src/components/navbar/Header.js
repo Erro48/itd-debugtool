@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import SearchBar from './SearchBar'
-import { ErrorBoundary } from 'react-error-boundary'
 
-const Header = ({ onRepoLoad, onError, onShowError }) => {
+const Header = ({ onRepoLoad, onError }) => {
 	const [width, setWidth] = useState(window.innerWidth)
-	const searchBarJsx = (
-		<SearchBar
-			onRepoLoad={onRepoLoad}
-			onError={onError}
-			onShowError={onShowError}
-		/>
-	)
+	const searchBarJsx = <SearchBar onRepoLoad={onRepoLoad} onError={onError} />
 
 	function handleWindowSizeChange() {
 		setWidth(window.innerWidth)
