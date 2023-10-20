@@ -121,7 +121,7 @@ function SearchBar({ onRepoLoad, onError }) {
 					/>
 					<datalist id='repository-history'>
 						{repositoryDatalist.current.map((link) => (
-							<option value={link}></option>
+							<option value={link} key={link}></option>
 						))}
 					</datalist>
 				</div>
