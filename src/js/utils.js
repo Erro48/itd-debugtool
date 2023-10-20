@@ -41,10 +41,13 @@ export function serializeAttributes(attributes) {
 
 	const code = {}
 
+	console.log(attributes)
+
 	attributes.forEach((attribute) => {
 		let value = attribute.value
 
 		if (Array.isArray(value)) {
+			console.log(attribute.title + ' is an array')
 			value = value.map((element) => element.toString())
 		}
 
@@ -54,6 +57,8 @@ export function serializeAttributes(attributes) {
 
 		code[removeIdentifierFromChildAttribute(attribute.title)] = value
 	})
+
+	console.log(code)
 
 	return code
 }

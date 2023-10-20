@@ -17,7 +17,11 @@ const SubmitButton = ({ affordance, onSubmit }) => {
 			attributes: affordance?.attributes,
 		})
 
-		const response = await fetch(URI, options).then((response) =>
+		const tmpURL = 'http://localhost:8080/' + URI
+
+		console.log(tmpURL, options)
+
+		const response = await fetch(tmpURL, options).then((response) =>
 			response.json()
 		)
 

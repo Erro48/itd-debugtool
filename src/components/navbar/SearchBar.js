@@ -22,9 +22,16 @@ function SearchBar({ onRepoLoad, onError, onShowError }) {
 	const performSearch = (e) => {
 		e.preventDefault()
 
-		fetch(repository)
-			.then((response) => response.json())
+		const tmpURL = 'http://localhost:8080/' + repository
+		console.log(tmpURL)
+
+		fetch(tmpURL)
+			.then((response) => {
+				console.log(response)
+				return response.json()
+			})
 			.then(async (json) => {
+				console.log(json)
 				computeThingDescription(JSON.stringify(json))
 
 				repositoryDatalist.current = [
