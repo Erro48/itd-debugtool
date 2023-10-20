@@ -64,6 +64,8 @@ export function addIdentifierToChildAttribute(string) {
 }
 
 export function getAddress(affordance, thingDescription) {
+	if (affordance.address) return affordance.address
+
 	const validURLRegExp = new RegExp('^(?:[a-z+]+:)?//', 'i')
 	const baseURI = thingDescription?.base
 	const relativeURI = affordance.forms?.[0]?.href

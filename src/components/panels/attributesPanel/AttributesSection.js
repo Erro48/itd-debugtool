@@ -53,6 +53,8 @@ const AttributesSection = ({ affordance, onChange }) => {
 			}
 		})
 
+		console.log(affordance.address)
+
 		onChange({
 			...newAffordance,
 			address: affordance.address,
