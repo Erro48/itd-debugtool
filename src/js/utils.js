@@ -51,7 +51,8 @@ export function serializeAttributes(attributes) {
 			value = serializeAttributes(attribute.attributes)
 		}
 
-		code[removeIdentifierFromChildAttribute(attribute.title)] = value
+		// code[removeIdentifierFromChildAttribute(attribute.title)] = value
+		code[attribute.title] = value
 	})
 
 	return code
@@ -62,7 +63,8 @@ export function addIdentifierToChildAttribute(string) {
 }
 
 export function getAddress(affordance, thingDescription) {
-	if (affordance.address) return affordance.address
+	console.log(affordance)
+	if (affordance.address && !affordance.uriVariables) return affordance.address
 
 	const validURLRegExp = new RegExp('^(?:[a-z+]+:)?//', 'i')
 	const baseURI = thingDescription?.base
@@ -85,11 +87,18 @@ export function getAddress(affordance, thingDescription) {
 }
 
 export async function performQuery(URL, options) {
-	return await fetch(
-		process.env.REACT_APP_CORS_PROXY_SERVER + URL,
-		options
-	).then((response) => response.json())
+	const proxy = process.env.REACT_APP_CORS_PROXY_SERVER
+	// const proxy = process.env.REACT_APP_CORS_PROXY_SERVER_ALT
+	console.log(proxy + URL, options)
+	return await fetch(proxy + URL, options).then(async (response) => {
+		return {
+			status: response.status,
+			description: response.statusText,
+			body: await response.json(),
+		}
+	})
 }
+
 export function mobileCheck() {
 	let check = false
 	;(function (a) {

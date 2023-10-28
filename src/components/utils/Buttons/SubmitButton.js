@@ -21,16 +21,63 @@ const SubmitButton = ({ affordance, onSubmit }) => {
 			attributes: affordance?.attributes,
 		})
 
-		onSubmit(await performQuery(URL, options))
+		const response = await performQuery(URL, options)
+
+		// Error
+		if (response.status < 200 || response.status > 299) {
+			const newOptions = getHttpRequestOptions({
+				op,
+				undefined,
+				attributes: affordance?.attributes,
+			})
+
+			const response = await performQuery(URL, newOptions)
+			return onSubmit(response.body)
+		}
+
+		onSubmit(response.body)
+	}
+
+	function parseAttributesToFormData(attributes, initial = new FormData()) {
+		Object.entries(attributes).forEach((entry) => {
+			const [key, val] = entry
+
+			initial.append(key, val)
+		})
+
+		return initial
 	}
 
 	function getHttpRequestOptions({ op, contentType, attributes }) {
 		const method = getHttpMethod(op)
+
+		if (!contentType) {
+			let attr = serializeAttributes(attributes)
+			if (Object.keys(attr).filter((key) => key.includes('*')).length > 0) {
+				attr = Object.entries(attr).map((entry) => {
+					const [key, val] = entry
+					if (key.includes('*')) {
+						return val
+					}
+					return [key, val]
+				})
+				attr = { ...{ ...attr }['0'] }
+			}
+
+			const body = parseAttributesToFormData(attr)
+			return {
+				method,
+				...(body && { body }),
+			}
+		}
+
 		const headers = {
 			'Content-Type': contentType,
 		}
 		const body =
-			method === 'POST' ? JSON.stringify(serializeAttributes(attributes)) : null
+			method === 'POST'
+				? JSON.stringify(serializeAttributes(attributes)['setColor*'])
+				: null
 
 		return {
 			method,

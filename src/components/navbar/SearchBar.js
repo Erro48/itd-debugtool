@@ -23,7 +23,7 @@ function SearchBar({ onRepoLoad, onError }) {
 		e.preventDefault()
 
 		performQuery(repository).then(async (json) => {
-			computeThingDescription(JSON.stringify(json))
+			computeThingDescription(JSON.stringify(json.body))
 
 			repositoryDatalist.current = [
 				...repositoryDatalist.current.filter((item) => item !== repository),
@@ -109,13 +109,13 @@ function SearchBar({ onRepoLoad, onError }) {
 						className='button transparent-btn col-2 col-sm-1 d-flex align-items-center justify-content-end'
 						onClick={performSearch}
 					>
-						<Icon src='./icons/search.svg' alt='Search repository' />
+						<Icon src='./icons/search.svg' alt='Search Thing Description' />
 					</button>
 					<input
 						className='px-3 py-2 border-0 col-10 col-sm-11'
 						type='search'
-						placeholder='Search for a repository'
-						aria-label='Search for a repository'
+						placeholder='Search for a Thing Description'
+						aria-label='Search for a Thing Description'
 						list='repository-history'
 						onChange={(event) => setRepository(event.target.value)}
 					/>
