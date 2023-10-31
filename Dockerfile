@@ -7,4 +7,4 @@ RUN npm ci
 COPY public/ public
 COPY src/ src
 COPY .env .env
-CMD npm run start
+CMD npm run docker
