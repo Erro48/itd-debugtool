@@ -21,6 +21,8 @@
 	},
 	"scripts": {
 		"start": "react-scripts start",
+		"docker": "set REACT_APP_CORS_PROXY_HOST=proxy:latest//proxy&& react-scripts start",
+		"dev": "set REACT_APP_CORS_PROXY_HOST=http://localhost&& concurrently --kill-others \"react-scripts start\" \"node ..\\cors-anywhere\\server.js\" \"node ..\\..\\test-server\\index.js\"",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
@@ -42,5 +44,8 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"concurrently": "^8.2.2"
 	}
 }
