@@ -87,10 +87,11 @@ export function getAddress(affordance, thingDescription) {
 }
 
 export async function performQuery(URL, options) {
-	const proxy = process.env.REACT_APP_CORS_PROXY_SERVER
+	const proxy = process.env.REACT_APP_CORS_PROXY_SERVER ?? ""
 	// const proxy = process.env.REACT_APP_CORS_PROXY_SERVER_ALT
 	console.log("Proxy server:", proxy)
 	console.log("URL:", URL)
+	console.log("Full address: ", proxy + URL)
 	return await fetch(proxy + URL, options).then(async (response) => {
 		return {
 			status: response.status,

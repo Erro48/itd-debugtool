@@ -22,7 +22,8 @@ npm install
 
 ## Usage
 
-Una volta installato eseguire il comando
+<!-- Una volta installato eseguire il comando -->
+Per eseguire solamente l'applicazione, eseguire il comando
 
 ```sh
 npm run start
@@ -31,12 +32,26 @@ npm run start
 Per specificare l'indirizzo del cors server, creare un file `.env` con le seguenti due variabili
 
 ```js
-REACT_APP_CORS_PROXY_HOST=<proxy-server>
-REACT_APP_CORS_PROXY_PORT=<proxy-port>
+REACT_APP_CORS_PROXY_SERVER=<proxy-server>:<proxy-port>/
 ```
 
 oppure eseguire direttamente il comando:
 
 ```sh
-set REACT_APP_CORS_PROXY_HOST=<proxy-server>&& set REACT_APP_CORS_PROXY_PORT=<proxy-port>&& npm run start
+REACT_APP_CORS_PROXY_SERVER=<proxy-server>:<proxy-port>/ npm run start
+```
+
+### Esecuzione con Docker
+Per eseguire l'applicazione con Docker, eseguire i comandi:
+
+```sh
+docker build -t itd-debugtool:latest .
+docker run --name itd-debugtool -p <localhost-port>:3000 itd-debugtool:latest
+```
+
+Per specificare l'indirizzo del cors server impostare la variabile d'ambiente quando si esegue il container:
+
+```sh
+docker run --name itd-debugtool -p <localhost-port>:3000 --env REACT_APP_CORS_PROXY_SERVER=<proxy-server>:<proxy-port> itd-debugtool:latest
+
 ```
